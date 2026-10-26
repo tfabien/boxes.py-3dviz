@@ -51,7 +51,7 @@ One self-contained HTML page that lets you browse the Boxes.py generators, chang
 
 ## Getting started
 
-1. Open `index.html` in a recent desktop browser (WebGL required). There is no build step and nothing to install.
+1. Open the hosted page, **https://tfabien.github.io/boxes.py-3dviz/** (built and deployed by GitHub Actions on every push), or build it yourself with `python tools/build.py` (no dependencies) and open the generated `index.html` in a recent desktop browser (WebGL required).
 2. Pick a box on the home page, tweak the parameters, drag the sliders.
 
 Notes
@@ -156,7 +156,7 @@ src/generators.json      generators in display order
 src/i18n/                schemas.json (parameter structure), texts.json (labels / help per language),
                          ui.<lang>.json and modules/<lang>_<Module>.json (message translations)
 tools/extract_schemas.py scrapes the forms of the public Boxes.py site (all languages)
-tools/build.py           python tools/build.py  ->  index.html
+tools/build.py           python tools/build.py -> index.html (untracked; built and deployed by .github/workflows/pages.yml)
 tools/check_messages.py  lists messages that lack a translation (python tools/check_messages.py fr de)
 companion/               flexbox5plus.py, local server, start_server.bat
 ```
