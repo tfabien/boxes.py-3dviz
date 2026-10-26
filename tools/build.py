@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the single-file viewer boxes.py-3dviz.html from the sources in src/.
+"""Build the single-file viewer index.html from the sources in src/.
 
   src/template.html          page, engine and the built-in generators
   src/modules/*.js           one module per additional generator (each registers BUILD / USED / NOTES)
@@ -37,7 +37,7 @@ def messages():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('-o', '--output', default=os.path.join(ROOT, 'boxes.py-3dviz.html'))
+    ap.add_argument('-o', '--output', default=os.path.join(ROOT, 'index.html'))
     a = ap.parse_args()
     modules = sorted(glob.glob(os.path.join(ROOT, 'src', 'modules', '*.js')))
     code = '\n'.join('// ==== module %s ====\n%s' % (os.path.basename(m), read(m)) for m in modules)

@@ -51,7 +51,7 @@ One self-contained HTML page that lets you browse the Boxes.py generators, chang
 
 ## Getting started
 
-1. Open `boxes.py-3dviz.html` in a recent desktop browser (WebGL required). There is no build step and nothing to install.
+1. Open `index.html` in a recent desktop browser (WebGL required). There is no build step and nothing to install.
 2. Pick a box on the home page, tweak the parameters, drag the sliders.
 
 Notes
@@ -63,7 +63,7 @@ Notes
 The URL hash selects a generator and, optionally, the view state and parameters:
 
 ```
-boxes.py-3dviz.html#<Generator>[&mode=3d|2d|split][&explode=<mm>][&unfold=<0..1>][&open=<0..1>][&view=iso|top|front|side][&rotate=0][&ui=0][&p_<parameter>=<value>]...
+index.html#<Generator>[&mode=3d|2d|split][&explode=<mm>][&unfold=<0..1>][&open=<0..1>][&view=iso|top|front|side][&rotate=0][&ui=0][&p_<parameter>=<value>]...
 ```
 
 | Option | Meaning |
@@ -80,9 +80,9 @@ boxes.py-3dviz.html#<Generator>[&mode=3d|2d|split][&explode=<mm>][&unfold=<0..1>
 Without `explode` / `unfold` / `open` the assembly animation plays on load. Examples:
 
 ```
-boxes.py-3dviz.html#ClosedBox&explode=40&rotate=0
-boxes.py-3dviz.html#HingeBox&open=0.7&p_h=150
-boxes.py-3dviz.html#FlexBox5&unfold=0.75&view=iso
+index.html#ClosedBox&explode=40&rotate=0
+index.html#HingeBox&open=0.7&p_h=150
+index.html#FlexBox5&unfold=0.75&view=iso
 ```
 
 The screenshots below (and the FlexBox5Plus ones further down) were produced from such links with a headless browser.
@@ -156,7 +156,7 @@ src/generators.json      generators in display order
 src/i18n/                schemas.json (parameter structure), texts.json (labels / help per language),
                          ui.<lang>.json and modules/<lang>_<Module>.json (message translations)
 tools/extract_schemas.py scrapes the forms of the public Boxes.py site (all languages)
-tools/build.py           python tools/build.py  ->  boxes.py-3dviz.html
+tools/build.py           python tools/build.py  ->  index.html
 tools/check_messages.py  lists messages that lack a translation (python tools/check_messages.py fr de)
 companion/               flexbox5plus.py, local server, start_server.bat
 ```
