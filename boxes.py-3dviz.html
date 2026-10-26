@@ -3371,7 +3371,18 @@ function showHome() {
   };
   step();
 }
-if (BUILD[location.hash.slice(1)]) { TYPE = location.hash.slice(1); resetValues(); drawForm(); updateLink(); build(); assemble(); }   // #NomDuType : ouvre directement un type
+// Deep links : #Type&explode=40&unfold=1&open=0.5&ui=0&rotate=0&view=iso|top|front|side&p_<parametre>=valeur
+const HASH = location.hash.slice(1).split('&'), HOPT = Object.fromEntries(HASH.slice(1).map(q => q.split('=')));
+if (BUILD[HASH[0]]) {
+  TYPE = HASH[0]; fitted = false; resetValues();
+  for (const [k, v] of Object.entries(HOPT)) if (k.startsWith('p_')) { const n = k.slice(2); V[n] = typeof V[n] === 'boolean' ? (v === '1' || v === 'true') : decodeURIComponent(v); }
+  const still = 'explode' in HOPT || 'unfold' in HOPT || 'open' in HOPT;
+  if ('explode' in HOPT) V._explode = +HOPT.explode; if ('unfold' in HOPT) V._unfold = +HOPT.unfold; if ('open' in HOPT) V._open = +HOPT.open;
+  drawForm(); updateLink(); build(); if (!still) assemble(); else applyExplode();
+  if (HOPT.rotate === '0') { controls.autoRotate = false; const rl = [...ui.querySelectorAll('label')].find(l => /Rotation auto/.test(l.textContent)); if (rl) rl.querySelector('input').checked = false; }
+  if (HOPT.ui === '0') ui.style.display = 'none';
+  if (HOPT.view) { const d = {iso:[.8,.6,1], top:[0,1,.001], front:[0,.2,1], side:[1,.2,0]}[HOPT.view]; if (d) { const n = Math.hypot(...d), r = camera.position.length(); camera.position.set(d[0]/n*r, d[1]/n*r, d[2]/n*r); controls.update(); } }
+}   // #NomDuType : ouvre directement un type
 else { resetValues(); drawForm(); updateLink(); build(); showHome(); }
 addEventListener('resize', () => { camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
 (function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
