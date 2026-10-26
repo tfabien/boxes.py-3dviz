@@ -35,7 +35,6 @@
  "Lid not drawn.": "Couvercle non dessiné.",
  "Top edge '{0}' is not modelled (shown open).": "Bord supérieur « {0} » non modélisé (affiché ouvert).",
  "'Top hole' panel not drawn.": "Panneau « top hole » non dessiné.",
- "Local variant (not on the Boxes.py site): Generate calls the local server (start_server.bat). Latch pivot vertically centred.": "Variante locale (absente du site Boxes.py) : « Générer » appelle le serveur local (start_server.bat). Pivot du loquet centré en hauteur.",
  "Single section (first value of sx); no dividers.": "Une seule section (première valeur de sx) ; pas de cloisons.",
  "Wall end fingers on the vertical edge are not drawn.": "Créneaux du chant vertical de la paroi non dessinés.",
  "Orientation of the bottom plate deduced from the fingers.": "Orientation de la plaque du fond déduite des créneaux.",

@@ -35,7 +35,6 @@
  "Lid not drawn.": "Tampa não desenhada.",
  "Top edge '{0}' is not modelled (shown open).": "A borda superior '{0}' não está modelada (mostrada aberta).",
  "'Top hole' panel not drawn.": "Painel 'Top hole' não desenhado.",
- "Local variant (not on the Boxes.py site): Generate calls the local server (start_server.bat). Latch pivot vertically centred.": "Variante local (não está no site do Boxes.py): «Gerar» chama o servidor local (start_server.bat). Pivô da trava centralizado na vertical.",
  "Single section (first value of sx); no dividers.": "Apenas uma seção (primeiro valor de sx); sem divisórias.",
  "Wall end fingers on the vertical edge are not drawn.": "Os dentes da extremidade vertical da parede não estão desenhados.",
  "Orientation of the bottom plate deduced from the fingers.": "Orientação da placa do fundo deduzida a partir dos dentes.",

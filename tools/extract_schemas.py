@@ -8,9 +8,6 @@ For each generators/<Name>/ folder this downloads the web form once per language
   texts.json   per language overlay {lang: {title, desc, groups: [titles], items: {name: {l, d, o}}}}
                l = label, d = description, o = {option value: option label}
 
-The extra generator FlexBox5Plus (not on the public site) is derived from FlexBox5 and the fields defined in
-generators/FlexBox5Plus/extra_fields.json (extract FlexBox5 in the same run).
-
 Usage: python tools/extract_schemas.py [Name ...] [--site https://boxes.hackerspace-bamberg.de] [--langs de,en,es,fr,pt_BR,zh_CN]
 Without names, every generator is extracted.
 """
@@ -108,8 +105,6 @@ def main():
     gdir = os.path.join(ROOT, 'generators')
     names = a.names or sorted(n for n in os.listdir(gdir) if os.path.isfile(os.path.join(gdir, n, 'generator.json')))
     for g in names:
-        if g == 'FlexBox5Plus':
-            continue
         schema, texts = None, {}
         for l in langs:
             struct, text = split(parse(fetch(a.site, g, l)))
@@ -121,26 +116,6 @@ def main():
         jdump(os.path.join(gdir, g, 'schema.json'), schema)
         jdump(os.path.join(gdir, g, 'texts.json'), texts)
         print('extracted', g)
-    if 'FlexBox5Plus' in names:                      # local variant derived from FlexBox5
-        out = os.path.join(gdir, 'FlexBox5Plus')
-        custom = load(os.path.join(out, 'extra_fields.json'))
-        base = load(os.path.join(gdir, 'FlexBox5', 'schema.json'))
-        base['title'], base['desc'] = custom['en']['title'], custom['en']['desc']
-        extra = custom['items']
-        for grp in base['groups']:
-            if any(i['name'] == 'top_diameter' for i in grp['items']):         # the generator-specific group
-                for it in extra:
-                    grp['items'].append({'name': it['name'], 'label': it['en'][0], 'desc': it['en'][1], 'type': it['type'], 'default': it['default']})
-        jdump(os.path.join(out, 'schema.json'), base)
-        texts = {}
-        for l, t0 in load(os.path.join(gdir, 'FlexBox5', 'texts.json')).items():
-            t = json.loads(json.dumps(t0))
-            t['title'], t['desc'] = custom[l]['title'], custom[l]['desc']
-            for it in extra:
-                t['items'][it['name']] = {'l': it[l][0], 'd': it[l][1]}
-            texts[l] = t
-        jdump(os.path.join(out, 'texts.json'), texts)
-        print('derived FlexBox5Plus')
 
 
 if __name__ == '__main__':

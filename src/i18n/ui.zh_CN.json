@@ -35,7 +35,6 @@
  "Lid not drawn.": "未绘制盖子。",
  "Top edge '{0}' is not modelled (shown open).": "上边 '{0}' 未建模（显示为开放）。",
  "'Top hole' panel not drawn.": "未绘制 'Top hole' 面板。",
- "Local variant (not on the Boxes.py site): Generate calls the local server (start_server.bat). Latch pivot vertically centred.": "本地变体（Boxes.py 网站上没有）：“生成”会调用本地服务器 (start_server.bat)。锁扣枢轴垂直居中。",
  "Single section (first value of sx); no dividers.": "仅一个分段（sx 的第一个值）；无隔板。",
  "Wall end fingers on the vertical edge are not drawn.": "未绘制壁面竖直端的指接。",
  "Orientation of the bottom plate deduced from the fingers.": "底板方向由指接推断。",

@@ -20,7 +20,7 @@ generators/<Name>/
 |---|---|
 | `order` | position in the lists (the home page and the selector sort on it; leave gaps of 10) |
 | `section` | home page section: `boxes` or `flex` (boxes with a flexible hinge) |
-| `local` | optional: name of a generator that is not on the public site; the viewer then calls the local server (`companion/`) for the cut plan |
+| `local` | optional: name of a generator that is not on the public site; the viewer then calls a local Boxes.py server for the cut plan (see the `flexbox5plus` branch) |
 | `used` | parameters that influence the 3D model; every other parameter is greyed out in the form |
 | `notes` | optional English text shown under the parameter list (limitations, approximations) |
 

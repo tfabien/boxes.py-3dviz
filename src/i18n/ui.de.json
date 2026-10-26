@@ -35,7 +35,6 @@
  "Lid not drawn.": "Deckel nicht gezeichnet.",
  "Top edge '{0}' is not modelled (shown open).": "Oberkante '{0}' ist nicht modelliert (offen dargestellt).",
  "'Top hole' panel not drawn.": "Tafel 'Top hole' nicht gezeichnet.",
- "Local variant (not on the Boxes.py site): Generate calls the local server (start_server.bat). Latch pivot vertically centred.": "Lokale Variante (nicht auf der Boxes.py-Seite): „Erzeugen“ ruft den lokalen Server auf (start_server.bat). Drehpunkt des Verschlusses vertikal zentriert.",
  "Single section (first value of sx); no dividers.": "Nur ein Abschnitt (erster Wert von sx); keine Trennwände.",
  "Wall end fingers on the vertical edge are not drawn.": "Die Zinken am senkrechten Wandende sind nicht gezeichnet.",
  "Orientation of the bottom plate deduced from the fingers.": "Ausrichtung der Bodenplatte aus den Zinken abgeleitet.",
