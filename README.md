@@ -112,7 +112,7 @@ The [missing generators](#missing-generators) are listed in the TODO.
 
 ## FlexBox5Plus: reinforcements and turning latch
 
-`FlexBox5Plus` is **not** part of upstream Boxes.py. It is `FlexBox5` plus two options, implemented both in this viewer and as a Boxes.py generator (`flexbox5plus.py`) that produces the real cut plan:
+`FlexBox5Plus` is **not** part of upstream Boxes.py. It is `FlexBox5` plus two options, implemented both in this viewer and as a Boxes.py generator (`boxes/generators/flexbox5plus.py`, in the [tfabien/boxes.py](https://github.com/tfabien/boxes.py) fork) that produces the real cut plan:
 
 ![FlexBox5Plus exploded, with two C-shaped reinforcements and the latch open](doc-assets/flexbox5plus.png)
 
@@ -130,13 +130,13 @@ The [missing generators](#missing-generators) are listed in the TODO.
 The cut plan of this variant cannot come from the public Boxes.py site, so the **Generate** button talks to a tiny local server:
 
 1. Install Boxes.py (a checkout is enough) and its Python dependencies (`affine`, `markdown`, `numpy`, `pillow`, `PyYAML`, `qrcode`, `rectpack`, `shapely`, `svgpathtools`, `typing_extensions`).
-2. Copy `companion/flexbox5plus.py` into `boxes/generators/` of that checkout.
+2. Use the [tfabien/boxes.py](https://github.com/tfabien/boxes.py) fork (it contains `boxes/generators/flexbox5plus.py`), or copy that file into `boxes/generators/` of your checkout.
 3. Run `python companion/boxes_local_server.py` or `companion/start_server.bat` (it looks for Boxes.py next to itself, in `BOXES_SRC`, or in a temp install) and keep it running. It listens on `127.0.0.1:8777` only.
-4. Click **Generate**: the plan opens in a new tab. The generator is reloaded on each request, so you can edit `flexbox5plus.py` without restarting.
+4. Click **Generate**: the plan opens in a new tab. Restart the server after editing the generator.
 
 The same server answers for any Boxes.py generator (`http://127.0.0.1:8777/<Generator>?<parameters>`), which is handy to compare the 3D model with the real output.
 
-> `flexbox5plus.py`, `boxes_local_server.py` and `start_server.bat` live in [`companion/`](companion/).
+> `boxes_local_server.py` and `start_server.bat` live in [`companion/`](companion/); `flexbox5plus.py` lives in the Boxes.py fork.
 
 ## How it works
 
@@ -162,7 +162,7 @@ src/i18n/ui.<lang>.json translations of the interface
 tools/extract_schemas.py scrapes the forms of the public Boxes.py site (all languages)
 tools/build.py          python tools/build.py -> index.html (untracked; built and deployed by .github/workflows/pages.yml)
 tools/check_messages.py lists messages that lack a translation (python tools/check_messages.py fr de)
-companion/              flexbox5plus.py, local server, start_server.bat
+companion/              local server, start_server.bat
 ```
 
 ## Localization
