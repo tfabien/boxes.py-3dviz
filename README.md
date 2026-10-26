@@ -19,6 +19,8 @@ One self-contained HTML page that lets you browse the Boxes.py generators, chang
 - [TODO](#todo)
 - [Credits and license](#credits-and-license)
 
+> **Branch `flexbox5plus`**: also contains the local variant `FlexBox5Plus` (reinforcements, turning latch, unfolding jig) and the local server; see [FLEXBOX5PLUS.md](FLEXBOX5PLUS.md).
+
 ## Features
 
 **Browsing**
