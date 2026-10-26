@@ -45,6 +45,6 @@ BUILD.BayonetBox = function (c) {
   warn('Stack order 1 (bottom) to 5 (top) inferred; inner rings attached to the lid (glued), glue the outer rings to the base.');
   const m = {kind:'box', panels:P, openers:[
     {parts:top, point:V3(0,0,0), axis:V3(0,0,1), angle:-tw, from:0, to:0.5},      // 1st half: unlock, twist the lid group back by 2/3 a (lugs line up with the pockets)
-    {parts:top, slide:V3(0, 0, 4*t), from:0.5, to:1}]};                           // 2nd half: lift the lid group (lid + inner rings) off the base
+    {parts:top, slide:V3(0, 0, 4*t), from:0.5, to:3}]};                           // 2nd half: lift the lid group (lid + inner rings) off the base
   return m;
 };
