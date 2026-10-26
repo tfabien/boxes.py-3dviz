@@ -36,12 +36,14 @@ One self-contained HTML page that lets you browse the Boxes.py generators, chang
 
 **3D view**
 - Real part outlines extruded to the material thickness: finger joints and notches, finger holes (`h` edges), living-hinge slits, latch notches, rounded corners, handle and magnet holes, hinge knuckles…
+- Every panel has a slightly different shade and a dark outline, so individual pieces and their finger joints stay readable even when the box is assembled; cut-outs in the flexible wall (notches, slits, holes) are outlined too.
 - Orbit / zoom / pan with the mouse, optional auto-rotation, and a short *assembly* animation (exploded → assembled) each time you pick a generator.
+- **View modes** (buttons above the 3D view): **3D**, **Plan 2D (SVG)** or **3D | 2D** side by side. The 2D plan is the real cut file produced by the generator for the current parameters (public Boxes.py instance, or the local server for *FlexBox5Plus*); it follows the parameters as you edit them. Mouse wheel zooms, drag pans, double-click fits.
 
 **Sliders**
 - **Explode** – moves every panel away from the box along its outward normal, so joints and holes are visible.
 - **Unfold** (flexible-wall boxes) – flattens the living-hinge wall step by step and lays the plates beside it, like on the cutting plan.
-- **Opening** (boxes that really open) – rotates or slides the moving parts about / along the real axis: lids on hinges, sliding lids and drawers, twist-lock bayonet, removable panels, the turning latch of FlexBox5Plus.
+- **Opening** (boxes that really open) – rotates or slides the moving parts about / along the real axis: lids on hinges, sliding lids and drawers, twist-lock bayonet, removable panels. On **flexible-wall boxes** the opening is sequenced: the turning latch (FlexBox5Plus) first turns from vertical (locked) to 90° (free) over the first 40 % of the slider, then the flexible part at the front of the box (the last arc before the latch) unfolds and the free end swings out with the latch.
 
 **Cut file**
 - The **Generate** button opens the genuine cut plan (SVG, PDF, DXF…) on the public Boxes.py instance with exactly the parameters you set.
@@ -61,11 +63,12 @@ Notes
 The URL hash selects a generator and, optionally, the view state and parameters:
 
 ```
-boxes.py-3dviz.html#<Generator>[&explode=<mm>][&unfold=<0..1>][&open=<0..1>][&view=iso|top|front|side][&rotate=0][&ui=0][&p_<parameter>=<value>]...
+boxes.py-3dviz.html#<Generator>[&mode=3d|2d|split][&explode=<mm>][&unfold=<0..1>][&open=<0..1>][&view=iso|top|front|side][&rotate=0][&ui=0][&p_<parameter>=<value>]...
 ```
 
 | Option | Meaning |
 |---|---|
+| `mode=split` | view mode: `3d`, `2d` (SVG plan only) or `split` (3D and plan side by side) |
 | `explode=40` | explode slider (0–80 mm) |
 | `unfold=1` | unfold slider (flexible-wall boxes) |
 | `open=0.7` | opening slider (boxes that open) |
@@ -83,6 +86,8 @@ boxes.py-3dviz.html#FlexBox5&unfold=0.75&view=iso
 ```
 
 The screenshots below (and the FlexBox5Plus ones further down) were produced from such links with a headless browser.
+
+![3D and real cut plan side by side (FlexBox5Plus, mode=split)](doc-assets/split-view.png)
 
 ![ClosedBox exploded: every finger and notch visible](doc-assets/exploded-view.png)
 
@@ -113,6 +118,10 @@ The [missing generators](#missing-generators) are listed in the TODO.
 
 - **Reinforcements** (`reinforcements`, `reinforcement_width`, `reinforcement_open`, `reinforcement_fillet`): *N* evenly spaced inner frames. A reinforcement is the side plate, hollowed out to a band of the chosen width, with the same finger joints; the flexible wall gets matching finger holes at each frame's height. The frame is **open on the latch side** (the side of the box that opens): the cut is aligned on a finger at both ends and the inner corners get a small fillet.
 - **Turning latch** (`turn_latch`, `latch_width`, `latch_height`, `latch_margin`, `latch_hole`): two "butterfly" (bone-shaped) pieces glued on both sides of the closing tab of the flexible wall, pivoting on a round hole of the tab. The hole sits close to the end of the tab (`latch_height/2 + latch_margin`) and vertically centred.
+
+- **Unfolding jig** (`flex_jig`, `flex_unfold_auto`, `flex_unfold_adjust`, `flex_jig_height`): lets you glue paper or fabric on the flexible wall *while it is held stretched*, so the glued wall keeps the right length and the box closes without forcing the slits. The generator cuts two **combs** carrying the same fingers as the wall, but spaced by the *unfolded* length of the flexible zone: fit the notches of the wall edge onto the teeth, glue the paper/fabric on the face that will be the outside of the box, let it dry. The stretch of each flexible zone is estimated as `t / r` (thickness over the radius of the arc: the outer face is longer than the inner one by that ratio, e.g. 11 % for a 3 mm wall on a 27 mm radius); `flex_unfold_adjust` adds or removes percentage points on top (negative = less unfolded), and `flex_unfold_auto=0` drops the estimate so only the adjustment applies. With reinforcements, one extra **reinforcement comb** per frame is cut: its teeth sit at the unfolded positions of the reinforcement holes (only the fingers kept by the opening), so it can be passed through those holes at the height of each frame to hold the wall stretched there too. The viewer shows the estimate in red under the title and draws the combs next to the bottom plate.
+
+> The `Flex_stretch` ("étirement") setting of the Boxes.py form has **no effect on FlexBox5** (nor on FlexBox, FlexBox2/3/4): upstream only uses it in `surroundingWall` (rounded boxes) and `Shoe`. That is why changing it changes nothing; use the unfolding parameters above instead.
 
 ![Cut plan produced by flexbox5plus.py](doc-assets/flexbox5plus-plan.svg)
 
