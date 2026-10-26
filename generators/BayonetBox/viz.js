@@ -43,5 +43,8 @@ BUILD.BayonetBox = function (c) {
   top.push(add(rh({pts:bayCircle(R1), holes:[bayCircle(R2), ...innerPins]}), 3, 1));              // 4: inner ring
   top.push(add(rh({pts:disc, holes:innerPins}), 4, 2));                                           // 5: solid lid
   warn('Stack order 1 (bottom) to 5 (top) inferred; inner rings attached to the lid (glued), glue the outer rings to the base.');
-  return {kind:'box', panels:P, openers:[{parts:top, point:V3(0,0,0), axis:V3(0,0,1), angle:-tw}]};   // unlock : twist back by 2/3 a (lugs line up with the pockets)
+  const m = {kind:'box', panels:P, openers:[
+    {parts:top, point:V3(0,0,0), axis:V3(0,0,1), angle:-tw, from:0, to:0.5},      // 1st half: unlock, twist the lid group back by 2/3 a (lugs line up with the pockets)
+    {parts:top, slide:V3(0, 0, 4*t), from:0.5, to:1}]};                           // 2nd half: lift the lid group (lid + inner rings) off the base
+  return m;
 };

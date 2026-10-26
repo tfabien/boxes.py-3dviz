@@ -30,7 +30,7 @@ Defines `BUILD.<Name> = function (c) { ... }`, which receives the common context
 
 - `{kind: 'box', panels: [...]}` for rigid boxes, with `panel(outline, t, origin, u, v, dir)` for each plate (`dir` = outward direction used by the *Explode* slider);
 - `flexModel(...)` for boxes with a flexible wall (this enables the *Unfold* slider);
-- `openers: [{parts, point, axis, angle} | {parts, slide}]` to describe how parts move for the *Opening* slider (rotation about an axis, or sliding along a vector).
+- `openers: [{parts, point, axis, angle} | {parts, slide}]` to describe how parts move for the *Opening* slider (rotation about an axis, or sliding along a vector). Add `from` / `to` (0..1) to an opener so that it only moves during that part of the slider; this chains steps (BayonetBox: twist during 0-0.5, then lift during 0.5-1).
 
 Geometry helpers (`rectOutline`, `trapOutline`, `fingerLayout`, `turtle`, `flexModel`, `boxEdges`...) live in `src/template.html`. Report approximations with `warn('message')` and invalid parameters with `fail('message')`; messages are written in English and translated in `i18n/<lang>.json` (`python tools/check_messages.py <lang>` lists the missing ones).
 

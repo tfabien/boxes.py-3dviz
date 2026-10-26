@@ -402,9 +402,11 @@ function applyExplode() {
     if (p.unfold) p.g.position.add(p.unfold(d)); }
   // ouverture : m.openers = [{parts:[panel...], point:V3, axis:V3, angle:deg} (rotation about an axis)
   //                          | {parts:[panel...], slide:V3} (translation of length |slide| at k=1)]
+  // optional from / to (0..1): the opener only moves during that part of the slider, so several openers can be chained
   for (const o of (M && M.openers) || []) {
-    if (o.slide) { const sh = o.slide.clone().multiplyScalar(kl); o.parts.forEach(p => p.g.position.add(sh)); }
-    else { const q = new THREE.Quaternion().setFromAxisAngle(o.axis.clone().normalize(), kl*o.angle*RAD);
+    const ko = o.from === undefined ? kl : Math.min(1, Math.max(0, (kl - o.from)/((o.to === undefined ? 1 : o.to) - o.from)));
+    if (o.slide) { const sh = o.slide.clone().multiplyScalar(ko); o.parts.forEach(p => p.g.position.add(sh)); }
+    else { const q = new THREE.Quaternion().setFromAxisAngle(o.axis.clone().normalize(), ko*o.angle*RAD);
       const off = o.point.clone().sub(o.point.clone().applyQuaternion(q));
       o.parts.forEach(p => { p.g.quaternion.premultiply(q); p.g.position.add(off); }); }   // rotation about the axis, then explode in world coordinates
   }

@@ -23,7 +23,7 @@ Upstream: [`BayonetBox`](https://boxes.hackerspace-bamberg.de/BayonetBox) on the
 ## Limitations
 
 - Five stacked discs of thickness t, with the rings and lugs of the generator.
-- Partial: layer order deduced, no lift after unlocking.
+- Partial: layer order deduced; opening = twist then lift of the lid group.
 
 ## Parameters used by the 3D model
 
