@@ -1,0 +1,13 @@
+{
+ "order": 90,
+ "section": "boxes",
+ "used": [
+  "h",
+  "radius_bottom",
+  "radius_top",
+  "n",
+  "top",
+  "bottom"
+ ],
+ "notes": "Angled fingers ported from FingerJointEdge(angle). Lid styles: round discs/plates drawn, holes (circle/polygon) approximated. "
+}

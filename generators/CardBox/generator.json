@@ -1,0 +1,14 @@
+{
+ "order": 130,
+ "section": "boxes",
+ "used": [
+  "y",
+  "h",
+  "sx",
+  "openingdirection",
+  "fingerhole",
+  "fingerhole_depth",
+  "add_lidtopper"
+ ],
+ "notes": "Layout inferred from the code and the detail photo; thickness of glued parts = t. "
+}

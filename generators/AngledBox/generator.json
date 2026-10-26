@@ -1,0 +1,16 @@
+{
+ "order": 80,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "outside",
+  "bottom_edge",
+  "n",
+  "top",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Angled joints (g/G): plates with straight ends, no bevel (slight overlap at the corners). "
+}

@@ -147,18 +147,22 @@ The same server answers for any Boxes.py generator (`http://127.0.0.1:8777/<Gene
 - **Opening** â€“ a generator may declare *openers* (rotation about an axis or sliding along a vector) for sets of panels.
 - **Single file** â€“ everything is generated into one HTML file; only three.js comes from a CDN.
 
-The page is generated from sources in `src/` (everything in English):
+The page is generated from the sources below (everything in English). The **fields** of each generator are extracted from Boxes.py; the **3D** part (assembly, flexible or not, opening) is hand written and lives next to it:
 
 ```
-src/template.html        page, engine, built-in generators, i18n core
-src/modules/*.js         one module per additional generator
-src/generators.json      generators in display order
-src/i18n/                schemas.json (parameter structure), texts.json (labels / help per language),
-                         ui.<lang>.json and modules/<lang>_<Module>.json (message translations)
+generators/<Name>/      one folder per generator (see generators/README.md):
+    generator.json      3D descriptor: order, section, parameters used by the 3D model, notes
+    viz.js              3D model (assembly, flexible wall, opening)
+    schema.json         parameter form, extracted from Boxes.py   } tools/extract_schemas.py
+    texts.json          labels / help texts per language          }
+    i18n/<lang>.json    translations of the messages of this generator
+    README.md           what is modelled / not
+src/template.html       page, engine, geometry helpers, i18n core
+src/i18n/ui.<lang>.json translations of the interface
 tools/extract_schemas.py scrapes the forms of the public Boxes.py site (all languages)
-tools/build.py           python tools/build.py -> index.html (untracked; built and deployed by .github/workflows/pages.yml)
-tools/check_messages.py  lists messages that lack a translation (python tools/check_messages.py fr de)
-companion/               flexbox5plus.py, local server, start_server.bat
+tools/build.py          python tools/build.py -> index.html (untracked; built and deployed by .github/workflows/pages.yml)
+tools/check_messages.py lists messages that lack a translation (python tools/check_messages.py fr de)
+companion/              flexbox5plus.py, local server, start_server.bat
 ```
 
 ## Localization
@@ -181,7 +185,7 @@ Parameter labels, help texts and group names come from the Boxes.py web form in 
 ## TODO
 
 ### Localization
-- Translate the per-generator notes and warnings (`src/i18n/modules/<lang>_<Module>.json`) into `de`, `es`, `pt_BR`, `zh_CN` (only `fr` is complete; `python tools/check_messages.py de` lists what is missing).
+- Translate the per-generator notes and warnings (`generators/<Name>/i18n/<lang>.json`) into `de`, `es`, `pt_BR`, `zh_CN` (only `fr` is complete; `python tools/check_messages.py de` lists what is missing).
 - Add more languages (the public Boxes.py form only offers the six above) and translate the plan labels of `flexbox5plus.py`.
 
 ### Missing generators

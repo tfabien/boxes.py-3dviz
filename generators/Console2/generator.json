@@ -1,0 +1,23 @@
+{
+ "order": 230,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "bottom_edge",
+  "outside",
+  "front_height",
+  "angle",
+  "removable_backwall",
+  "removable_panel",
+  "glued_panel",
+  "FingerJoint_edge_width",
+  "FingerJoint_width",
+  "Stackable_angle",
+  "Stackable_height",
+  "Stackable_holedistance",
+  "Stackable_width"
+ ],
+ "notes": "Opening: back wall removed towards the bottom, panel lifted (movements deduced from the instructions). Hardware (latches, guides, clips, crossbars, panel lips) and latch holes of the back wall not drawn; orientation of the parts deduced from the edges. "
+}

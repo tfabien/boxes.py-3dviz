@@ -1,0 +1,21 @@
+{
+ "order": 140,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "HandleOffset",
+  "HandleWidth",
+  "HandleHeight",
+  "HandleRadius",
+  "MakeStackable",
+  "Stackable_angle",
+  "Stackable_height",
+  "Stackable_width",
+  "Stackable_holedistance",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "No \"outside\" parameter (inner dimensions). The s/S feet/recesses are modelled; auxiliary parts (strips, lip, mask) are not drawn. "
+}

@@ -1,0 +1,15 @@
+{
+ "order": 210,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "hi",
+  "outside",
+  "play",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Closed box shown; both shells have walls with the same finger lengths as the generator (\"f\" setting: edge_width + play). "
+}

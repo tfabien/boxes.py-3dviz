@@ -1,0 +1,10 @@
+{
+ "order": 120,
+ "section": "boxes",
+ "used": [
+  "diameter",
+  "lugs",
+  "alignment_pins"
+ ],
+ "notes": "Five stacked discs of thickness t, with the rings and lugs of the generator. "
+}

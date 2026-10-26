@@ -1,0 +1,407 @@
+{
+ "de": {
+  "title": "BayonetBox",
+  "desc": "Round box made from layers with twist on top",
+  "groups": [
+   "BayonetBox Settings",
+   "Standardeinstellungen"
+  ],
+  "items": {
+   "diameter": {
+    "l": "Durchmesser",
+    "d": "Diameter of the box in mm"
+   },
+   "lugs": {
+    "l": "lugs",
+    "d": "number of locking lugs"
+   },
+   "alignment_pins": {
+    "l": "alignment_pins",
+    "d": "diameter of the alignment pins"
+   },
+   "outside": {
+    "l": "Außenmaß",
+    "d": "treat sizes as outside measurements"
+   },
+   "thickness": {
+    "l": "Stärke",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "burn",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "Format",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "Referenz",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "Laschen",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "Mindesabstand",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "es": {
+  "title": "Caja con cierre de bayoneta",
+  "desc": "Caja redonda formada por capas con tapa de rosca",
+  "groups": [
+   "Ajustes de la caja con cierre de bayoneta",
+   "Ajustes predeterminados"
+  ],
+  "items": {
+   "diameter": {
+    "l": "diámetro",
+    "d": "Diámetro de la caja en mm"
+   },
+   "lugs": {
+    "l": "orejetas",
+    "d": "número de orejetas de bloqueo"
+   },
+   "alignment_pins": {
+    "l": "pasadores de alineación",
+    "d": "diámetro de los pasadores de alineación"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "interpretar las medidas como medidas exteriores"
+   },
+   "thickness": {
+    "l": "grosor",
+    "d": "grosor del material (en mm)"
+   },
+   "burn": {
+    "l": "compensación de corte",
+    "d": "compensación de corte (en mm)(valores mayores para un ajuste más apretado)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "formato del archivo resultante",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "etiquetas",
+    "d": "etiquetar las piezas (cuando esté disponible)"
+   },
+   "reference": {
+    "l": "rectángulo de referencia",
+    "d": "dibujar un rectángulo de referencia con la longitud indicada (en mm)(cero para desactivarlo)"
+   },
+   "tabs": {
+    "l": "lengüetas",
+    "d": "anchura de las lengüetas que mantienen las piezas en su sitio (en mm)(no está admitido en todas partes)"
+   },
+   "qr_code": {
+    "l": "código QR",
+    "d": "Añadir al resultado un código QR con el enlace o la línea de órdenes"
+   },
+   "inner_corners": {
+    "l": "esquinas interiores",
+    "d": "estilo de las esquinas interiores",
+    "o": {
+     "loop": "bucle",
+     "corner": "esquina",
+     "backarc": "arco trasero"
+    }
+   },
+   "spacing": {
+    "l": "separación",
+    "d": "separación alrededor de las piezas (múltiplos del grosor [: espacio adicional en mm])"
+   },
+   "debug": {
+    "l": "modo de depuración",
+    "d": "dibujar los recuadros envolventes de algunas estructuras"
+   }
+  }
+ },
+ "fr": {
+  "title": "Boîte à baïonnette",
+  "desc": "Boîte ronde faite de couches avec torsion sur le dessus",
+  "groups": [
+   "Réglages de la boîte à baïonnette",
+   "Réglages par défaut"
+  ],
+  "items": {
+   "diameter": {
+    "l": "diamètre",
+    "d": "Diamètre de la boîte en mm"
+   },
+   "lugs": {
+    "l": "pattes",
+    "d": "nombre de pattes de verrouillage"
+   },
+   "alignment_pins": {
+    "l": "Alignement pins",
+    "d": "diamètre des broches d'alignement"
+   },
+   "outside": {
+    "l": "extérieur",
+    "d": "traiter les dimensions comme des mesures extérieures"
+   },
+   "thickness": {
+    "l": "épaisseur",
+    "d": "épaisseur du matériau (en mm)"
+   },
+   "burn": {
+    "l": "compensation",
+    "d": "compensation du trait de coupe (en mm) (valeurs plus grandes pour un emboîtement plus serré)"
+   },
+   "format": {
+    "l": "format",
+    "d": "format du fichier résultant",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "étiquettes",
+    "d": "étiqueter les pièces (si disponible)"
+   },
+   "reference": {
+    "l": "référence",
+    "d": "imprimer un rectangle de référence avec la longueur donnée (en mm) (zéro pour désactiver)"
+   },
+   "tabs": {
+    "l": "ponts",
+    "d": "largeur des ponts qui maintiennent les pièces sur la plaque (en mm) (non supporté partout)"
+   },
+   "qr_code": {
+    "l": "Code QR",
+    "d": "ajouter un code QR avec un lien ou la ligne de commande dans le fichier généré"
+   },
+   "inner_corners": {
+    "l": "Coins intérieurs",
+    "d": "style des coins intérieurs",
+    "o": {
+     "loop": "boucle",
+     "corner": "coin",
+     "backarc": "arc arrière"
+    }
+   },
+   "spacing": {
+    "l": "espacement",
+    "d": "espacement autour des pièces (multiples de l'épaisseur [: espace supplémentaire en mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "imprimer les rectangles contenant certaines structures"
+   }
+  }
+ },
+ "pt_BR": {
+  "title": "BayonetBox",
+  "desc": "Round box made from layers with twist on top",
+  "groups": [
+   "BayonetBox Settings",
+   "Configurações Padrão"
+  ],
+  "items": {
+   "diameter": {
+    "l": "Diâmetro",
+    "d": "Diameter of the box in mm"
+   },
+   "lugs": {
+    "l": "lugs",
+    "d": "number of locking lugs"
+   },
+   "alignment_pins": {
+    "l": "alignment_pins",
+    "d": "diameter of the alignment pins"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "treat sizes as outside measurements"
+   },
+   "thickness": {
+    "l": "espessura",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "gravar",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "referência",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "tabulação",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "espaçamento",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debugar",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "zh_CN": {
+  "title": "卡口盒",
+  "desc": "圆形盒由多层制成，顶部有扭曲",
+  "groups": [
+   "卡口盒设置",
+   "默认设置"
+  ],
+  "items": {
+   "diameter": {
+    "l": "直径",
+    "d": "包装盒直径（毫米）"
+   },
+   "lugs": {
+    "l": "锁止片",
+    "d": "锁止片数量"
+   },
+   "alignment_pins": {
+    "l": "定位销",
+    "d": "对齐销的直径"
+   },
+   "outside": {
+    "l": "外部尺寸",
+    "d": "从外部测量的尺寸（即包含材料厚度）"
+   },
+   "thickness": {
+    "l": "厚度",
+    "d": "材料厚度 (mm)"
+   },
+   "burn": {
+    "l": "激光补偿",
+    "d": "激光校正（毫米）（数值越大，越紧密）"
+   },
+   "format": {
+    "l": "格式",
+    "d": "输出格式",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "标签",
+    "d": "给零件贴上标签（如果有）"
+   },
+   "reference": {
+    "l": "定位框",
+    "d": "添加给定长度的参考矩形，设为0则禁用(mm)"
+   },
+   "tabs": {
+    "l": "切割缝隙",
+    "d": "固定零件的卡扣宽度（单位：mm）（不是所有地方都支持）"
+   },
+   "qr_code": {
+    "l": "二维码",
+    "d": "在生成的图纸中添加带有链接的二维码"
+   },
+   "inner_corners": {
+    "l": "内角",
+    "d": "内角风格",
+    "o": {
+     "loop": "循环",
+     "corner": "角落",
+     "backarc": "弧后"
+    }
+   },
+   "spacing": {
+    "l": "间距",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "边框",
+    "d": "添加每一个零件的矩形外框"
+   }
+  }
+ }
+}

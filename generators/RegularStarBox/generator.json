@@ -1,0 +1,10 @@
+{
+ "order": 100,
+ "section": "boxes",
+ "used": [
+  "h",
+  "radius",
+  "n"
+ ],
+ "notes": "3D layout (two half boxes interlocked in a star) inferred from the code, not checked against a photo. "
+}

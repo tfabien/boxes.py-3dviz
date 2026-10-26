@@ -1,0 +1,15 @@
+{
+ "order": 200,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "level",
+  "radius",
+  "wiggle",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Only one level is shown at a time (\"level\" setting), as in the generator. "
+}

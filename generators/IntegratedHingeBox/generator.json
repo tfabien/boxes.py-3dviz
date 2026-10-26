@@ -1,0 +1,18 @@
+{
+ "order": 260,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "lidheight",
+  "ChestHinge_finger_joints_on_box",
+  "ChestHinge_finger_joints_on_lid",
+  "ChestHinge_hinge_strength",
+  "ChestHinge_pin_height",
+  "ChestHinge_play",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Chest hinge outlines are faithful; hinge discs and pins are not drawn. "
+}

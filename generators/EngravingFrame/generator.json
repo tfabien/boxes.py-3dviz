@@ -1,0 +1,17 @@
+{
+ "order": 170,
+ "section": "boxes",
+ "used": [
+  "EngravingWidth",
+  "EngravingHeight",
+  "EngravingThickness",
+  "Margin",
+  "FrameThickness",
+  "FrameOuterCornersRadius",
+  "FrameInnerCornersRadius",
+  "AddCoveringFrontPlate",
+  "AddDummyFingers",
+  "FingerJoint_width"
+ ],
+ "notes": "Assembled frame (without the rear support). The engraved plate is drawn with its real thickness. "
+}

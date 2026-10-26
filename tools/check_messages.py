@@ -11,7 +11,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STR = r"(?:'((?:[^'\\]|\\.)*)'|\"((?:[^\"\\]|\\.)*)\")"
-PATTERNS = [re.compile(r"\b(?:warn|fail)\(\s*" + STR), re.compile(r"NOTES\.\w+\s*=\s*" + STR), re.compile(r"^\s+\w+:\s*" + STR + r",?\s*$", re.M)]
+PATTERNS = [re.compile(r"\b(?:warn|fail)\(\s*" + STR), re.compile(r'"notes"\s*:\s*' + STR)]
 
 
 def load(path):
@@ -21,7 +21,7 @@ def load(path):
 
 def used_messages():
     used = {}
-    for path in glob.glob(os.path.join(ROOT, 'src', 'modules', '*.js')) + [os.path.join(ROOT, 'src', 'template.html')]:
+    for path in glob.glob(os.path.join(ROOT, 'generators', '*', 'viz.js')) + glob.glob(os.path.join(ROOT, 'generators', '*', 'generator.json')) + [os.path.join(ROOT, 'src', 'template.html')]:
         with open(path, encoding='utf-8') as f:
             src = f.read()
         for pat in PATTERNS[:2]:
@@ -33,7 +33,7 @@ def used_messages():
 
 def translated(lang):
     keys = set()
-    for path in glob.glob(os.path.join(ROOT, 'src', 'i18n', 'ui.%s.json' % lang)) + glob.glob(os.path.join(ROOT, 'src', 'i18n', 'modules', '%s_*.json' % lang)):
+    for path in glob.glob(os.path.join(ROOT, 'src', 'i18n', 'ui.%s.json' % lang)) + glob.glob(os.path.join(ROOT, 'generators', '*', 'i18n', '%s.json' % lang)):
         keys |= {k.strip() for k in load(path)}
     return keys
 

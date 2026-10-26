@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """Extract the parameter forms of the Boxes.py web generators, in every language of the site.
 
-For each generator listed in src/generators.json this downloads the web form once per language and writes:
+For each generators/<Name>/ folder this downloads the web form once per language and writes into the folder:
 
-  src/i18n/schemas.json  language independent structure (English texts): groups, parameter names, types, defaults,
-                         select options, plus the English label / description
-  src/i18n/texts.json    per language overlay {lang: {generator: {title, desc, groups: [titles], items: {name: {l, d, o}}}}}
-                         l = label, d = description, o = {option value: option label}
+  schema.json  language independent structure (English texts): groups, parameter names, types, defaults,
+               select options, plus the English label / description
+  texts.json   per language overlay {lang: {title, desc, groups: [titles], items: {name: {l, d, o}}}}
+               l = label, d = description, o = {option value: option label}
 
-The extra generator FlexBox5Plus (not on the public site) is derived from FlexBox5 and the definitions in
-src/i18n/custom_flexbox5plus.json.
+The extra generator FlexBox5Plus (not on the public site) is derived from FlexBox5 and the fields defined in
+generators/FlexBox5Plus/extra_fields.json (extract FlexBox5 in the same run).
 
-Usage: python tools/extract_schemas.py [--site https://boxes.hackerspace-bamberg.de] [--langs de,en,es,fr,pt_BR,zh_CN]
+Usage: python tools/extract_schemas.py [Name ...] [--site https://boxes.hackerspace-bamberg.de] [--langs de,en,es,fr,pt_BR,zh_CN]
+Without names, every generator is extracted.
 """
 import argparse
 import html
@@ -86,46 +87,60 @@ def split(form):
     return struct, text
 
 
+def jdump(path, obj):
+    with open(path, 'w', encoding='utf-8', newline='\n') as f:
+        json.dump(obj, f, ensure_ascii=False, indent=1)
+        f.write('\n')
+
+
+def load(path):
+    with open(path, encoding='utf-8') as f:
+        return json.load(f)
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument('names', nargs='*')
     ap.add_argument('--site', default='https://boxes.hackerspace-bamberg.de')
     ap.add_argument('--langs', default=','.join(LANGS))
     a = ap.parse_args()
     langs = a.langs.split(',')
-    gens = json.load(open(os.path.join(ROOT, 'src', 'generators.json'), encoding='utf-8'))
-    schemas, texts = {}, {l: {} for l in langs}
-    for g in gens:
+    gdir = os.path.join(ROOT, 'generators')
+    names = a.names or sorted(n for n in os.listdir(gdir) if os.path.isfile(os.path.join(gdir, n, 'generator.json')))
+    for g in names:
         if g == 'FlexBox5Plus':
             continue
+        schema, texts = None, {}
         for l in langs:
             struct, text = split(parse(fetch(a.site, g, l)))
             if l == 'en':
-                schemas[g] = struct
+                schema = struct
             else:
-                texts[l][g] = text
+                texts[l] = text
             time.sleep(0.15)
+        jdump(os.path.join(gdir, g, 'schema.json'), schema)
+        jdump(os.path.join(gdir, g, 'texts.json'), texts)
         print('extracted', g)
-    # local variant derived from FlexBox5
-    custom = json.load(open(os.path.join(ROOT, 'src', 'i18n', 'custom_flexbox5plus.json'), encoding='utf-8'))
-    base = json.loads(json.dumps(schemas['FlexBox5']))
-    base['title'], base['desc'], base['custom'] = custom['en']['title'], custom['en']['desc'], 'FlexBox5Plus'
-    extra = custom['items']
-    for g in base['groups']:
-        if any(i['name'] == 'top_diameter' for i in g['items']):         # the generator-specific group
+    if 'FlexBox5Plus' in names:                      # local variant derived from FlexBox5
+        out = os.path.join(gdir, 'FlexBox5Plus')
+        custom = load(os.path.join(out, 'extra_fields.json'))
+        base = load(os.path.join(gdir, 'FlexBox5', 'schema.json'))
+        base['title'], base['desc'] = custom['en']['title'], custom['en']['desc']
+        extra = custom['items']
+        for grp in base['groups']:
+            if any(i['name'] == 'top_diameter' for i in grp['items']):         # the generator-specific group
+                for it in extra:
+                    grp['items'].append({'name': it['name'], 'label': it['en'][0], 'desc': it['en'][1], 'type': it['type'], 'default': it['default']})
+        jdump(os.path.join(out, 'schema.json'), base)
+        texts = {}
+        for l, t0 in load(os.path.join(gdir, 'FlexBox5', 'texts.json')).items():
+            t = json.loads(json.dumps(t0))
+            t['title'], t['desc'] = custom[l]['title'], custom[l]['desc']
             for it in extra:
-                g['items'].append({'name': it['name'], 'label': it['en'][0], 'desc': it['en'][1], 'type': it['type'], 'default': it['default']})
-    schemas['FlexBox5Plus'] = base
-    for l in langs:
-        if l == 'en':
-            continue
-        t = json.loads(json.dumps(texts[l]['FlexBox5']))
-        t['title'], t['desc'] = custom[l]['title'], custom[l]['desc']
-        for it in extra:
-            t['items'][it['name']] = {'l': it[l][0], 'd': it[l][1]}
-        texts[l]['FlexBox5Plus'] = t
-    json.dump(schemas, open(os.path.join(ROOT, 'src', 'i18n', 'schemas.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-    json.dump(texts, open(os.path.join(ROOT, 'src', 'i18n', 'texts.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-    print('written src/i18n/schemas.json and texts.json')
+                t['items'][it['name']] = {'l': it[l][0], 'd': it[l][1]}
+            texts[l] = t
+        jdump(os.path.join(out, 'texts.json'), texts)
+        print('derived FlexBox5Plus')
 
 
 if __name__ == '__main__':

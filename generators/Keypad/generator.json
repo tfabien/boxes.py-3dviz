@@ -1,0 +1,16 @@
+{
+ "order": 240,
+ "section": "boxes",
+ "used": [
+  "h",
+  "top1_thickness",
+  "top2_enable",
+  "top2_thickness",
+  "pcb_mount_enable",
+  "led_enable",
+  "diode_enable",
+  "cutout_type",
+  "columns_definition"
+ ],
+ "notes": "Stacked plates (thicknesses t / top1 / top2); recessed bottom plate resting on the triangles, inferred from the code. "
+}

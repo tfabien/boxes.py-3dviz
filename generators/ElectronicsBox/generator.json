@@ -1,0 +1,16 @@
+{
+ "order": 160,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "triangle",
+  "d1",
+  "d2",
+  "d3",
+  "outsidemounts",
+  "holedist"
+ ],
+ "notes": "Lid shown inside the cavity (flush with the top of the walls), on the 4 triangles. "
+}

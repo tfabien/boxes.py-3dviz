@@ -1,0 +1,290 @@
+{
+ "title": "EngravingFrame",
+ "desc": "A frame for an engraving ; can be either standing or hanging, both in portrait or landscape",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "EngravingFrame Settings",
+   "items": [
+    {
+     "name": "EngravingWidth",
+     "label": "EngravingWidth",
+     "desc": "width of the visible part of the engraving in mm",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "EngravingHeight",
+     "label": "EngravingHeight",
+     "desc": "height of the visible part of the engraving in mm",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "EngravingThickness",
+     "label": "EngravingThickness",
+     "desc": "thickness of the engraving plate (and any acrylic window you may add) in mm",
+     "type": "text",
+     "default": "5.0"
+    },
+    {
+     "name": "Margin",
+     "label": "Margin",
+     "desc": "margin for the engraving plate insertion in mm",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FrameThickness",
+     "label": "FrameThickness",
+     "desc": "width of the frame in mm",
+     "type": "text",
+     "default": "20.0"
+    },
+    {
+     "name": "FrameOuterCornersRadius",
+     "label": "FrameOuterCornersRadius",
+     "desc": "radius of the frame outer corners in mm",
+     "type": "text",
+     "default": "5.0"
+    },
+    {
+     "name": "FrameInnerCornersRadius",
+     "label": "FrameInnerCornersRadius",
+     "desc": "radius of the frame inner corners in mm",
+     "type": "text",
+     "default": "5.0"
+    },
+    {
+     "name": "AddCoveringFrontPlate",
+     "label": "AddCoveringFrontPlate",
+     "desc": "Add a covenring front plate to glue (hiding the finger joints)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "AddDummyFingers",
+     "label": "AddDummyFingers",
+     "desc": "Add dummy finger holes and plugs for the unity of the frame (if not covered)",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "BackSupportAngle",
+     "label": "BackSupportAngle",
+     "desc": "angle of the back support in degrees ; set 0 or negative value to ignore",
+     "type": "text",
+     "default": "10.0"
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

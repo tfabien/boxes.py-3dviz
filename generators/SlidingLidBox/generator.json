@@ -1,0 +1,20 @@
+{
+ "order": 300,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "bottom_edge",
+  "rail",
+  "margin_t",
+  "margin_s",
+  "lid_type",
+  "hole_length",
+  "hole_width",
+  "hole_radius",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Front/back deduced from the edge composition (sides: \"fE\" at the front); lid grip opening drawn. "
+}

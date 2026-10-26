@@ -1,0 +1,15 @@
+{
+ "order": 50,
+ "section": "boxes",
+ "used": [
+  "top_edge",
+  "bottom_edge",
+  "x",
+  "y",
+  "h",
+  "vertical_edges",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Only edges e, f, F, h are modelled; special lids are not drawn."
+}

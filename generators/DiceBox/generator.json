@@ -1,0 +1,20 @@
+{
+ "order": 110,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "lidheight",
+  "hex_hole_corner_radius",
+  "magnet_diameter",
+  "ChestHinge_finger_joints_on_box",
+  "ChestHinge_finger_joints_on_lid",
+  "ChestHinge_hinge_strength",
+  "ChestHinge_pin_height",
+  "ChestHinge_play",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Hexagonal holes and magnets are drawn; hinge discs and pins are not drawn. "
+}

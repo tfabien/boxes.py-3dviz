@@ -1,0 +1,14 @@
+{
+ "order": 370,
+ "section": "flex",
+ "used": [
+  "x",
+  "h",
+  "top_diameter",
+  "bottom_diameter",
+  "latchsize",
+  "Flex_connection",
+  "Flex_distance",
+  "Flex_width"
+ ]
+}

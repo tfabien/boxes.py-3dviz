@@ -1,0 +1,18 @@
+{
+ "order": 310,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "bottom_edge",
+  "double_door",
+  "Stackable_angle",
+  "Stackable_height",
+  "Stackable_holedistance",
+  "Stackable_width",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Latches, clamps and springs not drawn; doors shown closed (inner edge at z = t). "
+}

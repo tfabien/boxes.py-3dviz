@@ -1,0 +1,20 @@
+{
+ "order": 290,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "hi",
+  "play",
+  "Grooved_style",
+  "Grooved_arc_angle",
+  "Grooved_tri_angle",
+  "Grooved_width",
+  "Grooved_gap",
+  "Grooved_margin",
+  "Grooved_inverse",
+  "Grooved_interleave"
+ ],
+ "notes": "Tall drawer front placed on the opening side (deduced from the grip groove); drawer centred using the play. "
+}

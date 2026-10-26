@@ -1,0 +1,19 @@
+{
+ "order": 250,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "lidheight",
+  "splitlid",
+  "CabinetHinge_eyes_per_hinge",
+  "CabinetHinge_hinges",
+  "CabinetHinge_eye",
+  "CabinetHinge_play",
+  "CabinetHinge_spacing",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Hinge cutouts (u/U) are ported faithfully; the separate hinge parts and the pin are not drawn. "
+}

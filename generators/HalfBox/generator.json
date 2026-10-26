@@ -1,0 +1,16 @@
+{
+ "order": 70,
+ "section": "boxes",
+ "used": [
+  "x",
+  "sy",
+  "h",
+  "Clamping",
+  "ClampingSize",
+  "Mounting",
+  "Sturdy",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Mounting edge (Mounting) not modelled; in Sturdy mode the clamping slots do not cut the notches. "
+}

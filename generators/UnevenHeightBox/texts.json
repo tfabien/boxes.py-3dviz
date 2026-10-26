@@ -1,0 +1,987 @@
+{
+ "de": {
+  "title": "Kiste mit ungleicher Höhe",
+  "desc": "Kiste mit unterschiedlichen Kantenhöhen",
+  "groups": [
+   "Einstellung für Fingerzinken",
+   "Settings for Grooved Edge",
+   "Einstellungen Kiste",
+   "Standardeinstellungen"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "Stil",
+    "d": "style of the fingers",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "springs",
+     "barbs": "barbs",
+     "snap": "snap"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "umliegende Fläche",
+    "d": "space at the start and end in multiple of normal spaces"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "bottom_lip",
+    "d": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "Kantenbreite",
+    "d": "space below holes of FingerHoleEdge (multiples of thickness)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "extra_length",
+    "d": "extra material to grind away burn marks (multiples of thickness)"
+   },
+   "FingerJoint_finger": {
+    "l": "Zapfen",
+    "d": "width of the fingers (multiples of thickness)"
+   },
+   "FingerJoint_play": {
+    "l": "Bewegungsfreiraum",
+    "d": "extra space to allow finger move in and out (multiples of thickness)"
+   },
+   "FingerJoint_space": {
+    "l": "Abstand",
+    "d": "space between fingers (multiples of thickness)"
+   },
+   "FingerJoint_width": {
+    "l": "Breite",
+    "d": "width of finger holes (multiples of thickness)"
+   },
+   "Grooved_arc_angle": {
+    "l": "arc_angle",
+    "d": "the angle of arc cuts"
+   },
+   "Grooved_gap": {
+    "l": "gap",
+    "d": "the gap between grooves (fraction of the edge length)"
+   },
+   "Grooved_interleave": {
+    "l": "interleave",
+    "d": "alternate the direction of grooves"
+   },
+   "Grooved_inverse": {
+    "l": "inverse",
+    "d": "invert the groove directions"
+   },
+   "Grooved_margin": {
+    "l": "margin",
+    "d": "minimum space left and right without grooves (fraction of the edge length)"
+   },
+   "Grooved_style": {
+    "l": "Stil",
+    "d": "the style of grooves",
+    "o": {
+     "arc": "arc",
+     "flat": "flach",
+     "triangle": "Dreieck",
+     "softarc": "softarc"
+    }
+   },
+   "Grooved_tri_angle": {
+    "l": "tri_angle",
+    "d": "the angle of triangular cuts"
+   },
+   "Grooved_width": {
+    "l": "Breite",
+    "d": "the width of each groove (fraction of the edge length)"
+   },
+   "bottom_edge": {
+    "l": "Bodenkanten",
+    "d": "Kantenvariante für Boden",
+    "o": {
+     "F": "F Finger Joint (opposing side)",
+     "h": "h Edge (parallel Finger Joint Holes)",
+     "s": "s Stackable (bottom, finger joint holes)",
+     "e": "e Straight Edge"
+    }
+   },
+   "x": {
+    "l": "x",
+    "d": "Innere Breite in mm (außer wenn Außenmaß markiert ist)"
+   },
+   "y": {
+    "l": "y",
+    "d": "Innere Tiefe in mm (außer wenn Außenmaß markiert ist)"
+   },
+   "outside": {
+    "l": "Außenmaß",
+    "d": "treat sizes as outside measurements"
+   },
+   "height0": {
+    "l": "Höhe0",
+    "d": "Höhe der vorderen linken Ecke in mm"
+   },
+   "height1": {
+    "l": "Höhe1",
+    "d": "Höhe der vorderen rechten Ecke in mm"
+   },
+   "height2": {
+    "l": "Höhe2",
+    "d": "Höhe der hinteren rechten Ecke in mm"
+   },
+   "height3": {
+    "l": "Höhe3",
+    "d": "Höhe der hinteren linken Ecke in mm"
+   },
+   "add_lid": {
+    "l": "add_lid",
+    "d": "Füge Deckel hinzu (am besten mit einander gegenüberliegenden hohen Ecken)"
+   },
+   "lid_height": {
+    "l": "lid_height",
+    "d": "additional height of the lid"
+   },
+   "edge_types": {
+    "l": "edge_types",
+    "d": "which edges are flat (e) or grooved (z,Z), counter-clockwise from the front"
+   },
+   "thickness": {
+    "l": "Stärke",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "burn",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "Format",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "Referenz",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "Laschen",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "Mindesabstand",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "es": {
+  "title": "Caja de altura desigual",
+  "desc": "Caja con una altura distinta en cada esquina",
+  "groups": [
+   "Ajustes de las uniones dentadas",
+   "Ajustes del canto con ranuras",
+   "Ajustes de la caja de altura desigual",
+   "Ajustes predeterminados"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "estilo",
+    "d": "estilo de los dientes",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "muelles",
+     "barbs": "púas",
+     "snap": "encaje a presión"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espacios en los extremos",
+    "d": "espacio en el extremo inicial y final, en múltiplos del espacio normal entre dientes"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "reborde inferior",
+    "d": "altura de los rebordes inferiores que sobresalen  (múltiplos del grosor). ¡Solo para el canto con agujeros dentados!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "anchura del canto",
+    "d": "espacio por debajo de los agujeros del canto con agujeros dentados (múltiplos del grosor)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "longitud adicional",
+    "d": "material adicional para lijar las marcas de quemado (múltiplos del grosor)"
+   },
+   "FingerJoint_finger": {
+    "l": "diente",
+    "d": "anchura de los dientes (múltiplos del grosor)"
+   },
+   "FingerJoint_play": {
+    "l": "juego",
+    "d": "espacio adicional para que los dientes entren y salgan (múltiplos del grosor)"
+   },
+   "FingerJoint_space": {
+    "l": "espacio",
+    "d": "espacio entre dientes (múltiplos del grosor)"
+   },
+   "FingerJoint_width": {
+    "l": "anchura",
+    "d": "anchura de los agujeros dentados (múltiplos del grosor)"
+   },
+   "Grooved_arc_angle": {
+    "l": "ángulo del arco",
+    "d": "ángulo de los cortes en arco"
+   },
+   "Grooved_gap": {
+    "l": "separación",
+    "d": "hueco entre ranuras (fracción de la longitud del canto)"
+   },
+   "Grooved_interleave": {
+    "l": "intercalar piezas",
+    "d": "alternar la dirección de las ranuras"
+   },
+   "Grooved_inverse": {
+    "l": "invertido",
+    "d": "invertir la dirección de las ranuras"
+   },
+   "Grooved_margin": {
+    "l": "margen",
+    "d": "espacio mínimo sin ranuras a izquierda y derecha (fracción de la longitud del canto)"
+   },
+   "Grooved_style": {
+    "l": "estilo",
+    "d": "estilo de las ranuras",
+    "o": {
+     "arc": "arco",
+     "flat": "plano",
+     "triangle": "triángulo",
+     "softarc": "arco suave"
+    }
+   },
+   "Grooved_tri_angle": {
+    "l": "ángulo del triángulo",
+    "d": "ángulo de los cortes triangulares"
+   },
+   "Grooved_width": {
+    "l": "anchura",
+    "d": "anchura de cada ranura (fracción de la longitud del canto)"
+   },
+   "bottom_edge": {
+    "l": "canto inferior",
+    "d": "tipo de canto para el canto inferior",
+    "o": {
+     "F": "F Unión dentada (lado opuesto)",
+     "h": "h Canto (agujeros de unión dentada paralelos)",
+     "s": "s Apilable (fondo, agujeros de unión dentada)",
+     "e": "e Canto recto"
+    }
+   },
+   "x": {
+    "l": "x",
+    "d": "anchura interior en mm (salvo que se marque «exterior»)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profundidad interior en mm (salvo que se marque «exterior»)"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "interpretar las medidas como medidas exteriores"
+   },
+   "height0": {
+    "l": "altura 0",
+    "d": "altura de la esquina frontal izquierda en mm"
+   },
+   "height1": {
+    "l": "altura 1",
+    "d": "altura de la esquina frontal derecha en mm"
+   },
+   "height2": {
+    "l": "altura 2",
+    "d": "altura de la esquina trasera derecha en mm"
+   },
+   "height3": {
+    "l": "altura 3",
+    "d": "altura de la esquina trasera izquierda en mm"
+   },
+   "add_lid": {
+    "l": "añadir tapa",
+    "d": "añadir una tapa (funciona mejor con las esquinas altas enfrentadas)"
+   },
+   "lid_height": {
+    "l": "altura de la tapa",
+    "d": "altura adicional de la tapa"
+   },
+   "edge_types": {
+    "l": "tipos de canto",
+    "d": "qué cantos son lisos (e) o ranurados (z, Z), en sentido antihorario desde la parte frontal"
+   },
+   "thickness": {
+    "l": "grosor",
+    "d": "grosor del material (en mm)"
+   },
+   "burn": {
+    "l": "compensación de corte",
+    "d": "compensación de corte (en mm)(valores mayores para un ajuste más apretado)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "formato del archivo resultante",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "etiquetas",
+    "d": "etiquetar las piezas (cuando esté disponible)"
+   },
+   "reference": {
+    "l": "rectángulo de referencia",
+    "d": "dibujar un rectángulo de referencia con la longitud indicada (en mm)(cero para desactivarlo)"
+   },
+   "tabs": {
+    "l": "lengüetas",
+    "d": "anchura de las lengüetas que mantienen las piezas en su sitio (en mm)(no está admitido en todas partes)"
+   },
+   "qr_code": {
+    "l": "código QR",
+    "d": "Añadir al resultado un código QR con el enlace o la línea de órdenes"
+   },
+   "inner_corners": {
+    "l": "esquinas interiores",
+    "d": "estilo de las esquinas interiores",
+    "o": {
+     "loop": "bucle",
+     "corner": "esquina",
+     "backarc": "arco trasero"
+    }
+   },
+   "spacing": {
+    "l": "separación",
+    "d": "separación alrededor de las piezas (múltiplos del grosor [: espacio adicional en mm])"
+   },
+   "debug": {
+    "l": "modo de depuración",
+    "d": "dibujar los recuadros envolventes de algunas estructuras"
+   }
+  }
+ },
+ "fr": {
+  "title": "Boîte de hauteur variée",
+  "desc": "Boîte avec des hauteurs variées à chaque coin",
+  "groups": [
+   "Réglages des assemblages crénelés",
+   "Réglages pour le bord rainuré",
+   "Réglages de la boîte à hauteurs variables",
+   "Réglages par défaut"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "style",
+    "d": "forme des créneaux",
+    "o": {
+     "rectangular": "rectangulaire",
+     "springs": "languettes ressort",
+     "barbs": "ergots",
+     "snap": "clipsable"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espaces autour",
+    "d": "espace au début et à la fin dans un multiple d'espaces normaux"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "rebord inférieur",
+    "d": "hauteur des rebords inférieurs qui dépassent (multiples de l'épaisseur), bord à trous d'assemblage crénelé uniquement !"
+   },
+   "FingerJoint_edge_width": {
+    "l": "largeur de bord",
+    "d": "espace sous les trous du bord à trous d'assemblage crénelé (multiples d'épaisseur)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "Longueur supplémentaire",
+    "d": "matériau supplémentaire pour éliminer les marques de coupe (multiples d'épaisseur)"
+   },
+   "FingerJoint_finger": {
+    "l": "créneau",
+    "d": "largeur des créneaux"
+   },
+   "FingerJoint_play": {
+    "l": "dégagement",
+    "d": "espace supplémentaire pour l'emboîtement des créneaux (multiples d'épaisseur)"
+   },
+   "FingerJoint_space": {
+    "l": "espace",
+    "d": "espace entre les créneaux"
+   },
+   "FingerJoint_width": {
+    "l": "largeur",
+    "d": "largeur des trous d'assemblage crénelé (multiples d'épaisseur)"
+   },
+   "Grooved_arc_angle": {
+    "l": "Angle arc",
+    "d": "angle des découpes en arc"
+   },
+   "Grooved_gap": {
+    "l": "écart",
+    "d": "l'écart entre les rainures (fraction de la longueur du bord)"
+   },
+   "Grooved_interleave": {
+    "l": "entrelacé",
+    "d": "alterner la direction des rainures"
+   },
+   "Grooved_inverse": {
+    "l": "inverse",
+    "d": "inverser les directions des rainures"
+   },
+   "Grooved_margin": {
+    "l": "marge",
+    "d": "espace minimum à gauche et à droite sans rainures (fraction de la longueur du bord)"
+   },
+   "Grooved_style": {
+    "l": "style",
+    "d": "le style des rainures",
+    "o": {
+     "arc": "arc",
+     "flat": "plat",
+     "triangle": "triangle",
+     "softarc": "arc souple"
+    }
+   },
+   "Grooved_tri_angle": {
+    "l": "triangle",
+    "d": "l'angle des coupes triangulaires"
+   },
+   "Grooved_width": {
+    "l": "largeur",
+    "d": "la largeur de chaque rainure (fraction de la longueur du bord)"
+   },
+   "bottom_edge": {
+    "l": "bord du bas",
+    "d": "type de bord pour le bord du bas",
+    "o": {
+     "F": "F assemblage crénelé (côté opposé)",
+     "h": "h Bord (trous d'assemblage crénelé parallèles)",
+     "s": "s Empilable (en bas, trous d'assemblage crénelé)",
+     "e": "e Bord droit"
+    }
+   },
+   "x": {
+    "l": "x",
+    "d": "largeur intérieure en mm (si on ne choisit pas « extérieur »)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profondeur intérieure en mm (si on ne choisit pas « extérieur »)"
+   },
+   "outside": {
+    "l": "extérieur",
+    "d": "traiter les dimensions comme des mesures extérieures"
+   },
+   "height0": {
+    "l": "hauteur 0",
+    "d": "hauteur du coin devant gauche en mm"
+   },
+   "height1": {
+    "l": "hauteur 1",
+    "d": "hauteur du coin devant droit en mm"
+   },
+   "height2": {
+    "l": "hauteur 2",
+    "d": "hauteur du coin droit arrière en mm"
+   },
+   "height3": {
+    "l": "hauteur 3",
+    "d": "hauteur de coin arrière gauche en mm"
+   },
+   "add_lid": {
+    "l": "Ajouter couvercle",
+    "d": "ajouter un couvercle (marche mieux avec des coins de même hauteur de deux côtés opposés)"
+   },
+   "lid_height": {
+    "l": "Hauteur couvercle",
+    "d": "hauteur supplémentaire du couvercle"
+   },
+   "edge_types": {
+    "l": "Types de bord",
+    "d": "dont les bords sont plats (e) ou rainurés (z,Z), dans le sens inverse des aiguilles d'une montre depuis l'avant"
+   },
+   "thickness": {
+    "l": "épaisseur",
+    "d": "épaisseur du matériau (en mm)"
+   },
+   "burn": {
+    "l": "compensation",
+    "d": "compensation du trait de coupe (en mm) (valeurs plus grandes pour un emboîtement plus serré)"
+   },
+   "format": {
+    "l": "format",
+    "d": "format du fichier résultant",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "étiquettes",
+    "d": "étiqueter les pièces (si disponible)"
+   },
+   "reference": {
+    "l": "référence",
+    "d": "imprimer un rectangle de référence avec la longueur donnée (en mm) (zéro pour désactiver)"
+   },
+   "tabs": {
+    "l": "ponts",
+    "d": "largeur des ponts qui maintiennent les pièces sur la plaque (en mm) (non supporté partout)"
+   },
+   "qr_code": {
+    "l": "Code QR",
+    "d": "ajouter un code QR avec un lien ou la ligne de commande dans le fichier généré"
+   },
+   "inner_corners": {
+    "l": "Coins intérieurs",
+    "d": "style des coins intérieurs",
+    "o": {
+     "loop": "boucle",
+     "corner": "coin",
+     "backarc": "arc arrière"
+    }
+   },
+   "spacing": {
+    "l": "espacement",
+    "d": "espacement autour des pièces (multiples de l'épaisseur [: espace supplémentaire en mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "imprimer les rectangles contenant certaines structures"
+   }
+  }
+ },
+ "pt_BR": {
+  "title": "Caixa de Altura Irregular",
+  "desc": "Caixa com altura diferente em cada canto",
+  "groups": [
+   "Configurações para Encaixes Dentados",
+   "Settings for Grooved Edge",
+   "Configurações da Caixa de Altura Irregular",
+   "Configurações Padrão"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "estilo",
+    "d": "style of the fingers",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "springs",
+     "barbs": "barbs",
+     "snap": "snap"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espaços circundantes",
+    "d": "space at the start and end in multiple of normal spaces"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "bottom_lip",
+    "d": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "Largura Borda",
+    "d": "space below holes of FingerHoleEdge (multiples of thickness)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "extra_length",
+    "d": "extra material to grind away burn marks (multiples of thickness)"
+   },
+   "FingerJoint_finger": {
+    "l": "dedo",
+    "d": "width of the fingers (multiples of thickness)"
+   },
+   "FingerJoint_play": {
+    "l": "liberdade de movimento",
+    "d": "extra space to allow finger move in and out (multiples of thickness)"
+   },
+   "FingerJoint_space": {
+    "l": "espaço",
+    "d": "space between fingers (multiples of thickness)"
+   },
+   "FingerJoint_width": {
+    "l": "largura",
+    "d": "width of finger holes (multiples of thickness)"
+   },
+   "Grooved_arc_angle": {
+    "l": "arc_angle",
+    "d": "the angle of arc cuts"
+   },
+   "Grooved_gap": {
+    "l": "gap",
+    "d": "the gap between grooves (fraction of the edge length)"
+   },
+   "Grooved_interleave": {
+    "l": "interleave",
+    "d": "alternate the direction of grooves"
+   },
+   "Grooved_inverse": {
+    "l": "inverse",
+    "d": "invert the groove directions"
+   },
+   "Grooved_margin": {
+    "l": "margin",
+    "d": "minimum space left and right without grooves (fraction of the edge length)"
+   },
+   "Grooved_style": {
+    "l": "estilo",
+    "d": "the style of grooves",
+    "o": {
+     "arc": "arc",
+     "flat": "plana",
+     "triangle": "triângulo",
+     "softarc": "softarc"
+    }
+   },
+   "Grooved_tri_angle": {
+    "l": "tri_angle",
+    "d": "the angle of triangular cuts"
+   },
+   "Grooved_width": {
+    "l": "largura",
+    "d": "the width of each groove (fraction of the edge length)"
+   },
+   "bottom_edge": {
+    "l": "Borda Inferior",
+    "d": "tipo de borda para a borda inferior",
+    "o": {
+     "F": "F Finger Joint (opposing side)",
+     "h": "h Edge (parallel Finger Joint Holes)",
+     "s": "s Stackable (bottom, finger joint holes)",
+     "e": "e Straight Edge"
+    }
+   },
+   "x": {
+    "l": "x",
+    "d": "largura interna em mm (a menos que a opção de medida externa esteja selecionada)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profundidade interna em mm (a menos que a opção de medida externa esteja selecionada)"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "treat sizes as outside measurements"
+   },
+   "height0": {
+    "l": "altura0",
+    "d": "altura do canto frontal esquerdo em mm"
+   },
+   "height1": {
+    "l": "altura1",
+    "d": "altura do canto frontal direito em mm"
+   },
+   "height2": {
+    "l": "altura2",
+    "d": "altura do canto traseiro direito em mm"
+   },
+   "height3": {
+    "l": "altura3",
+    "d": "altura do canto traseiro esquerdo em mm"
+   },
+   "add_lid": {
+    "l": "add_lid",
+    "d": "adicionar uma tampa (funciona melhor com cantos altos opostos entre si)"
+   },
+   "lid_height": {
+    "l": "lid_height",
+    "d": "additional height of the lid"
+   },
+   "edge_types": {
+    "l": "edge_types",
+    "d": "which edges are flat (e) or grooved (z,Z), counter-clockwise from the front"
+   },
+   "thickness": {
+    "l": "espessura",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "gravar",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "referência",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "tabulação",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "espaçamento",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debugar",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "zh_CN": {
+  "title": "不均匀高度框",
+  "desc": "在每个角落的不同高度的盒子",
+  "groups": [
+   "榫卯结构的设置",
+   "凹槽边缘的设置",
+   "不均匀高度框设置",
+   "默认设置"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "样式",
+    "d": "卡榫样式",
+    "o": {
+     "rectangular": "长方形",
+     "springs": "弹性",
+     "barbs": "倒钩",
+     "snap": "打开"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "两端长度",
+    "d": "两端的长度是常规长度的倍数"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "下唇",
+    "d": "下唇突出的高度（厚度的倍数）指孔仅限边缘！"
+   },
+   "FingerJoint_edge_width": {
+    "l": "边缘宽度",
+    "d": "卡榫边缘距离(厚度倍数)仅当底边类型为插入式卡榫（有撑角）时有效"
+   },
+   "FingerJoint_extra_length": {
+    "l": "额外长度",
+    "d": "额外的榫头长度（厚度的倍数）"
+   },
+   "FingerJoint_finger": {
+    "l": "榫头",
+    "d": "榫头宽度(厚度的倍数)"
+   },
+   "FingerJoint_play": {
+    "l": "间隙",
+    "d": "额外的空间允许榫头进出（厚度的倍数）数值越大越松"
+   },
+   "FingerJoint_space": {
+    "l": "空间",
+    "d": "榫头间距(厚度的倍数)"
+   },
+   "FingerJoint_width": {
+    "l": "宽度",
+    "d": "榫眼宽度(材料厚度的倍数)"
+   },
+   "Grooved_arc_angle": {
+    "l": "弧形角度",
+    "d": "弧形切割的角度"
+   },
+   "Grooved_gap": {
+    "l": "间隙",
+    "d": "凹槽之间的间隙（边缘长度的一部分）"
+   },
+   "Grooved_interleave": {
+    "l": "插入",
+    "d": "改变凹槽的方向"
+   },
+   "Grooved_inverse": {
+    "l": "相反的",
+    "d": "反转凹槽方向"
+   },
+   "Grooved_margin": {
+    "l": "边缘",
+    "d": "左右无凹槽的最小空间（边长的一部分）"
+   },
+   "Grooved_style": {
+    "l": "样式",
+    "d": "凹槽的风格",
+    "o": {
+     "arc": "弧",
+     "flat": "平面",
+     "triangle": "三角形",
+     "softarc": "软弧"
+    }
+   },
+   "Grooved_tri_angle": {
+    "l": "三角",
+    "d": "三角形切割的角度"
+   },
+   "Grooved_width": {
+    "l": "宽度",
+    "d": "每个凹槽的宽度（边长的一部分）"
+   },
+   "bottom_edge": {
+    "l": "底边",
+    "d": "底边的边缘类型",
+    "o": {
+     "F": "普通卡榫",
+     "h": "插入式卡榫（无撑角）",
+     "s": "插入式卡榫（有撑角）",
+     "e": "直边"
+    }
+   },
+   "x": {
+    "l": "x",
+    "d": "内宽(mm)(除非外部选择)"
+   },
+   "y": {
+    "l": "y",
+    "d": "内部深度（mm）（除非选择外部）"
+   },
+   "outside": {
+    "l": "外部尺寸",
+    "d": "从外部测量的尺寸（即包含材料厚度）"
+   },
+   "height0": {
+    "l": "高度0",
+    "d": "左前角的高度（mm）"
+   },
+   "height1": {
+    "l": "高度1",
+    "d": "右前角的高度（mm）"
+   },
+   "height2": {
+    "l": "高度2",
+    "d": "右后角的高度（mm）"
+   },
+   "height3": {
+    "l": "高度3",
+    "d": "左后角高度（mm）"
+   },
+   "add_lid": {
+    "l": "添加盖子",
+    "d": "添加盖子（最好与高角相对）"
+   },
+   "lid_height": {
+    "l": "盖子高度",
+    "d": "盖子的额外高度"
+   },
+   "edge_types": {
+    "l": "边缘类型",
+    "d": "从正面逆时针方向看，哪些边缘是平的（e）或有凹槽的（z，z）"
+   },
+   "thickness": {
+    "l": "厚度",
+    "d": "材料厚度 (mm)"
+   },
+   "burn": {
+    "l": "激光补偿",
+    "d": "激光校正（毫米）（数值越大，越紧密）"
+   },
+   "format": {
+    "l": "格式",
+    "d": "输出格式",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "标签",
+    "d": "给零件贴上标签（如果有）"
+   },
+   "reference": {
+    "l": "定位框",
+    "d": "添加给定长度的参考矩形，设为0则禁用(mm)"
+   },
+   "tabs": {
+    "l": "切割缝隙",
+    "d": "固定零件的卡扣宽度（单位：mm）（不是所有地方都支持）"
+   },
+   "qr_code": {
+    "l": "二维码",
+    "d": "在生成的图纸中添加带有链接的二维码"
+   },
+   "inner_corners": {
+    "l": "内角",
+    "d": "内角风格",
+    "o": {
+     "loop": "循环",
+     "corner": "角落",
+     "backarc": "弧后"
+    }
+   },
+   "spacing": {
+    "l": "间距",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "边框",
+    "d": "添加每一个零件的矩形外框"
+   }
+  }
+ }
+}

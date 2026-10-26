@@ -1,0 +1,15 @@
+{
+ "order": 270,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "play",
+  "hinge_center",
+  "hinge_radius",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Hinged side outlines and hinge holes are faithful; Cherry MX latches are not drawn. "
+}

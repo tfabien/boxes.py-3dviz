@@ -1,0 +1,970 @@
+{
+ "title": "UniversalBox",
+ "desc": "Box with various options for different styles and lids",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Stackable Edges",
+   "items": [
+    {
+     "name": "Stackable_angle",
+     "label": "angle",
+     "desc": "inside angle of the feet",
+     "type": "text",
+     "default": "60"
+    },
+    {
+     "name": "Stackable_bottom_stabilizers",
+     "label": "bottom_stabilizers",
+     "desc": "height of strips to be glued to the inside of bottom edges (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "Stackable_height",
+     "label": "height",
+     "desc": "height of the feet (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "Stackable_holedistance",
+     "label": "holedistance",
+     "desc": "distance from finger holes to bottom edge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Stackable_width",
+     "label": "width",
+     "desc": "width of the feet (multiples of thickness)",
+     "type": "text",
+     "default": "4.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Hinges and HingePins",
+   "items": [
+    {
+     "name": "Hinge_grip_percentage",
+     "label": "grip_percentage",
+     "desc": "",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "Hinge_outset",
+     "label": "outset",
+     "desc": "have lid overlap at the sides (similar to OutSetEdge)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "Hinge_pinwidth",
+     "label": "pinwidth",
+     "desc": "set to lower value to get disks surrounding the pins",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "Hinge_axle",
+     "label": "axle",
+     "desc": "diameter of the pin hole (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "Hinge_grip_length",
+     "label": "grip_length",
+     "desc": "fixed length of the grips on he lids (multiples of thickness)",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "Hinge_hingestrength",
+     "label": "hingestrength",
+     "desc": "thickness of the arc holding the pin in place (multiples of thickness)",
+     "type": "text",
+     "default": "1"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Cabinet Hinges",
+   "items": [
+    {
+     "name": "CabinetHinge_bore",
+     "label": "bore",
+     "desc": "diameter of the pin hole in mm",
+     "type": "text",
+     "default": "3.2"
+    },
+    {
+     "name": "CabinetHinge_eyes_per_hinge",
+     "label": "eyes_per_hinge",
+     "desc": "pieces per hinge",
+     "type": "text",
+     "default": "5"
+    },
+    {
+     "name": "CabinetHinge_hinges",
+     "label": "hinges",
+     "desc": "number of hinges per edge",
+     "type": "text",
+     "default": "2"
+    },
+    {
+     "name": "CabinetHinge_style",
+     "label": "style",
+     "desc": "style of hinge used",
+     "type": "select",
+     "options": [
+      [
+       "inside",
+       "inside"
+      ],
+      [
+       "outside",
+       "outside"
+      ]
+     ],
+     "default": "inside"
+    },
+    {
+     "name": "CabinetHinge_eye",
+     "label": "eye",
+     "desc": "radius of the eye (multiples of thickness)",
+     "type": "text",
+     "default": "1.5"
+    },
+    {
+     "name": "CabinetHinge_play",
+     "label": "play",
+     "desc": "space between eyes (multiples of thickness)",
+     "type": "text",
+     "default": "0.05"
+    },
+    {
+     "name": "CabinetHinge_spacing",
+     "label": "spacing",
+     "desc": "minimum space around the hinge (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Slide-on Lids",
+   "items": [
+    {
+     "name": "SlideOnLid_hole_width",
+     "label": "hole_width",
+     "desc": "width of the \"finger hole\" in mm",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "SlideOnLid_second_pin",
+     "label": "second_pin",
+     "desc": "additional pin for better positioning",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "SlideOnLid_spring",
+     "label": "spring",
+     "desc": "position(s) of the extra locking springs in the lid",
+     "type": "select",
+     "options": [
+      [
+       "both",
+       "both"
+      ],
+      [
+       "none",
+       "none"
+      ],
+      [
+       "left",
+       "left"
+      ],
+      [
+       "right",
+       "right"
+      ]
+     ],
+     "default": "both"
+    },
+    {
+     "name": "SlideOnLid_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "SlideOnLid_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "SlideOnLid_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "SlideOnLid_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "SlideOnLid_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "SlideOnLid_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "SlideOnLid_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.05"
+    },
+    {
+     "name": "SlideOnLid_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "SlideOnLid_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Click-on Lids",
+   "items": [
+    {
+     "name": "Click_angle",
+     "label": "angle",
+     "desc": "angle of the hooks bending outward",
+     "type": "text",
+     "default": "5.0"
+    },
+    {
+     "name": "Click_bottom_radius",
+     "label": "bottom_radius",
+     "desc": "radius at the bottom (multiples of thickness)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "Click_depth",
+     "label": "depth",
+     "desc": "length of the hooks (multiples of thickness)",
+     "type": "text",
+     "default": "3.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for RoundedTriangleEdge",
+   "items": [
+    {
+     "name": "RoundedTriangleEdge_height",
+     "label": "height",
+     "desc": "height above the wall",
+     "type": "text",
+     "default": "50.0"
+    },
+    {
+     "name": "RoundedTriangleEdge_r_hole",
+     "label": "r_hole",
+     "desc": "radius of hole",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "RoundedTriangleEdge_radius",
+     "label": "radius",
+     "desc": "radius of top corner",
+     "type": "text",
+     "default": "30.0"
+    },
+    {
+     "name": "RoundedTriangleEdge_outset",
+     "label": "outset",
+     "desc": "extend the triangle along the length of the edge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Mounting Edge",
+   "items": [
+    {
+     "name": "Mounting_d_head",
+     "label": "d_head",
+     "desc": "head diameter of mounting screw (in mm)",
+     "type": "text",
+     "default": "6.5"
+    },
+    {
+     "name": "Mounting_d_shaft",
+     "label": "d_shaft",
+     "desc": "shaft diameter of mounting screw (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "Mounting_margin",
+     "label": "margin",
+     "desc": "minimum space left and right without holes (fraction of the edge length)",
+     "type": "text",
+     "default": "0.125"
+    },
+    {
+     "name": "Mounting_num",
+     "label": "num",
+     "desc": "number of mounting holes (integer)",
+     "type": "text",
+     "default": "2"
+    },
+    {
+     "name": "Mounting_side",
+     "label": "side",
+     "desc": "side of box (not all valid configurations make sense...)",
+     "type": "select",
+     "options": [
+      [
+       "back",
+       "back"
+      ],
+      [
+       "left",
+       "left"
+      ],
+      [
+       "right",
+       "right"
+      ],
+      [
+       "front",
+       "front"
+      ]
+     ],
+     "default": "back"
+    },
+    {
+     "name": "Mounting_style",
+     "label": "style",
+     "desc": "edge style",
+     "type": "select",
+     "options": [
+      [
+       "straight edge, within",
+       "straight edge, within"
+      ],
+      [
+       "straight edge, extended",
+       "straight edge, extended"
+      ],
+      [
+       "mounting tab",
+       "mounting tab"
+      ]
+     ],
+     "default": "straight edge, within"
+    }
+   ]
+  },
+  {
+   "title": "Settings for HandleEdge",
+   "items": [
+    {
+     "name": "HandleEdge_height",
+     "label": "height",
+     "desc": "height above the wall in mm",
+     "type": "text",
+     "default": "20.0"
+    },
+    {
+     "name": "HandleEdge_hole_height",
+     "label": "hole_height",
+     "desc": "height of hole(s) in percentage of maximum hole height (handle height - 2 * material thickness)",
+     "type": "text",
+     "default": "75.0"
+    },
+    {
+     "name": "HandleEdge_hole_width",
+     "label": "hole_width",
+     "desc": "width of hole(s) in percentage of maximum hole width (width of edge - (n+1) * material thickness)",
+     "type": "text",
+     "default": "40:40"
+    },
+    {
+     "name": "HandleEdge_on_sides",
+     "label": "on_sides",
+     "desc": "added to side panels if checked, to front and back otherwise (only used with top_edge parameter)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "HandleEdge_radius",
+     "label": "radius",
+     "desc": "radius of corners in mm",
+     "type": "text",
+     "default": "10.0"
+    },
+    {
+     "name": "HandleEdge_outset",
+     "label": "outset",
+     "desc": "extend the handle along the length of the edge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Flex",
+   "items": [
+    {
+     "name": "Flex_stretch",
+     "label": "stretch",
+     "desc": "Hint of how much the flex part should be shortened",
+     "type": "text",
+     "default": "1.05"
+    },
+    {
+     "name": "Flex_connection",
+     "label": "connection",
+     "desc": "width of the gaps in the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Flex_distance",
+     "label": "distance",
+     "desc": "width of the pattern perpendicular to the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "Flex_width",
+     "label": "width",
+     "desc": "width of the pattern in direction of the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "5.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for the Lid",
+   "items": [
+    {
+     "name": "Lid_brim_spacing",
+     "label": "brim_spacing",
+     "desc": "space between the brim and the walls in mm (for flat* lids)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "Lid_handle",
+     "label": "handle",
+     "desc": "type of handle",
+     "type": "select",
+     "options": [
+      [
+       "none",
+       "none"
+      ],
+      [
+       "long_rounded",
+       "long_rounded"
+      ],
+      [
+       "long_trapezoid",
+       "long_trapezoid"
+      ],
+      [
+       "long_doublerounded",
+       "long_doublerounded"
+      ],
+      [
+       "knob",
+       "knob"
+      ]
+     ],
+     "default": "none"
+    },
+    {
+     "name": "Lid_style",
+     "label": "style",
+     "desc": "type of lid to create",
+     "type": "select",
+     "options": [
+      [
+       "none",
+       "none"
+      ],
+      [
+       "flat",
+       "flat"
+      ],
+      [
+       "chest",
+       "chest"
+      ],
+      [
+       "overthetop",
+       "overthetop"
+      ],
+      [
+       "ontop",
+       "ontop"
+      ],
+      [
+       "flatbrim",
+       "flatbrim"
+      ],
+      [
+       "flatfang",
+       "flatfang"
+      ]
+     ],
+     "default": "none"
+    },
+    {
+     "name": "Lid_brim_height",
+     "label": "brim_height",
+     "desc": "height of the brim in multiple of thickness (for flatbrim lids)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Lid_fang_size",
+     "label": "fang_size",
+     "desc": "size of the fangs in multiples of thickness (for flatfang lids)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Lid_handle_height",
+     "label": "handle_height",
+     "desc": "height of the handle in multiples of thickness (if applicable)",
+     "type": "text",
+     "default": "8.0"
+    },
+    {
+     "name": "Lid_height",
+     "label": "height",
+     "desc": "height of the brim in multiples of thickness (if any)",
+     "type": "text",
+     "default": "4.0"
+    },
+    {
+     "name": "Lid_play",
+     "label": "play",
+     "desc": "play when sliding the lid on in multiples of thickness (if applicable)",
+     "type": "text",
+     "default": "0.1"
+    }
+   ]
+  },
+  {
+   "title": "UniversalBox Settings",
+   "items": [
+    {
+     "name": "top_edge",
+     "label": "top_edge",
+     "desc": "edge type for top edge",
+     "type": "select",
+     "options": [
+      [
+       "e",
+       "e Straight Edge"
+      ],
+      [
+       "f",
+       "f Finger Joint"
+      ],
+      [
+       "F",
+       "F Finger Joint (opposing side)"
+      ],
+      [
+       "h",
+       "h Edge (parallel Finger Joint Holes)"
+      ],
+      [
+       "c",
+       "c Click on (bottom side)"
+      ],
+      [
+       "E",
+       "E Straight Edge (outset by thickness)"
+      ],
+      [
+       "S",
+       "S Stackable (top)"
+      ],
+      [
+       "Š",
+       "Š Stackable edge with finger holes (top)"
+      ],
+      [
+       "i",
+       "i Straight edge with hinge eye"
+      ],
+      [
+       "k",
+       "k Straight edge with hinge eye (both ends)"
+      ],
+      [
+       "v",
+       "v Edge with cabinet hinges for 90° lid"
+      ],
+      [
+       "L",
+       "L Edge for slide on lid (box back)"
+      ],
+      [
+       "t",
+       "t Triangle for handle"
+      ],
+      [
+       "G",
+       "G Edge with pear shaped mounting holes"
+      ],
+      [
+       "y",
+       "y Handle for e.g. a drawer"
+      ],
+      [
+       "Y",
+       "Y Handle with holes for parallel finger joint"
+      ]
+     ],
+     "default": "e"
+    },
+    {
+     "name": "bottom_edge",
+     "label": "bottom_edge",
+     "desc": "edge type for bottom edge",
+     "type": "select",
+     "options": [
+      [
+       "F",
+       "F Finger Joint (opposing side)"
+      ],
+      [
+       "h",
+       "h Edge (parallel Finger Joint Holes)"
+      ],
+      [
+       "s",
+       "s Stackable (bottom, finger joint holes)"
+      ],
+      [
+       "e",
+       "e Straight Edge"
+      ]
+     ],
+     "default": "h"
+    },
+    {
+     "name": "x",
+     "label": "x",
+     "desc": "inner width in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "y",
+     "label": "y",
+     "desc": "inner depth in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "h",
+     "label": "h",
+     "desc": "inner height in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "outside",
+     "label": "outside",
+     "desc": "treat sizes as outside measurements",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "vertical_edges",
+     "label": "vertical_edges",
+     "desc": "connections used for the vertical edges",
+     "type": "select",
+     "options": [
+      [
+       "finger joints",
+       "finger joints"
+      ],
+      [
+       "finger holes",
+       "finger holes"
+      ]
+     ],
+     "default": "finger joints"
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

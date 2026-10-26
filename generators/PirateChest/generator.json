@@ -1,0 +1,13 @@
+{
+ "order": 280,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "n",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Lid mitre joints are approximated as straight notches; hinge discs/pins are not drawn. "
+}

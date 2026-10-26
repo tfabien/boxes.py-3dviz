@@ -1,0 +1,348 @@
+{
+ "title": "HalfBox",
+ "desc": "Configurable half of a box which can be: a bookend, a hanging shelf, an angle clamping jig, ...",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Mounting Edge",
+   "items": [
+    {
+     "name": "Mounting_d_head",
+     "label": "d_head",
+     "desc": "head diameter of mounting screw (in mm)",
+     "type": "text",
+     "default": "6.5"
+    },
+    {
+     "name": "Mounting_d_shaft",
+     "label": "d_shaft",
+     "desc": "shaft diameter of mounting screw (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "Mounting_margin",
+     "label": "margin",
+     "desc": "minimum space left and right without holes (fraction of the edge length)",
+     "type": "text",
+     "default": "0.125"
+    },
+    {
+     "name": "Mounting_num",
+     "label": "num",
+     "desc": "number of mounting holes (integer)",
+     "type": "text",
+     "default": "2"
+    },
+    {
+     "name": "Mounting_side",
+     "label": "side",
+     "desc": "side of box (not all valid configurations make sense...)",
+     "type": "select",
+     "options": [
+      [
+       "back",
+       "back"
+      ],
+      [
+       "left",
+       "left"
+      ],
+      [
+       "right",
+       "right"
+      ],
+      [
+       "front",
+       "front"
+      ]
+     ],
+     "default": "back"
+    },
+    {
+     "name": "Mounting_style",
+     "label": "style",
+     "desc": "edge style",
+     "type": "select",
+     "options": [
+      [
+       "straight edge, within",
+       "straight edge, within"
+      ],
+      [
+       "straight edge, extended",
+       "straight edge, extended"
+      ],
+      [
+       "mounting tab",
+       "mounting tab"
+      ]
+     ],
+     "default": "straight edge, within"
+    }
+   ]
+  },
+  {
+   "title": "HalfBox Settings",
+   "items": [
+    {
+     "name": "x",
+     "label": "x",
+     "desc": "inner width in mm",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "sy",
+     "label": "sy",
+     "desc": "sections back to front in mm",
+     "type": "text",
+     "default": "50:50"
+    },
+    {
+     "name": "h",
+     "label": "h",
+     "desc": "inner height in mm",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "Clamping",
+     "label": "Clamping",
+     "desc": "add clamping holes",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "ClampingSize",
+     "label": "ClampingSize",
+     "desc": "diameter of clamping holes",
+     "type": "text",
+     "default": "25.0"
+    },
+    {
+     "name": "Mounting",
+     "label": "Mounting",
+     "desc": "add mounting holes",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "Sturdy",
+     "label": "Sturdy",
+     "desc": "create sturdy construction (e.g. shelf, clamping jig, ...)",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,348 @@
+{
+ "title": "Console2",
+ "desc": "Console with slanted panel and service hatches",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Stackable Edges",
+   "items": [
+    {
+     "name": "Stackable_angle",
+     "label": "angle",
+     "desc": "inside angle of the feet",
+     "type": "text",
+     "default": "60"
+    },
+    {
+     "name": "Stackable_bottom_stabilizers",
+     "label": "bottom_stabilizers",
+     "desc": "height of strips to be glued to the inside of bottom edges (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "Stackable_height",
+     "label": "height",
+     "desc": "height of the feet (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "Stackable_holedistance",
+     "label": "holedistance",
+     "desc": "distance from finger holes to bottom edge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Stackable_width",
+     "label": "width",
+     "desc": "width of the feet (multiples of thickness)",
+     "type": "text",
+     "default": "4.0"
+    }
+   ]
+  },
+  {
+   "title": "Console2 Settings",
+   "items": [
+    {
+     "name": "x",
+     "label": "x",
+     "desc": "inner width in mm (unless outside selected)",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "y",
+     "label": "y",
+     "desc": "inner depth in mm (unless outside selected)",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "h",
+     "label": "h",
+     "desc": "inner height in mm (unless outside selected)",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "bottom_edge",
+     "label": "bottom_edge",
+     "desc": "edge type for bottom edge",
+     "type": "select",
+     "options": [
+      [
+       "F",
+       "F Finger Joint (opposing side)"
+      ],
+      [
+       "h",
+       "h Edge (parallel Finger Joint Holes)"
+      ],
+      [
+       "s",
+       "s Stackable (bottom, finger joint holes)"
+      ],
+      [
+       "e",
+       "e Straight Edge"
+      ]
+     ],
+     "default": "s"
+    },
+    {
+     "name": "outside",
+     "label": "outside",
+     "desc": "treat sizes as outside measurements",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "front_height",
+     "label": "front_height",
+     "desc": "height of the front below the panel (in mm)",
+     "type": "text",
+     "default": "30"
+    },
+    {
+     "name": "angle",
+     "label": "angle",
+     "desc": "angle of the front panel (90°=upright)",
+     "type": "text",
+     "default": "50"
+    },
+    {
+     "name": "removable_backwall",
+     "label": "removable_backwall",
+     "desc": "have latches at the backwall",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "removable_panel",
+     "label": "removable_panel",
+     "desc": "The panel is held by tabs and can be removed",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "glued_panel",
+     "label": "glued_panel",
+     "desc": "the panel is glued and not held by finger joints",
+     "type": "bool",
+     "default": true
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

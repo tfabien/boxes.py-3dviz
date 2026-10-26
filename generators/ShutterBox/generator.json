@@ -1,0 +1,16 @@
+{
+ "order": 320,
+ "section": "flex",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "radius",
+  "style",
+  "Flex_connection",
+  "Flex_distance",
+  "Flex_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Door closed along the upper rails (the flexible door bends: no Opening slider, a rigid motion would be wrong). Door position in the groove (centred), handle on the outer face, rails and corner pieces glued against the inside of the sides: deduced, the generator does not place them. Mitre fingers a/A/b/B drawn as straight plates (gaps/overlaps possible at the joints). "
+}

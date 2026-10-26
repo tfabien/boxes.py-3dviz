@@ -1,0 +1,15 @@
+{
+ "order": 340,
+ "section": "flex",
+ "used": [
+  "sx",
+  "y",
+  "h",
+  "radius",
+  "latchsize",
+  "Flex_connection",
+  "Flex_distance",
+  "Flex_width"
+ ],
+ "notes": "Single section (first value of sx); no dividers."
+}

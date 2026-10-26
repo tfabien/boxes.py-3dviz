@@ -1,0 +1,747 @@
+{
+ "de": {
+  "title": "FlexBox4",
+  "desc": "Kiste mit Biegescharnier und abgerundeten linken Ecken",
+  "groups": [
+   "Einstellung für Fingerzinken",
+   "Einstellung für die Krümmung",
+   "Einstellungen für FlexBox4",
+   "Standardeinstellungen"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "Stil",
+    "d": "style of the fingers",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "springs",
+     "barbs": "barbs",
+     "snap": "snap"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "umliegende Fläche",
+    "d": "space at the start and end in multiple of normal spaces"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "bottom_lip",
+    "d": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "Kantenbreite",
+    "d": "space below holes of FingerHoleEdge (multiples of thickness)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "extra_length",
+    "d": "extra material to grind away burn marks (multiples of thickness)"
+   },
+   "FingerJoint_finger": {
+    "l": "Zapfen",
+    "d": "width of the fingers (multiples of thickness)"
+   },
+   "FingerJoint_play": {
+    "l": "Bewegungsfreiraum",
+    "d": "extra space to allow finger move in and out (multiples of thickness)"
+   },
+   "FingerJoint_space": {
+    "l": "Abstand",
+    "d": "space between fingers (multiples of thickness)"
+   },
+   "FingerJoint_width": {
+    "l": "Breite",
+    "d": "width of finger holes (multiples of thickness)"
+   },
+   "Flex_stretch": {
+    "l": "Dehnung",
+    "d": "Hint of how much the flex part should be shortened"
+   },
+   "Flex_connection": {
+    "l": "Verbindung",
+    "d": "width of the gaps in the cuts (multiples of thickness)"
+   },
+   "Flex_distance": {
+    "l": "Entfernung",
+    "d": "width of the pattern perpendicular to the cuts (multiples of thickness)"
+   },
+   "Flex_width": {
+    "l": "Breite",
+    "d": "width of the pattern in direction of the cuts (multiples of thickness)"
+   },
+   "x": {
+    "l": "x",
+    "d": "Innere Breite in mm (außer wenn Außenmaß markiert ist)"
+   },
+   "y": {
+    "l": "y",
+    "d": "Innere Tiefe in mm (außer wenn Außenmaß markiert ist)"
+   },
+   "h": {
+    "l": "h",
+    "d": "Innere Höhe in mm  (außer wenn Außenmaß markiert ist)"
+   },
+   "outside": {
+    "l": "Außenmaß",
+    "d": "treat sizes as outside measurements"
+   },
+   "radius": {
+    "l": "Radius",
+    "d": "Eckenradius in mm"
+   },
+   "latchsize": {
+    "l": "Riegelgröße",
+    "d": "Riegelausmaß in Vielfachem der Dicke"
+   },
+   "thickness": {
+    "l": "Stärke",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "burn",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "Format",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "Referenz",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "Laschen",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "Mindesabstand",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "es": {
+  "title": "Caja con flexión y esquinas izquierdas redondeadas",
+  "desc": "Caja con bisagra flexible y esquinas izquierdas redondeadas",
+  "groups": [
+   "Ajustes de las uniones dentadas",
+   "Ajustes de la flexión",
+   "Ajustes de la caja con flexión y esquinas izquierdas redondeadas",
+   "Ajustes predeterminados"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "estilo",
+    "d": "estilo de los dientes",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "muelles",
+     "barbs": "púas",
+     "snap": "encaje a presión"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espacios en los extremos",
+    "d": "espacio en el extremo inicial y final, en múltiplos del espacio normal entre dientes"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "reborde inferior",
+    "d": "altura de los rebordes inferiores que sobresalen  (múltiplos del grosor). ¡Solo para el canto con agujeros dentados!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "anchura del canto",
+    "d": "espacio por debajo de los agujeros del canto con agujeros dentados (múltiplos del grosor)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "longitud adicional",
+    "d": "material adicional para lijar las marcas de quemado (múltiplos del grosor)"
+   },
+   "FingerJoint_finger": {
+    "l": "diente",
+    "d": "anchura de los dientes (múltiplos del grosor)"
+   },
+   "FingerJoint_play": {
+    "l": "juego",
+    "d": "espacio adicional para que los dientes entren y salgan (múltiplos del grosor)"
+   },
+   "FingerJoint_space": {
+    "l": "espacio",
+    "d": "espacio entre dientes (múltiplos del grosor)"
+   },
+   "FingerJoint_width": {
+    "l": "anchura",
+    "d": "anchura de los agujeros dentados (múltiplos del grosor)"
+   },
+   "Flex_stretch": {
+    "l": "estiramiento",
+    "d": "Indicación de cuánto debe acortarse la parte flexible"
+   },
+   "Flex_connection": {
+    "l": "conexión",
+    "d": "anchura de los huecos entre cortes (múltiplos del grosor)"
+   },
+   "Flex_distance": {
+    "l": "distancia",
+    "d": "anchura del patrón perpendicular a los cortes (múltiplos del grosor)"
+   },
+   "Flex_width": {
+    "l": "anchura",
+    "d": "anchura del patrón en la dirección de los cortes (múltiplos del grosor)"
+   },
+   "x": {
+    "l": "x",
+    "d": "anchura interior en mm (salvo que se marque «exterior»)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profundidad interior en mm (salvo que se marque «exterior»)"
+   },
+   "h": {
+    "l": "h",
+    "d": "altura interior en mm (salvo que se marque «exterior»)"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "interpretar las medidas como medidas exteriores"
+   },
+   "radius": {
+    "l": "radio",
+    "d": "Radio de las esquinas en mm"
+   },
+   "latchsize": {
+    "l": "tamaño del pestillo",
+    "d": "tamaño del pestillo en múltiplos del grosor"
+   },
+   "thickness": {
+    "l": "grosor",
+    "d": "grosor del material (en mm)"
+   },
+   "burn": {
+    "l": "compensación de corte",
+    "d": "compensación de corte (en mm)(valores mayores para un ajuste más apretado)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "formato del archivo resultante",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "etiquetas",
+    "d": "etiquetar las piezas (cuando esté disponible)"
+   },
+   "reference": {
+    "l": "rectángulo de referencia",
+    "d": "dibujar un rectángulo de referencia con la longitud indicada (en mm)(cero para desactivarlo)"
+   },
+   "tabs": {
+    "l": "lengüetas",
+    "d": "anchura de las lengüetas que mantienen las piezas en su sitio (en mm)(no está admitido en todas partes)"
+   },
+   "qr_code": {
+    "l": "código QR",
+    "d": "Añadir al resultado un código QR con el enlace o la línea de órdenes"
+   },
+   "inner_corners": {
+    "l": "esquinas interiores",
+    "d": "estilo de las esquinas interiores",
+    "o": {
+     "loop": "bucle",
+     "corner": "esquina",
+     "backarc": "arco trasero"
+    }
+   },
+   "spacing": {
+    "l": "separación",
+    "d": "separación alrededor de las piezas (múltiplos del grosor [: espacio adicional en mm])"
+   },
+   "debug": {
+    "l": "modo de depuración",
+    "d": "dibujar los recuadros envolventes de algunas estructuras"
+   }
+  }
+ },
+ "fr": {
+  "title": "Boîte flexible 4",
+  "desc": "Boîte avec une charnière flexible et les coins gauches arrondis",
+  "groups": [
+   "Réglages des assemblages crénelés",
+   "Réglages de la flexibilité",
+   "Réglages FlexBox 4",
+   "Réglages par défaut"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "style",
+    "d": "forme des créneaux",
+    "o": {
+     "rectangular": "rectangulaire",
+     "springs": "languettes ressort",
+     "barbs": "ergots",
+     "snap": "clipsable"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espaces autour",
+    "d": "espace au début et à la fin dans un multiple d'espaces normaux"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "rebord inférieur",
+    "d": "hauteur des rebords inférieurs qui dépassent (multiples de l'épaisseur), bord à trous d'assemblage crénelé uniquement !"
+   },
+   "FingerJoint_edge_width": {
+    "l": "largeur de bord",
+    "d": "espace sous les trous du bord à trous d'assemblage crénelé (multiples d'épaisseur)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "Longueur supplémentaire",
+    "d": "matériau supplémentaire pour éliminer les marques de coupe (multiples d'épaisseur)"
+   },
+   "FingerJoint_finger": {
+    "l": "créneau",
+    "d": "largeur des créneaux"
+   },
+   "FingerJoint_play": {
+    "l": "dégagement",
+    "d": "espace supplémentaire pour l'emboîtement des créneaux (multiples d'épaisseur)"
+   },
+   "FingerJoint_space": {
+    "l": "espace",
+    "d": "espace entre les créneaux"
+   },
+   "FingerJoint_width": {
+    "l": "largeur",
+    "d": "largeur des trous d'assemblage crénelé (multiples d'épaisseur)"
+   },
+   "Flex_stretch": {
+    "l": "étirement",
+    "d": "Indice de combien la partie flexible doit être raccourcie"
+   },
+   "Flex_connection": {
+    "l": "connexion",
+    "d": "largeur des espaces dans les découpes"
+   },
+   "Flex_distance": {
+    "l": "distance",
+    "d": "largeur du motif perpendiculaire aux découpes"
+   },
+   "Flex_width": {
+    "l": "largeur",
+    "d": "largeur du motif dans le sens des découpes (multiples d'épaisseur)"
+   },
+   "x": {
+    "l": "x",
+    "d": "largeur intérieure en mm (si on ne choisit pas « extérieur »)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profondeur intérieure en mm (si on ne choisit pas « extérieur »)"
+   },
+   "h": {
+    "l": "h",
+    "d": "hauteur intérieure en mm (si on ne choisit pas « extérieur »)"
+   },
+   "outside": {
+    "l": "extérieur",
+    "d": "traiter les dimensions comme des mesures extérieures"
+   },
+   "radius": {
+    "l": "rayon",
+    "d": "Rayon des coins en mm"
+   },
+   "latchsize": {
+    "l": "taille des découpes du flexible",
+    "d": "taille des découpes en multiples de l'épaisseur"
+   },
+   "thickness": {
+    "l": "épaisseur",
+    "d": "épaisseur du matériau (en mm)"
+   },
+   "burn": {
+    "l": "compensation",
+    "d": "compensation du trait de coupe (en mm) (valeurs plus grandes pour un emboîtement plus serré)"
+   },
+   "format": {
+    "l": "format",
+    "d": "format du fichier résultant",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "étiquettes",
+    "d": "étiqueter les pièces (si disponible)"
+   },
+   "reference": {
+    "l": "référence",
+    "d": "imprimer un rectangle de référence avec la longueur donnée (en mm) (zéro pour désactiver)"
+   },
+   "tabs": {
+    "l": "ponts",
+    "d": "largeur des ponts qui maintiennent les pièces sur la plaque (en mm) (non supporté partout)"
+   },
+   "qr_code": {
+    "l": "Code QR",
+    "d": "ajouter un code QR avec un lien ou la ligne de commande dans le fichier généré"
+   },
+   "inner_corners": {
+    "l": "Coins intérieurs",
+    "d": "style des coins intérieurs",
+    "o": {
+     "loop": "boucle",
+     "corner": "coin",
+     "backarc": "arc arrière"
+    }
+   },
+   "spacing": {
+    "l": "espacement",
+    "d": "espacement autour des pièces (multiples de l'épaisseur [: espace supplémentaire en mm])"
+   },
+   "debug": {
+    "l": "debug",
+    "d": "imprimer les rectangles contenant certaines structures"
+   }
+  }
+ },
+ "pt_BR": {
+  "title": "FlexBox4",
+  "desc": "Caixa com dobradiça flexível e cantos esquerdos arredondados",
+  "groups": [
+   "Configurações para Encaixes Dentados",
+   "Configurações para Flex",
+   "Configurações do FlexBox4",
+   "Configurações Padrão"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "estilo",
+    "d": "style of the fingers",
+    "o": {
+     "rectangular": "rectangular",
+     "springs": "springs",
+     "barbs": "barbs",
+     "snap": "snap"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "espaços circundantes",
+    "d": "space at the start and end in multiple of normal spaces"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "bottom_lip",
+    "d": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!"
+   },
+   "FingerJoint_edge_width": {
+    "l": "Largura Borda",
+    "d": "space below holes of FingerHoleEdge (multiples of thickness)"
+   },
+   "FingerJoint_extra_length": {
+    "l": "extra_length",
+    "d": "extra material to grind away burn marks (multiples of thickness)"
+   },
+   "FingerJoint_finger": {
+    "l": "dedo",
+    "d": "width of the fingers (multiples of thickness)"
+   },
+   "FingerJoint_play": {
+    "l": "liberdade de movimento",
+    "d": "extra space to allow finger move in and out (multiples of thickness)"
+   },
+   "FingerJoint_space": {
+    "l": "espaço",
+    "d": "space between fingers (multiples of thickness)"
+   },
+   "FingerJoint_width": {
+    "l": "largura",
+    "d": "width of finger holes (multiples of thickness)"
+   },
+   "Flex_stretch": {
+    "l": "esticar",
+    "d": "Hint of how much the flex part should be shortened"
+   },
+   "Flex_connection": {
+    "l": "conexão",
+    "d": "width of the gaps in the cuts (multiples of thickness)"
+   },
+   "Flex_distance": {
+    "l": "distancia",
+    "d": "width of the pattern perpendicular to the cuts (multiples of thickness)"
+   },
+   "Flex_width": {
+    "l": "largura",
+    "d": "width of the pattern in direction of the cuts (multiples of thickness)"
+   },
+   "x": {
+    "l": "x",
+    "d": "largura interna em mm (a menos que a opção de medida externa esteja selecionada)"
+   },
+   "y": {
+    "l": "y",
+    "d": "profundidade interna em mm (a menos que a opção de medida externa esteja selecionada)"
+   },
+   "h": {
+    "l": "h",
+    "d": "altura interna em mm (a menos que a opção de medida externa esteja selecionada)"
+   },
+   "outside": {
+    "l": "exterior",
+    "d": "treat sizes as outside measurements"
+   },
+   "radius": {
+    "l": "Raio",
+    "d": "Raio dos cantos em mm"
+   },
+   "latchsize": {
+    "l": "Tamanhov Lingueta",
+    "d": "tamanho do trinco em múltiplos da espessura"
+   },
+   "thickness": {
+    "l": "espessura",
+    "d": "thickness of the material (in mm)"
+   },
+   "burn": {
+    "l": "gravar",
+    "d": "burn correction (in mm)(bigger values for tighter fit)"
+   },
+   "format": {
+    "l": "formato",
+    "d": "format of resulting file",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "labels",
+    "d": "label the parts (where available)"
+   },
+   "reference": {
+    "l": "referência",
+    "d": "print reference rectangle with given length (in mm)(zero to disable)"
+   },
+   "tabs": {
+    "l": "tabulação",
+    "d": "width of tabs holding the parts in place (in mm)(not supported everywhere)"
+   },
+   "qr_code": {
+    "l": "qr_code",
+    "d": "Add a QR Code with link or command line to the generated output"
+   },
+   "inner_corners": {
+    "l": "inner_corners",
+    "d": "style for inner corners",
+    "o": {
+     "loop": "loop",
+     "corner": "corner",
+     "backarc": "backarc"
+    }
+   },
+   "spacing": {
+    "l": "espaçamento",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "debugar",
+    "d": "print surrounding boxes for some structures"
+   }
+  }
+ },
+ "zh_CN": {
+  "title": "柔性盒子4",
+  "desc": "带活动铰链和圆角的盒子",
+  "groups": [
+   "榫卯结构的设置",
+   "弹性设置",
+   "柔性盒子4设置",
+   "默认设置"
+  ],
+  "items": {
+   "FingerJoint_style": {
+    "l": "样式",
+    "d": "卡榫样式",
+    "o": {
+     "rectangular": "长方形",
+     "springs": "弹性",
+     "barbs": "倒钩",
+     "snap": "打开"
+    }
+   },
+   "FingerJoint_surroundingspaces": {
+    "l": "两端长度",
+    "d": "两端的长度是常规长度的倍数"
+   },
+   "FingerJoint_bottom_lip": {
+    "l": "下唇",
+    "d": "下唇突出的高度（厚度的倍数）指孔仅限边缘！"
+   },
+   "FingerJoint_edge_width": {
+    "l": "边缘宽度",
+    "d": "卡榫边缘距离(厚度倍数)仅当底边类型为插入式卡榫（有撑角）时有效"
+   },
+   "FingerJoint_extra_length": {
+    "l": "额外长度",
+    "d": "额外的榫头长度（厚度的倍数）"
+   },
+   "FingerJoint_finger": {
+    "l": "榫头",
+    "d": "榫头宽度(厚度的倍数)"
+   },
+   "FingerJoint_play": {
+    "l": "间隙",
+    "d": "额外的空间允许榫头进出（厚度的倍数）数值越大越松"
+   },
+   "FingerJoint_space": {
+    "l": "空间",
+    "d": "榫头间距(厚度的倍数)"
+   },
+   "FingerJoint_width": {
+    "l": "宽度",
+    "d": "榫眼宽度(材料厚度的倍数)"
+   },
+   "Flex_stretch": {
+    "l": "伸展",
+    "d": "柔性部件应缩短多少的提示"
+   },
+   "Flex_connection": {
+    "l": "连接",
+    "d": "切口间隙的宽度（厚度的倍数）"
+   },
+   "Flex_distance": {
+    "l": "距离",
+    "d": "垂直于切口的图案宽度（厚度的倍数）"
+   },
+   "Flex_width": {
+    "l": "宽度",
+    "d": "图案在切割方向上的宽度（厚度的倍数）"
+   },
+   "x": {
+    "l": "x",
+    "d": "内宽(mm)(除非外部选择)"
+   },
+   "y": {
+    "l": "y",
+    "d": "内部深度（mm）（除非选择外部）"
+   },
+   "h": {
+    "l": "高",
+    "d": "内部高度单位mm（除非选择外部）"
+   },
+   "outside": {
+    "l": "外部尺寸",
+    "d": "从外部测量的尺寸（即包含材料厚度）"
+   },
+   "radius": {
+    "l": "半径",
+    "d": "角的半径以mm为单位"
+   },
+   "latchsize": {
+    "l": "闩锁尺寸",
+    "d": "闩锁的尺寸（以厚度的倍数表示）"
+   },
+   "thickness": {
+    "l": "厚度",
+    "d": "材料厚度 (mm)"
+   },
+   "burn": {
+    "l": "激光补偿",
+    "d": "激光校正（毫米）（数值越大，越紧密）"
+   },
+   "format": {
+    "l": "格式",
+    "d": "输出格式",
+    "o": {
+     "dxf": "dxf",
+     "gcode": "gcode",
+     "lbrn2": "lbrn2",
+     "pdf": "pdf",
+     "plt": "plt",
+     "ps": "ps",
+     "svg": "svg",
+     "svg_Ponoko": "svg_Ponoko"
+    }
+   },
+   "labels": {
+    "l": "标签",
+    "d": "给零件贴上标签（如果有）"
+   },
+   "reference": {
+    "l": "定位框",
+    "d": "添加给定长度的参考矩形，设为0则禁用(mm)"
+   },
+   "tabs": {
+    "l": "切割缝隙",
+    "d": "固定零件的卡扣宽度（单位：mm）（不是所有地方都支持）"
+   },
+   "qr_code": {
+    "l": "二维码",
+    "d": "在生成的图纸中添加带有链接的二维码"
+   },
+   "inner_corners": {
+    "l": "内角",
+    "d": "内角风格",
+    "o": {
+     "loop": "循环",
+     "corner": "角落",
+     "backarc": "弧后"
+    }
+   },
+   "spacing": {
+    "l": "间距",
+    "d": "spacing around parts (multiples of thickness [: extra space in mm])"
+   },
+   "debug": {
+    "l": "边框",
+    "d": "添加每一个零件的矩形外框"
+   }
+  }
+ }
+}

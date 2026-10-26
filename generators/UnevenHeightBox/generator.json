@@ -1,0 +1,17 @@
+{
+ "order": 60,
+ "section": "boxes",
+ "used": [
+  "bottom_edge",
+  "x",
+  "y",
+  "height0",
+  "height1",
+  "height2",
+  "height3",
+  "add_lid",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "Grooves (edge_types) are ignored."
+}

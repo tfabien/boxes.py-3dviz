@@ -1,0 +1,386 @@
+{
+ "title": "FlexBox5Plus",
+ "desc": "Box with living hinge and round corners, plus turning latch, inner reinforcements and an unfolding jig (local variant)",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Flex",
+   "items": [
+    {
+     "name": "Flex_stretch",
+     "label": "stretch",
+     "desc": "Hint of how much the flex part should be shortened",
+     "type": "text",
+     "default": "1.05"
+    },
+    {
+     "name": "Flex_connection",
+     "label": "connection",
+     "desc": "width of the gaps in the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "Flex_distance",
+     "label": "distance",
+     "desc": "width of the pattern perpendicular to the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "Flex_width",
+     "label": "width",
+     "desc": "width of the pattern in direction of the cuts (multiples of thickness)",
+     "type": "text",
+     "default": "5.0"
+    }
+   ]
+  },
+  {
+   "title": "FlexBox5 Settings",
+   "items": [
+    {
+     "name": "x",
+     "label": "x",
+     "desc": "inner width in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "h",
+     "label": "h",
+     "desc": "inner height in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "outside",
+     "label": "outside",
+     "desc": "treat sizes as outside measurements",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "top_diameter",
+     "label": "top_diameter",
+     "desc": "diameter at the top",
+     "type": "text",
+     "default": "60"
+    },
+    {
+     "name": "bottom_diameter",
+     "label": "bottom_diameter",
+     "desc": "diameter at the bottom",
+     "type": "text",
+     "default": "60"
+    },
+    {
+     "name": "latchsize",
+     "label": "latchsize",
+     "desc": "size of latch in multiples of thickness",
+     "type": "text",
+     "default": "8"
+    },
+    {
+     "name": "reinforcements",
+     "label": "reinforcements",
+     "desc": "number of inner reinforcement frames (0 = none)",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "reinforcement_width",
+     "label": "reinforcement width",
+     "desc": "width of the reinforcement band in mm",
+     "type": "text",
+     "default": "10"
+    },
+    {
+     "name": "reinforcement_open",
+     "label": "reinforcement opening",
+     "desc": "reinforcements are open on the latch side (C shape); value = length cut in addition to the arc, along the straight sides (negative = closed ring)",
+     "type": "text",
+     "default": "10"
+    },
+    {
+     "name": "reinforcement_fillet",
+     "label": "opening fillet",
+     "desc": "radius of the rounded inner corners of the reinforcement opening in mm (0 = square)",
+     "type": "text",
+     "default": "3"
+    },
+    {
+     "name": "flex_unfold_auto",
+     "label": "automatic unfolding",
+     "desc": "estimate the stretch of each flexible zone: thickness / arc radius (paper or fabric on the outer face)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "flex_unfold_adjust",
+     "label": "unfolding adjustment (%)",
+     "desc": "added to the estimate, in percentage points of the arc length (positive = more unfolded, slits more open)",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "flex_jig",
+     "label": "unfolding jig",
+     "desc": "also cut 2 combs that hold the flexible wall stretched while paper or fabric is glued on it, plus one comb per reinforcement",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "flex_jig_height",
+     "label": "jig height",
+     "desc": "height of the body of the jig combs in mm",
+     "type": "text",
+     "default": "12"
+    },
+    {
+     "name": "turn_latch",
+     "label": "turning latch",
+     "desc": "adds a turning latch: 2 butterfly pieces and a pivot hole",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "latch_width",
+     "label": "latch length",
+     "desc": "length of the butterfly pieces in mm",
+     "type": "text",
+     "default": "30"
+    },
+    {
+     "name": "latch_height",
+     "label": "latch height",
+     "desc": "height of the butterfly pieces at their ends in mm",
+     "type": "text",
+     "default": "12"
+    },
+    {
+     "name": "latch_margin",
+     "label": "latch clearance",
+     "desc": "clearance between the latch and the edges of the flexible piece in mm",
+     "type": "text",
+     "default": "3"
+    },
+    {
+     "name": "latch_hole",
+     "label": "pivot diameter",
+     "desc": "diameter of the pivot hole in mm",
+     "type": "text",
+     "default": "4"
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

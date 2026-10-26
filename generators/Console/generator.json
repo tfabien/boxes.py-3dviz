@@ -1,0 +1,13 @@
+{
+ "order": 220,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "outside",
+  "front_height",
+  "angle"
+ ],
+ "notes": "Joints between inclined faces (angles other than 90°): plates with straight ends, no bevel. "
+}

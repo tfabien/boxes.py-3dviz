@@ -1,0 +1,15 @@
+{
+ "order": 350,
+ "section": "flex",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "radius",
+  "latchsize",
+  "Flex_connection",
+  "Flex_distance",
+  "Flex_width"
+ ],
+ "notes": "Wall end fingers on the vertical edge are not drawn."
+}

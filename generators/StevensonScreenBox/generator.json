@@ -1,0 +1,16 @@
+{
+ "order": 190,
+ "section": "boxes",
+ "used": [
+  "slat_angle",
+  "slat_overlap",
+  "slat_depth",
+  "x",
+  "y",
+  "h",
+  "top_slope",
+  "roof_top",
+  "FingerJoint_width"
+ ],
+ "notes": "Walls, slats, upper strips and roof are modelled; base plate and mounting parts are not drawn. "
+}

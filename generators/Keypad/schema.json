@@ -1,0 +1,283 @@
+{
+ "title": "Keypad",
+ "desc": "Generator for keypads with mechanical switches.",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Keypad Settings",
+   "items": [
+    {
+     "name": "h",
+     "label": "h",
+     "desc": "height of the box",
+     "type": "text",
+     "default": "30"
+    },
+    {
+     "name": "top1_thickness",
+     "label": "top1_thickness",
+     "desc": "thickness of the button hold layer, cherry like switches need 1.5mm or smaller to snap in",
+     "type": "text",
+     "default": "1.5"
+    },
+    {
+     "name": "top2_enable",
+     "label": "top2_enable",
+     "desc": "enables another top layer that can hold CPG151101S11 hotswap sockets",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "top2_thickness",
+     "label": "top2_thickness",
+     "desc": "thickness of the hotplug layer, CPG151101S11 hotswap sockets need 1.2mm to 1.5mm",
+     "type": "text",
+     "default": "1.5"
+    },
+    {
+     "name": "pcb_mount_enable",
+     "label": "pcb_mount_enable",
+     "desc": "adds holes for pcb mount switches",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "led_enable",
+     "label": "led_enable",
+     "desc": "adds pin holes under switches for leds",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "diode_enable",
+     "label": "diode_enable",
+     "desc": "adds pin holes under switches for diodes",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "cutout_type",
+     "label": "cutout_type",
+     "desc": "Shape of the plate cutout: 'castle' allows for modding, and 'simple' is a tighter and simpler square",
+     "type": "text",
+     "default": "castle"
+    },
+    {
+     "name": "columns_definition",
+     "label": "columns_definition",
+     "desc": "Each column is separated by '/', and is in the form 'nb_rows @ offset x repeat_count'. Nb_rows is the number of rows for this column. The offset is in mm and optional. Repeat_count is optional and repeats this column multiple times. Spaces are not important.For example '3x2 / 4@11' means we want 3 columns, the two first with 3 rows without offset, and the last with 4 rows starting at 11mm high.",
+     "type": "text",
+     "default": "4x3"
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

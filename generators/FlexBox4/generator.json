@@ -1,0 +1,15 @@
+{
+ "order": 360,
+ "section": "flex",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "radius",
+  "latchsize",
+  "Flex_connection",
+  "Flex_distance",
+  "Flex_width"
+ ],
+ "notes": "Orientation of the bottom plate deduced from the fingers."
+}

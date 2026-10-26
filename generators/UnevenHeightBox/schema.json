@@ -1,0 +1,394 @@
+{
+ "title": "UnevenHeightBox",
+ "desc": "Box with different height in each corner",
+ "groups": [
+  {
+   "title": "Settings for Finger Joints",
+   "items": [
+    {
+     "name": "FingerJoint_style",
+     "label": "style",
+     "desc": "style of the fingers",
+     "type": "select",
+     "options": [
+      [
+       "rectangular",
+       "rectangular"
+      ],
+      [
+       "springs",
+       "springs"
+      ],
+      [
+       "barbs",
+       "barbs"
+      ],
+      [
+       "snap",
+       "snap"
+      ]
+     ],
+     "default": "rectangular"
+    },
+    {
+     "name": "FingerJoint_surroundingspaces",
+     "label": "surroundingspaces",
+     "desc": "space at the start and end in multiple of normal spaces",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_bottom_lip",
+     "label": "bottom_lip",
+     "desc": "height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_edge_width",
+     "label": "edge_width",
+     "desc": "space below holes of FingerHoleEdge (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    },
+    {
+     "name": "FingerJoint_extra_length",
+     "label": "extra_length",
+     "desc": "extra material to grind away burn marks (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_finger",
+     "label": "finger",
+     "desc": "width of the fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_play",
+     "label": "play",
+     "desc": "extra space to allow finger move in and out (multiples of thickness)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "FingerJoint_space",
+     "label": "space",
+     "desc": "space between fingers (multiples of thickness)",
+     "type": "text",
+     "default": "2.0"
+    },
+    {
+     "name": "FingerJoint_width",
+     "label": "width",
+     "desc": "width of finger holes (multiples of thickness)",
+     "type": "text",
+     "default": "1.0"
+    }
+   ]
+  },
+  {
+   "title": "Settings for Grooved Edge",
+   "items": [
+    {
+     "name": "Grooved_arc_angle",
+     "label": "arc_angle",
+     "desc": "the angle of arc cuts",
+     "type": "text",
+     "default": "120"
+    },
+    {
+     "name": "Grooved_gap",
+     "label": "gap",
+     "desc": "the gap between grooves (fraction of the edge length)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "Grooved_interleave",
+     "label": "interleave",
+     "desc": "alternate the direction of grooves",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "Grooved_inverse",
+     "label": "inverse",
+     "desc": "invert the groove directions",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "Grooved_margin",
+     "label": "margin",
+     "desc": "minimum space left and right without grooves (fraction of the edge length)",
+     "type": "text",
+     "default": "0.3"
+    },
+    {
+     "name": "Grooved_style",
+     "label": "style",
+     "desc": "the style of grooves",
+     "type": "select",
+     "options": [
+      [
+       "arc",
+       "arc"
+      ],
+      [
+       "flat",
+       "flat"
+      ],
+      [
+       "triangle",
+       "triangle"
+      ],
+      [
+       "softarc",
+       "softarc"
+      ]
+     ],
+     "default": "arc"
+    },
+    {
+     "name": "Grooved_tri_angle",
+     "label": "tri_angle",
+     "desc": "the angle of triangular cuts",
+     "type": "text",
+     "default": "30"
+    },
+    {
+     "name": "Grooved_width",
+     "label": "width",
+     "desc": "the width of each groove (fraction of the edge length)",
+     "type": "text",
+     "default": "0.2"
+    }
+   ]
+  },
+  {
+   "title": "UnevenHeightBox Settings",
+   "items": [
+    {
+     "name": "bottom_edge",
+     "label": "bottom_edge",
+     "desc": "edge type for bottom edge",
+     "type": "select",
+     "options": [
+      [
+       "F",
+       "F Finger Joint (opposing side)"
+      ],
+      [
+       "h",
+       "h Edge (parallel Finger Joint Holes)"
+      ],
+      [
+       "s",
+       "s Stackable (bottom, finger joint holes)"
+      ],
+      [
+       "e",
+       "e Straight Edge"
+      ]
+     ],
+     "default": "F"
+    },
+    {
+     "name": "x",
+     "label": "x",
+     "desc": "inner width in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "y",
+     "label": "y",
+     "desc": "inner depth in mm (unless outside selected)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "outside",
+     "label": "outside",
+     "desc": "treat sizes as outside measurements",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "height0",
+     "label": "height0",
+     "desc": "height of the front left corner in mm",
+     "type": "text",
+     "default": "50"
+    },
+    {
+     "name": "height1",
+     "label": "height1",
+     "desc": "height of the front right corner in mm",
+     "type": "text",
+     "default": "50"
+    },
+    {
+     "name": "height2",
+     "label": "height2",
+     "desc": "height of the right back corner in mm",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "height3",
+     "label": "height3",
+     "desc": "height of the left back corner in mm",
+     "type": "text",
+     "default": "100"
+    },
+    {
+     "name": "add_lid",
+     "label": "add_lid",
+     "desc": "add a lid (works best with high corners opposing each other)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "lid_height",
+     "label": "lid_height",
+     "desc": "additional height of the lid",
+     "type": "text",
+     "default": "0"
+    },
+    {
+     "name": "edge_types",
+     "label": "edge_types",
+     "desc": "which edges are flat (e) or grooved (z,Z), counter-clockwise from the front",
+     "type": "text",
+     "default": "eeee"
+    }
+   ]
+  },
+  {
+   "title": "Default Settings",
+   "items": [
+    {
+     "name": "thickness",
+     "label": "thickness",
+     "desc": "thickness of the material (in mm)",
+     "type": "text",
+     "default": "3.0"
+    },
+    {
+     "name": "burn",
+     "label": "burn",
+     "desc": "burn correction (in mm)(bigger values for tighter fit)",
+     "type": "text",
+     "default": "0.1"
+    },
+    {
+     "name": "format",
+     "label": "format",
+     "desc": "format of resulting file",
+     "type": "select",
+     "options": [
+      [
+       "dxf",
+       "dxf"
+      ],
+      [
+       "gcode",
+       "gcode"
+      ],
+      [
+       "lbrn2",
+       "lbrn2"
+      ],
+      [
+       "pdf",
+       "pdf"
+      ],
+      [
+       "plt",
+       "plt"
+      ],
+      [
+       "ps",
+       "ps"
+      ],
+      [
+       "svg",
+       "svg"
+      ],
+      [
+       "svg_Ponoko",
+       "svg_Ponoko"
+      ]
+     ],
+     "default": "svg"
+    },
+    {
+     "name": "labels",
+     "label": "labels",
+     "desc": "label the parts (where available)",
+     "type": "bool",
+     "default": true
+    },
+    {
+     "name": "reference",
+     "label": "reference",
+     "desc": "print reference rectangle with given length (in mm)(zero to disable)",
+     "type": "text",
+     "default": "100.0"
+    },
+    {
+     "name": "tabs",
+     "label": "tabs",
+     "desc": "width of tabs holding the parts in place (in mm)(not supported everywhere)",
+     "type": "text",
+     "default": "0.0"
+    },
+    {
+     "name": "qr_code",
+     "label": "qr_code",
+     "desc": "Add a QR Code with link or command line to the generated output",
+     "type": "bool",
+     "default": false
+    },
+    {
+     "name": "inner_corners",
+     "label": "inner_corners",
+     "desc": "style for inner corners",
+     "type": "select",
+     "options": [
+      [
+       "loop",
+       "loop"
+      ],
+      [
+       "corner",
+       "corner"
+      ],
+      [
+       "backarc",
+       "backarc"
+      ]
+     ],
+     "default": "loop"
+    },
+    {
+     "name": "spacing",
+     "label": "spacing",
+     "desc": "spacing around parts (multiples of thickness [: extra space in mm])",
+     "type": "text",
+     "default": "0.5"
+    },
+    {
+     "name": "debug",
+     "label": "debug",
+     "desc": "print surrounding boxes for some structures",
+     "type": "bool",
+     "default": false
+    }
+   ]
+  }
+ ]
+}

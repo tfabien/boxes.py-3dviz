@@ -1,0 +1,12 @@
+{
+ "order": 30,
+ "section": "boxes",
+ "used": [
+  "x",
+  "y",
+  "h",
+  "bottom_edge",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ]
+}

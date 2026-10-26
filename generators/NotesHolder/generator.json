@@ -1,0 +1,19 @@
+{
+ "order": 180,
+ "section": "boxes",
+ "used": [
+  "sx",
+  "y",
+  "h",
+  "bottom_edge",
+  "opening",
+  "back_openings",
+  "Stackable_angle",
+  "Stackable_height",
+  "Stackable_width",
+  "Stackable_holedistance",
+  "FingerJoint_edge_width",
+  "FingerJoint_width"
+ ],
+ "notes": "No \"outside\" parameter (inner dimensions). Fronts with openings, bottom with U notch and dividers are modelled; reinforcement strips are not drawn. "
+}
