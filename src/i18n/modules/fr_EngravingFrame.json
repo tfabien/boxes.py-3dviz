@@ -1,0 +1,7 @@
+{
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Back plate: outline not closed (gap {0} mm).": "Plaque arrière : contour non fermé (écart {0} mm).",
+ "Rear support (feet, vertical/horizontal plates, spacers) is not drawn.": "Support arrière (pieds, plaques verticales/horizontales, entretoises) non dessiné.",
+ "Dummy fingers plate is not drawn.": "Plaque de bouchons (dummy fingers) non dessinée.",
+ "Assembled frame (without the rear support). The engraved plate is drawn with its real thickness. ": "Cadre assemblé (sans le support arrière). La plaque gravée est dessinée avec son épaisseur réelle. "
+}

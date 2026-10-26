@@ -1,0 +1,9 @@
+{
+ "Feet (Stackable width/angle) too wide for an edge: the generator then draws a degenerate outline, shortened here.": "Pieds (Stackable width/angle) trop larges pour un bord : le générateur dessine alors un contour dégénéré, ici raccourci.",
+ "Invalid sx": "sx invalide",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Stackable: angle must be between 20 and 260": "Stackable: angle entre 20 et 260",
+ "opening = 0: the Boxes.py generator fails here (front_edge undefined)": "opening = 0 : le générateur Boxes.py échoue ici (front_edge non défini)",
+ "Reinforcement strips (bottom_stabilizers) are not drawn.": "Bandes de renfort (bottom_stabilizers) non dessinées.",
+ "No \"outside\" parameter (inner dimensions). Fronts with openings, bottom with U notch and dividers are modelled; reinforcement strips are not drawn. ": "Pas de paramètre « outside » (dimensions intérieures). Façades à ouvertures, fond à encoche en U et cloisons modélisés ; bandes de renfort non dessinées. "
+}

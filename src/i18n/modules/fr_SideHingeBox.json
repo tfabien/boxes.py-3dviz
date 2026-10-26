@@ -1,0 +1,8 @@
+{
+ "Invalid value": "Valeur invalide",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Cherry MX latches (holes, parts, button) are not drawn.": "Loquets Cherry MX (trous, pièces, bouton) non dessinés.",
+ "Auxiliary parts (2t x 1.5t shims) are not drawn; box shown closed (inner + shell).": "Pièces annexes (cales 2t×1.5t) non dessinées ; boîte posée fermée (inner + coque).",
+ "Hinged side outlines and hinge holes are faithful; Cherry MX latches are not drawn. ": "Contours des côtés articulés et trous de charnière fidèles ; loquets Cherry MX non dessinés. ",
+ "ChestHinge: pin_height must be >= 1.2": "ChestHinge: pin_height doit être >= 1.2"
+}

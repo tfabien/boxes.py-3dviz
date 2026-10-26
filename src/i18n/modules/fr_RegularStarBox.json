@@ -1,0 +1,6 @@
+{
+ "Box too small for this number of sides": "Boîte trop petite pour ce nombre de côtés",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Slot arcs of radius 1 mm drawn as in the generator; vertical assembly inferred (half boxes head to tail, offset by 180°/n).": "Arcs de rayon 1 mm des fentes dessinés comme dans le générateur ; assemblage vertical déduit (demi-boîtes tête-bêche, décalées de 180°/n). ",
+ "3D layout (two half boxes interlocked in a star) inferred from the code, not checked against a photo. ": "Disposition 3D (deux demi-boîtes imbriquées en étoile) déduite du code, non vérifiée sur une photo. "
+}

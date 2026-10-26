@@ -1,0 +1,10 @@
+{
+ "Crate: feet (Stackable_width) too wide for the edge length": "Crate : pieds (Stackable_width) trop larges pour la longueur du bord",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Invalid value": "Valeur invalide",
+ "Stackable: angle must be between 20 and 260": "Stackable: angle entre 20 et 260",
+ "Reinforcement strips (bottom_stabilizers) are not drawn.": "Bandes de renfort (bottom_stabilizers) non dessinées.",
+ "Bottom lip (bottom_lip) is not drawn.": "Lèvre du fond (bottom_lip) non dessinée.",
+ "Pattern mask (annotations) is not drawn.": "Masque de motif (annotations) non dessiné.",
+ "No \"outside\" parameter (inner dimensions). The s/S feet/recesses are modelled; auxiliary parts (strips, lip, mask) are not drawn. ": "Pas de paramètre « outside » (dimensions intérieures). Les pieds/creux s/S sont modélisés ; pièces annexes (bandes, lèvre, masque) non dessinées. "
+}

@@ -1,0 +1,9 @@
+{
+ "Invalid value": "Valeur invalide",
+ "ChestHinge: pin_height must be >= 1.2": "ChestHinge: pin_height doit être >= 1.2",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Box is too low for the hinge": "Boîte trop basse pour la charnière",
+ "Number of lid sides must be >= 3": "nombre de côtés du couvercle >= 3",
+ "Mitre joints (g/G/H) of the lid are drawn as straight notches; hinges: outlines ported literally (discs/pins not drawn); chest hinge uses default settings (the form only has \"Hinge\" settings, which this generator does not use).": "Joints d'onglet (g/G/H) du couvercle dessinés en créneaux droits ; charnières : contours portés littéralement (disques/axes non dessinés) ; charnière de coffre aux réglages par défaut (le formulaire n'a que les réglages « Hinge », non utilisés par ce générateur).",
+ "Lid mitre joints are approximated as straight notches; hinge discs/pins are not drawn. ": "Joints d'onglet du couvercle approximés en créneaux droits ; disques/axes de charnière non dessinés. "
+}

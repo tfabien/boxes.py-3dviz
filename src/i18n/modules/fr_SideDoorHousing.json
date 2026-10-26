@@ -1,0 +1,11 @@
+{
+ "Grooved: width must be in [0, 1]": "Grooved: largeur doit être dans [0, 1]",
+ "Grooved: margin must be in [0, 0.5]": "Grooved: marge doit être dans [0, 0.5]",
+ "Grooved: gap must be in [0, 1]": "Grooved: espace doit être dans [0, 1]",
+ "Stackable: edge too short for the feet": "Stackable: arête trop courte pour les pieds",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Stabilizer strips (bottom_stabilizers) not drawn.": "Bandes stabilisatrices (bottom_stabilizers) non dessinées.",
+ "Latches, clamps and springs not drawn.": "Loquets, brides et ressorts non dessinés.",
+ "Stackable: invalid values (angle 20..260, height > 0)": "Stackable: valeurs invalides (angle 20..260, hauteur > 0)",
+ "Latches, clamps and springs not drawn; doors shown closed (inner edge at z = t). ": "Loquets, brides (clamps) et ressorts non dessinés ; portes affichées fermées (bord intérieur à z = t). "
+}

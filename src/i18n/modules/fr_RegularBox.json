@@ -1,0 +1,8 @@
+{
+ "n must be between 3 and 60": "n doit être entre 3 et 60",
+ "Inconsistent dimensions (angle)": "Dimensions incohérentes (angle)",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Bayonet: top approximated by a closed plate (discs and lugs not drawn).": "Bayonet : dessus approximé par un plateau fermé (disques, ergots non dessinés). ",
+ "Wall length computed (like the generator) from the radii, not the apothems: slight play possible.": "Longueur de paroi calculée (comme le générateur) avec les rayons, pas les apothèmes : léger jeu possible. ",
+ "Angled fingers ported from FingerJointEdge(angle). Lid styles: round discs/plates drawn, holes (circle/polygon) approximated. ": "Créneaux inclinés portés de FingerJointEdge(angle). Styles de couvercle : disques ronds/plateaux dessinés, trous (cercle/polygone) approximés. "
+}

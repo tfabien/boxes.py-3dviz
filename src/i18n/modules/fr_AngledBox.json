@@ -1,0 +1,9 @@
+{
+ "Angled joints (g/G): plates with straight ends, no bevel (slight overlap at the corners). ": "Joints inclinés (g/G) : plaques à bouts droits, sans biseau (léger chevauchement aux angles). ",
+ "Invalid n": "n invalide",
+ "Inconsistent dimensions (x too small for y and n)": "Dimensions incohérentes (x trop petit pour y et n)",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Angled joints are not bevelled (plates with straight ends).": "Joints inclinés non biseautés (plaques à bouts droits).",
+ "y too small for the hole": "y trop petit pour le trou",
+ "\"angled lid\" lid: sub-lid placed inside, top lid placed over it (position deduced).": "Couvercle « angled lid » : sous-couvercle placé à l'intérieur, dessus par-dessus (position déduite)."
+}

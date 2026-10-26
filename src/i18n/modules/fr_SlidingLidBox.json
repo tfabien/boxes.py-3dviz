@@ -1,0 +1,10 @@
+{
+ "Grooved: width must be in [0, 1]": "Grooved: largeur doit être dans [0, 1]",
+ "Grooved: margin must be in [0, 0.5]": "Grooved: marge doit être dans [0, 0.5]",
+ "Grooved: gap must be in [0, 1]": "Grooved: espace doit être dans [0, 1]",
+ "Stackable: edge too short for the feet": "Stackable: arête trop courte pour les pieds",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Bottom edge \"s\" (stackable) drawn as \"F\".": "Bord du bas « s » (empilable) dessiné « F ».",
+ "Lid too narrow for the lip": "Couvercle trop étroit pour la lèvre",
+ "Front/back deduced from the edge composition (sides: \"fE\" at the front); lid grip opening drawn. ": "Avant/arrière déduits de la composition des arêtes (côtés : « fE » à l'avant) ; ouverture de préhension du couvercle dessinée. "
+}

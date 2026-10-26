@@ -1,0 +1,9 @@
+{
+ "Invalid value": "Valeur invalide",
+ "ChestHinge: pin_height must be >= 1.2": "ChestHinge: pin_height doit être >= 1.2",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Invalid value (hinges)": "Valeur invalide (charnières)",
+ "Hinge is too wide for the edge (drawn straight).": "Charnière trop large pour le bord (dessiné droit).",
+ "Hinge parts (eyelets to insert + pin) are not drawn; the lid is shown closed.": "Pièces de charnière (« parts » : œillets à insérer + axe) non dessinées ; le couvercle est posé fermé.",
+ "Hinge cutouts (u/U) are ported faithfully; the separate hinge parts and the pin are not drawn. ": "Découpes des charnières (u/U) portées fidèlement ; les pièces de charnière séparées et l'axe ne sont pas dessinés. "
+}

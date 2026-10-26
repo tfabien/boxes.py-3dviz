@@ -1,0 +1,6 @@
+{
+ "Opening: back wall removed towards the bottom, panel lifted (movements deduced from the instructions). Hardware (latches, guides, clips, crossbars, panel lips) and latch holes of the back wall not drawn; orientation of the parts deduced from the edges. ": "Ouverture : paroi arrière retirée vers le fond, panneau soulevé (mouvements déduits de la notice). Quincaillerie (loquets, guides, clips, traverses, lèvres du panneau) et trous de loquet de la paroi arrière non dessinés ; orientation des pièces déduite des bords. ",
+ "Inconsistent dimensions (front_height >= h)": "Dimensions incohérentes (front_height >= h)",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Hardware (latches, guides, clips, crossbars) not drawn.": "Quincaillerie (loquets, guides, clips, traverses) non dessinée."
+}

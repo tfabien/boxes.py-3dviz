@@ -1,0 +1,7 @@
+{
+ "Joints between inclined faces (angles other than 90°): plates with straight ends, no bevel. ": "Joints entre pans inclinés (angles ≠ 90°) : plaques à bouts droits, sans biseau. ",
+ "Inconsistent dimensions (front_height >= h)": "Dimensions incohérentes (front_height >= h)",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Angled joints are not bevelled (plates with straight ends).": "Joints inclinés non biseautés (plaques à bouts droits).",
+ "Angle 0°: flat edge (\"d/D\" joint not modelled).": "Angle 0° : bord plat (joint « d/D » non modélisé)."
+}

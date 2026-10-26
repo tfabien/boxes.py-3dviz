@@ -1,0 +1,5 @@
+{
+ "Invalid value": "Valeur invalide",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Closed box shown; both shells have walls with the same finger lengths as the generator (\"f\" setting: edge_width + play). ": "Boîte fermée affichée ; les deux coques ont des parois de même longueur de doigts que le générateur (réglage « f » : edge_width + play). "
+}

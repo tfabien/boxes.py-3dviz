@@ -1,0 +1,9 @@
+{
+ "Grooved: width must be in [0, 1]": "Grooved: largeur doit être dans [0, 1]",
+ "Grooved: margin must be in [0, 0.5]": "Grooved: marge doit être dans [0, 0.5]",
+ "Grooved: gap must be in [0, 1]": "Grooved: espace doit être dans [0, 1]",
+ "Stackable: edge too short for the feet": "Stackable: arête trop courte pour les pieds",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "hi must be <= h": "hi doit être ≤ h",
+ "Tall drawer front placed on the opening side (deduced from the grip groove); drawer centred using the play. ": "Face haute du tiroir placée côté ouverture (déduit de la rainure de préhension) ; tiroir centré avec le jeu. "
+}

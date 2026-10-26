@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boxes.py 3D</title>
+<style>
+  html,body{margin:0;height:100%;font:13px system-ui,sans-serif;background:#1e2227;color:#ddd}
+  #ui{position:fixed;top:0;left:0;bottom:0;width:340px;overflow:auto;background:#000b;padding:8px 12px;box-sizing:border-box}
+  h3{margin:12px 0 4px;font-size:13px;color:#e8c27a}
+  label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:3px 0}
+  label.off{opacity:.45}
+  input[type=text],select{width:110px;background:#0006;color:#fff;border:1px solid #666;border-radius:4px;padding:2px 4px;box-sizing:border-box}
+  #type{width:100%;font-size:14px;margin:6px 0}
+  input[type=text].bad{border-color:#f55}
+  #msg{color:#f88;min-height:1.2em}
+  a.btn{display:block;text-align:center;background:#e8c27a;color:#000;padding:6px;border-radius:5px;text-decoration:none;margin:8px 0;font-weight:600}
+  small{opacity:.7}
+  #home{position:fixed;inset:0;overflow:auto;background:#1e2227;z-index:10;padding:18px 28px 40px}
+  #home h1{margin:0 0 4px;font-size:22px;color:#e8c27a}
+  #home h2{margin:26px 0 10px;font-size:15px;color:#e8c27a;border-bottom:1px solid #444;padding-bottom:4px}
+  #home input{width:260px;font-size:14px;padding:5px 8px;margin:8px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+  .card{background:#000a;border:1px solid #3a3f46;border-radius:8px;overflow:hidden;cursor:pointer;transition:transform .12s,border-color .12s}
+  .card:hover{transform:translateY(-3px);border-color:#e8c27a}
+  .card .im{height:150px;display:flex;align-items:center;justify-content:center;background:#15181c}
+  .card img{width:100%;height:100%;object-fit:contain}
+  .card .tx{padding:8px 10px}
+  .card b{display:block;font-size:13px}
+  .card small{display:block;margin-top:2px;font-size:11px}
+  #views{position:fixed;top:8px;z-index:5;display:flex;gap:4px;background:#000a;padding:4px;border-radius:6px}
+  #views button{background:#2a2f36;color:#e8c27a;border:1px solid #555;border-radius:4px;padding:3px 10px;cursor:pointer}
+  #views button.on{background:#e8c27a;color:#000}
+  #plan{position:fixed;top:0;bottom:0;background:#fff;z-index:4;overflow:hidden;cursor:grab;touch-action:none}
+  #plan img{position:absolute;left:0;top:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;max-width:none}
+  #planmsg{position:absolute;left:10px;bottom:8px;color:#555;font-size:12px;background:#fffd;padding:2px 6px;border-radius:4px}
+  .homelang{position:absolute;right:28px;top:18px;width:auto !important}
+  #ui select.lang{width:100%;margin:2px 0 4px}
+  .btnhome{display:block;width:100%;background:#2a2f36;color:#e8c27a;border:1px solid #555;border-radius:5px;padding:5px;cursor:pointer;margin-bottom:4px}
+</style></head><body>
+<div id="ui"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// Parameter schemas (names, types, defaults, choices) extracted from the Boxes.py web forms (see tools/extract_schemas.py);
+// TEXTS holds the labels / descriptions of every language
+const SCHEMAS = /*SCHEMAS*/null;
+const TEXTS = /*TEXTS*/null;
+const LOCAL_SERVER = 'http://127.0.0.1:8777';   // boxes_local_server.py
+// Parameters that influence the 3D model, besides these (the others are greyed out: they only matter for the cut file)
+const USED_COMMON = ['thickness','burn','FingerJoint_surroundingspaces','FingerJoint_extra_length','FingerJoint_finger','FingerJoint_play','FingerJoint_space','outside'];
+const USED_FLEX = ['Flex_connection','Flex_distance','Flex_width'];
+const USED = {
+  FlexBox5:['x','h','top_diameter','bottom_diameter','latchsize',...USED_FLEX],
+  FlexBox5Plus:['x','h','top_diameter','bottom_diameter','latchsize','reinforcements','reinforcement_width','reinforcement_open','reinforcement_fillet','turn_latch','flex_jig','flex_unfold_auto','flex_unfold_adjust','flex_jig_height','latch_width','latch_height','latch_margin','latch_hole',...USED_FLEX],
+  FlexBox:['sx','y','h','radius','latchsize',...USED_FLEX],
+  FlexBox2:['x','y','h','radius','latchsize',...USED_FLEX],
+  FlexBox4:['x','y','h','radius','latchsize',...USED_FLEX],
+  ClosedBox:['x','y','h'],
+  OpenBox:['x','y','h','edgetype','FingerJoint_edge_width','FingerJoint_width'],
+  ABox:['x','y','h','bottom_edge','FingerJoint_edge_width','FingerJoint_width'],
+  UniversalBox:['top_edge','bottom_edge','x','y','h','vertical_edges','FingerJoint_edge_width','FingerJoint_width'],
+  BasedBox:['top_edge','x','y','h','FingerJoint_edge_width','FingerJoint_width'],
+  UnevenHeightBox:['bottom_edge','x','y','height0','height1','height2','height3','add_lid','FingerJoint_edge_width','FingerJoint_width'],
+};
+const NOTES = {
+  FlexBox5Plus:'Local variant (not on the Boxes.py site): Generate calls the local server (start_server.bat). Latch pivot vertically centred.',
+  FlexBox:'Single section (first value of sx); no dividers.',
+  FlexBox2:'Wall end fingers on the vertical edge are not drawn.',
+  FlexBox4:'Orientation of the bottom plate deduced from the fingers.',
+  UniversalBox:'Only edges e, f, F, h are modelled; special lids are not drawn.',
+  UnevenHeightBox:'Grooves (edge_types) are ignored.',
+};
+let TYPE = 'FlexBox5', V = {}, WARN = '';
+// ---- i18n core: every message is written in English in the code and translated through MSG[lang][english text] ----
+let LANG = 'en', WARNS = [];
+const MSG = /*MSG*/{};
+const fmt = (s, args) => s.replace(/\{(\d+)\}/g, (m, i) => (args && args[i] !== undefined ? args[i] : m));
+const tr = (msg, args) => fmt((MSG[LANG] || {})[msg.trim()] || msg, args);   // table keys are trimmed English texts
+function warn(msg, ...args) { WARNS.push({msg, args}); }          // notice shown in red under the title: warn(message, ...values) where {0}, {1} in the message are replaced by the values
+function fail(msg, ...args) { throw {msg, args}; }                // invalid parameters: fail('Dimensions are inconsistent')
+const warnText = () => WARNS.map(w => tr(w.msg, w.args)).join(' ') + (WARN ? ' ' + WARN : '');
+const errText = e => e && e.msg ? tr(e.msg, e.args) : tr(String(e));
+
+// ---- Languages: the ones of the Boxes.py web site; default = browser language, English when unknown ----
+const LANGS = {en:'English', de:'Deutsch', es:'Español', fr:'Français', pt_BR:'Português (Brasil)', zh_CN:'简体中文'};
+function detectLang() {
+  try { const s = localStorage.getItem('boxes3d_lang'); if (s in LANGS) return s; } catch (e) {}   // explicit choice wins
+  for (const l of (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''])) {
+    const n = l.replace('-', '_'), p = n.split('_')[0].toLowerCase();
+    if (n in LANGS) return n;
+    if (p === 'pt') return 'pt_BR';
+    if (p === 'zh' && !/TW|HK|MO|Hant/i.test(l)) return 'zh_CN';
+    if (p in LANGS) return p;
+  }
+  return 'en';
+}
+LANG = detectLang();
+// localized view of a generator schema: title, description, group titles, labels, help texts and choice labels in the current language
+function LS(k) {
+  const b = SCHEMAS[k], x = LANG !== 'en' && TEXTS[LANG] && TEXTS[LANG][k];
+  if (!x) return b;
+  return {...b, title:x.title || b.title, desc:x.desc || b.desc, groups:b.groups.map((g, i) => ({...g, title:x.groups[i] || g.title,
+    items:g.items.map(it => { const tx = x.items[it.name]; if (!tx) return it;
+      return {...it, label:tx.l || it.label, desc:tx.d || it.desc, options:it.options && it.options.map(([v, lab]) => [v, (tx.o && tx.o[v]) || lab])}; })}))};
+}
+function langSelect() {
+  const s = document.createElement('select'); s.className = 'lang'; s.title = tr('Language');
+  for (const k in LANGS) s.add(new Option(LANGS[k], k, false, k === LANG));
+  s.onchange = () => setLang(s.value);
+  return s;
+}
+
+// ---- Scene ----
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0x1e2227);
+const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 1, 8000);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth, innerHeight); document.body.appendChild(renderer.domElement);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true; controls.autoRotateSpeed = 1.5;
+scene.add(new THREE.AmbientLight(0xffffff, .3)); scene.add(new THREE.HemisphereLight(0xffffff, 0x556070, .25));
+const sun = new THREE.DirectionalLight(0xffffff, .55); sun.position.set(200,300,150); scene.add(sun);
+const sun2 = new THREE.DirectionalLight(0xffffff, .3); sun2.position.set(-250,120,-200); scene.add(sun2);
+const group = new THREE.Group(); scene.add(group);
+const matPlate = new THREE.MeshStandardMaterial({color:0xc29557, roughness:.8});
+let fitted = false;
+
+// ---- Geometry helpers (ports of Boxes.py) ----
+const RAD = Math.PI/180;
+
+// calcFingers + finger layout (positive side = fingers, negative side = notches)
+function fingerLayout(length, positive, F) {
+  let n = Math.floor((length - (F.surr-1)*F.space)/(F.space+F.finger));
+  if (n === 0 && length > F.finger + F.t) n = 1;
+  if (!F.finger) n = 0;
+  let left = length - n*(F.space+F.finger) + F.space;
+  if (n <= 0) { n = 0; left = length; }
+  let f = F.finger, sp = F.space;
+  if (n === 0 && f && left > 0.75*F.t && left > 4*F.play) { n = 1; f = left = left/2; }
+  if (!positive) { f += F.play; sp -= F.play; left -= F.play; }
+  const out = []; for (let i = 0; i < n; i++) out.push([left/2 + i*(sp+f), f]);
+  return out;
+}
+
+// Boxes.py style turtle (angles in degrees, positive = left)
+function turtle(x, y) {
+  const T = {x, y, hd:0, pts:[[x, y]]};
+  T.edge = len => { T.x += Math.cos(T.hd)*len; T.y += Math.sin(T.hd)*len; T.pts.push([T.x, T.y]); };
+  T.corner = (deg, r = 0) => {
+    if (!r) { T.hd += deg*RAD; return; }
+    const sg = deg > 0 ? 1 : -1, n = Math.max(6, Math.ceil(Math.abs(deg)/3)), da = deg*RAD/n;
+    const cx = T.x - sg*r*Math.sin(T.hd), cy = T.y + sg*r*Math.cos(T.hd);
+    for (let i = 0; i < n; i++) { const c = Math.cos(da), s = Math.sin(da), dx = T.x-cx, dy = T.y-cy;
+      T.x = cx + c*dx - s*dy; T.y = cy + s*dx + c*dy; T.hd += da; T.pts.push([T.x, T.y]); }
+  };
+  // finger edge: positive = fingers pointing outwards, negative = notches
+  T.fingers = (len, positive, F) => { const h = F.t + F.extra; let pos = 0;
+    for (const [o, f] of fingerLayout(len, positive, F)) {
+      const s = positive ? -90 : 90;
+      T.edge(o - pos); T.corner(s); T.edge(h); T.corner(-s); T.edge(f); T.corner(-s); T.edge(h); T.corner(s); pos = o + f; }
+    T.edge(len - pos); };
+  return T;
+}
+
+// Edge widths (startWidth / margin): e = plain, f = fingers, F = notches, h = plain + finger holes (rim)
+const edgeW = F => { const ex = F.t + F.extra; return {sw:{e:0, f:0, F:ex, h:F.ew+F.t}, mg:{e:0, f:ex, F:0, h:0}}; };
+const edgeSpacing = (F, c) => { const {sw, mg} = edgeW(F); c = /[efFh]/.test(c) ? c : 'e'; return sw[c] + mg[c]; };
+
+// draws an edge of length len; for 'h' the holes (rectangles) are recorded in holes
+function drawEdge(T, ch, len, F, holes) {
+  if (ch === 'f' || ch === 'F') return T.fingers(len, ch === 'f', F);
+  if (ch === 'h') {
+    const x0 = T.x, y0 = T.y, c = Math.cos(T.hd), s = Math.sin(T.hd), yc = F.ew + F.t/2, hw = (F.w + F.play)/2, p = F.play/2;
+    for (const [o, f] of fingerLayout(len, true, F))
+      holes.push([[o-p, yc-hw], [o+f+p, yc-hw], [o+f+p, yc+hw], [o-p, yc+hw]].map(([lx, ly]) => [x0 + lx*c - ly*s, y0 + lx*s + ly*c]));
+  }
+  T.edge(len);
+}
+
+// rectangularWall: outline of a w×h rectangular panel whose inner space is [0,w]×[0,h]
+// edges = bottom, right, top, left
+function rectOutline(w, h, edges, F) {
+  edges = edges.replace(/[^efFh]/g, 'e');
+  const {sw, mg} = edgeW(F), sp = c => sw[c] + mg[c];
+  const T = turtle(sp(edges[3]), mg[edges[0]]), lens = [w, h, w, h], holes = [];
+  for (let i = 0; i < 4; i++) {
+    const e = edges[i], e2 = edges[(i+1)%4];
+    drawEdge(T, e, lens[i], F, holes);
+    T.edge(sw[e2]); T.corner(90); T.edge(sw[e]);
+  }
+  T.pts.pop();
+  const sh = p => [p[0] - sp(edges[3]), p[1] - sp(edges[0])];
+  return {pts:T.pts.map(sh), holes:holes.map(hh => hh.map(sh))};
+}
+
+// trapezoidWall: bottom w, left height h0, right height h1; edges = bottom, right, top, left
+function trapOutline(w, h0, h1, edges, F) {
+  edges = edges.replace(/[^efFh]/g, 'e');
+  const {sw, mg} = edgeW(F), sp = c => sw[c] + mg[c], [e0, e1, e2, e3] = edges;
+  const T = turtle(sp(e3), mg[e0]), holes = [], a = Math.atan((h1-h0)/w)/RAD, l = Math.hypot(h0-h1, w);
+  drawEdge(T, e0, w, F, holes); T.edge(sw[e1]); T.corner(90); T.edge(sw[e0]);
+  drawEdge(T, e1, h1, F, holes); T.corner(90); T.edge(sw[e1]);
+  T.corner(a); drawEdge(T, e2, l, F, holes); T.corner(-a);
+  T.edge(sw[e3]); T.corner(90);
+  drawEdge(T, e3, h0, F, holes); T.edge(sw[e0]); T.corner(90); T.edge(sw[e3]);
+  T.pts.pop();
+  const sh = p => [p[0] - sp(e3), p[1] - sp(e0)];
+  return {pts:T.pts.map(sh), holes:holes.map(hh => hh.map(sh))};
+}
+
+// Flat panel: 2D outline (u,v) extruded by t. O = origin, U/V = axes; the thickness runs from O along U×V
+const V3 = (x, y, z) => new THREE.Vector3(x, y, z);
+const lineMat = new THREE.LineBasicMaterial({color:0x3b2a12});
+let panelCount = 0;
+function panel(o, t, O, U, V, dir = V3(0,0,0), unfold = null) {
+  const pts = o.pts || o, v2 = p => new THREE.Vector2(p[0], p[1]), shape = new THREE.Shape(pts.map(v2));
+  (o.holes || []).forEach(hh => shape.holes.push(new THREE.Path(hh.map(v2))));
+  const geo = new THREE.ExtrudeGeometry(shape, {depth:t, bevelEnabled:false});
+  // every piece gets a slightly different shade and a dark outline so that pieces stay distinguishable
+  const mat = new THREE.MeshStandardMaterial({color:new THREE.Color(0xc29557).offsetHSL(0, 0, ((panelCount++ % 5) - 2)*0.03), roughness:.85, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1});
+  const mesh = new THREE.Mesh(geo, mat), W = new THREE.Vector3().crossVectors(U, V);
+  mesh.matrixAutoUpdate = false; mesh.matrix.makeBasis(U, V, W).setPosition(O);
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 25), lineMat);
+  edges.matrixAutoUpdate = false; edges.matrix.copy(mesh.matrix);
+  const g = new THREE.Group(); g.add(mesh, edges);
+  return {g, dir, unfold, pts};
+}
+
+// ---- Common parameters ----
+function common() {
+  const num = k => parseFloat(V[k]);
+  const t = num('thickness'), burn = num('burn');
+  const fl = {dist:num('Flex_distance')*t, conn:num('Flex_connection')*t, width:num('Flex_width')*t};
+  const F = {t, space:num('FingerJoint_space')*t, finger:num('FingerJoint_finger')*t, surr:num('FingerJoint_surroundingspaces'),
+             play:num('FingerJoint_play')*t, extra:num('FingerJoint_extra_length')*t,
+             ew:num('FingerJoint_edge_width')*t, w:num('FingerJoint_width')*t};
+  const vals = [t, burn, F.space, F.finger, F.surr, F.play, F.extra, F.ew, F.w].concat(SCHEMAS[TYPE].groups.some(g => g.items.some(i => i.name === 'Flex_width')) ? [fl.dist, fl.conn, fl.width] : []);
+  if (vals.some(v => !isFinite(v))) fail('Invalid value');
+  if (t <= 0) fail('Thickness must be > 0');
+  if (Math.abs(F.space + F.finger) < 0.1) fail('FingerJoint: space + finger must not be close to zero');
+  if (V.Flex_distance !== undefined) {
+    if (fl.dist < 0.01) fail('Flex: distance must be > 0.01 mm');
+    if (fl.width < 0.1) fail('Flex: width must be > 0.1 mm'); }
+  return {t, burn, fl, F, num, adj:(l, n = 2) => V.outside ? l - n*t : l,   // adjustSize (n = sum of the edge widths)
+          sub:(l, mm) => V.outside ? l - mm : l,   // adjustSize en mm
+          spc:ch => edgeSpacing(F, ch)};
+}
+
+// ---- Flexible-wall boxes: plate outline (ops) + wall (segs) ----
+// ops : ['f'|'e'|'latch', len] | ['c', deg, r] ; segs : ['F'|'X'|'e'|'L', len] (F = notches top+bottom, X = slits, L = latch)
+function flexModel(c, s) {
+  const {t, F} = c, L = s.latch, Hw = s.x + 2*t;
+  const wallLen = s.segs.reduce((a, q) => a + q[1], 0);
+  // smooth states (no fingers) at the start of each op
+  const sm = turtle(s.start[0], s.start[1]), states = [], opLen = [];
+  for (const o of s.ops) { states.push({x:sm.x, y:sm.y, hd:sm.hd});
+    if (o[0] === 'c') { sm.corner(o[1], o[2]); opLen.push(o[2] ? Math.abs(o[1])*RAD*o[2] : 0); }
+    else { sm.edge(o[1]); opLen.push(o[1]); } }
+  // real plate outline
+  const T = turtle(s.start[0], s.start[1]);
+  for (const o of s.ops) { const [k, a, r] = o;
+    if (k === 'f') T.fingers(a, true, F); else if (k === 'e') T.edge(a);
+    else if (k === 'c') T.corner(a, r);
+    else { T.corner(-90); T.edge(t); T.corner(90); T.edge(a/2); T.corner(90); T.edge(t); T.corner(-90); T.edge(a/2); } }   // latch positif
+  T.pts.pop();
+  // neutral line of the wall, curvature × (1-d): d=0 closed, d=1 flat along +x
+  // only: index of one arc whose curvature alone is reduced (door that opens); otherwise the whole wall is unfolded
+  const wallLine = (d, only) => {
+    const q = states[s.wallStartOp], s0 = only === undefined ? 1 - d : 1;
+    let x = q.x*s0, y = q.y*s0, hd = q.hd*s0, u = 0; const pts = [{u, x, y, hd}];
+    for (let i = 0; u < wallLen - 1e-6 && i < 3*s.ops.length; i++) {
+      const k = (s.wallStartOp + i) % s.ops.length, o = s.ops[k], fac = only === undefined || k === only ? 1 - d : 1;
+      if (o[0] === 'c') {
+        if (!o[2]) { hd += o[1]*RAD*fac; continue; }
+        const len = Math.min(opLen[k], wallLen - u), n = Math.max(1, Math.ceil(len/2)), kk = Math.sign(o[1])*fac/o[2];
+        for (let j = 0; j < n; j++) { const ds = len/n, da = kk*ds;
+          if (Math.abs(da) < 1e-9) { x += Math.cos(hd)*ds; y += Math.sin(hd)*ds; }
+          else { const R = 1/kk, cx = x - R*Math.sin(hd), cy = y + R*Math.cos(hd), co = Math.cos(da), si = Math.sin(da), dx = x-cx, dy = y-cy;
+            x = cx + co*dx - si*dy; y = cy + si*dx + co*dy; }
+          hd += da; u += ds; pts.push({u, x, y, hd}); }
+      } else { const len = Math.min(o[1], wallLen - u); x += Math.cos(hd)*len; y += Math.sin(hd)*len; u += len; pts.push({u, x, y, hd}); }
+    }
+    return pts; };
+  // door = last flexible arc of the wall before the latch: it unfolds when the box is opened
+  let doorOp = -1;
+  { let u = 0; for (let i = 0; u < wallLen - 1e-6 && i < 3*s.ops.length; i++) { const k = (s.wallStartOp + i) % s.ops.length, o = s.ops[k];
+      if (o[0] === 'c') { if (o[2]) doorOp = k; u += opLen[k]; } else u += o[1]; } }
+  // flat wall texture: transparent = cut-out
+  const texture = () => {
+    const H = Hw, k = Math.max(2, Math.min(12, 8192/wallLen, 4096/H));
+    const cv = document.createElement('canvas'); cv.width = Math.ceil(wallLen*k); cv.height = Math.ceil(H*k);
+    const ctx = cv.getContext('2d'); ctx.fillStyle = '#d9b27a'; ctx.fillRect(0, 0, cv.width, cv.height);
+    const h = t + F.extra;
+    // 1st pass: cut-outs drawn dark and slightly larger (= outline); 2nd pass: the same cut-outs, emptied
+    const cuts = outline => {
+      const pad = outline ? 1.3 : 0;
+      ctx.globalCompositeOperation = outline ? 'source-over' : 'destination-out';
+      ctx.fillStyle = ctx.strokeStyle = outline ? '#4a3418' : '#000';
+      ctx.lineWidth = Math.max(0.3*k, 1.5) + 2*pad; ctx.lineCap = 'butt';
+      const hole = (u, w, y0, y1) => ctx.fillRect(u*k - pad, (H-y1)*k - pad, w*k + 2*pad, (y1-y0)*k + 2*pad);
+      let u0 = 0, fi = 0;
+      for (const [kind, len] of s.segs) {
+        if (kind === 'F') {
+          for (const [o, f] of fingerLayout(len, false, F)) { hole(u0+o, f, 0, h); hole(u0+o, f, H-h, H); }
+          for (const zc of (s.rowsZ || [])) for (const [o, f] of fingerLayout(len, true, F))   // reinforcement holes (fingers that go through the wall)
+            if (!s.keepFinger || s.keepFinger(fi, o, f)) hole(u0+o-F.play/2, f+F.play, zc-(F.w+F.play)/2, zc+(F.w+F.play)/2);
+          fi++;
+        }
+        else if (kind === 'L') { hole(u0, L/2 + 0.2*t, 0, 1.1*t); hole(u0, L/2 + 0.2*t, H-1.1*t, H); }
+        else if (kind === 'X') for (const [u, segs] of flexLines(len, H, c.fl, c.burn)) for (const [y0, y1] of segs) {
+          ctx.beginPath(); ctx.moveTo((u0+u)*k, (H-y0)*k); ctx.lineTo((u0+u)*k, (H-y1)*k); ctx.stroke(); }
+        u0 += len;
+      }
+      for (const hh of (s.holes || [])) {   // extra holes in wall coordinates (u, z): circles {c:[u,z,r]} or rounded slots {r:[u,z,w,h,rad]}
+        ctx.beginPath();
+        if (hh.c) ctx.arc(hh.c[0]*k, (H-hh.c[1])*k, hh.c[2]*k + pad, 0, 2*Math.PI);
+        else { const [u, z, w, hg, rd] = hh.r, x0 = (u-w/2)*k - pad, x1 = (u+w/2)*k + pad, y0 = (H-z-hg/2)*k - pad, y1 = (H-z+hg/2)*k + pad, q = rd*k;
+          ctx.moveTo(x0+q, y0); ctx.arcTo(x1, y0, x1, y1, q); ctx.arcTo(x1, y1, x0, y1, q); ctx.arcTo(x0, y1, x0, y0, q); ctx.arcTo(x0, y0, x1, y0, q); ctx.closePath(); }
+        ctx.fill();
+      }
+    };
+    cuts(true); cuts(false);
+    const tex = new THREE.CanvasTexture(cv); tex.anisotropy = 8; tex.generateMipmaps = false; tex.minFilter = THREE.LinearFilter;
+    return tex; };
+  const xs = T.pts.map(p => p[0]), ys = T.pts.map(p => p[1]);
+  const bb = {minX:Math.min(...xs), maxX:Math.max(...xs), maxY:Math.max(...ys)};
+  const wallAt = u => { const L = wallLine(0); let i = 1; while (i < L.length - 1 && L[i].u < u) i++;
+    const a = L[i-1], b = L[i], f = b.u > a.u ? (u - a.u)/(b.u - a.u) : 0;
+    return {x:a.x + (b.x-a.x)*f, y:a.y + (b.y-a.y)*f, hd:a.hd + (b.hd-a.hd)*f}; };
+  const wallAtD = (u, d, only) => { const L = wallLine(d, only); let i = 1; while (i < L.length - 1 && L[i].u < u) i++;
+    const a = L[i-1], b = L[i], f = b.u > a.u ? (u - a.u)/(b.u - a.u) : 0;
+    return {x:a.x + (b.x-a.x)*f, y:a.y + (b.y-a.y)*f, hd:a.hd + (b.hd-a.hd)*f}; };
+  return {kind:'flex', t, Hw, wallLen, wallLine, wallAt, wallAtD, doorOp, _doorBuilt:0, texture, outline:T.pts, bb, extras:s.extras || [], flexCount:s.segs.filter(q => q[0]==='X').reduce((a,q)=>a+q[1],0)/c.fl.dist};
+}
+
+// FlexEdge cuts (x = arc length, h) -> segments [y0,y1] per line (position u along the arc)
+function flexLines(x, h, {dist, conn, width}, burn) {
+  h += 2*burn;
+  const lines = Math.floor(x/dist), left = x - lines*dist;
+  const sections = Math.max(Math.floor((h-conn)/width), 1);
+  const sh = (h-conn)/sections - conn, out = [];
+  for (let i = 1; i < lines; i++) {
+    const u = i*dist + left/2, seg = [];
+    if (i % 2) {
+      seg.push([0, conn+sh]);
+      for (let j = 0; j < Math.floor((sections-1)/2); j++) seg.push([(2*j+1)*sh+(2*j+2)*conn, (2*j+3)*(sh+conn)]);
+      if (!(sections % 2)) seg.push([h-sh-conn, h]);
+    } else if (sections % 2) {
+      seg.push([h, h-conn-sh]);
+      for (let j = 0; j < Math.floor((sections-1)/2); j++) seg.push([h-((2*j+1)*sh+(2*j+2)*conn), h-(2*j+3)*(sh+conn)]);
+    } else for (let j = 0; j < sections/2; j++) seg.push([h-conn-2*j*(sh+conn), h-2*(j+1)*(sh+conn)]);
+    out.push([u, seg]);
+  }
+  return out;
+}
+
+// ---- Generators ----
+const BUILD = {
+  FlexBox5(c) {
+    const {t, num} = c;
+    let x = num('x'), h = num('h'), dt = num('top_diameter'), db = num('bottom_diameter');
+    if (V.outside) { x -= 2*t; h -= 2*t; dt -= 2*t; db -= 2*t; }
+    const latch = num('latchsize')*t;
+    x = Math.max(x, latch + 2*t + (dt+db)/2);
+    const r1 = dt/2, r2 = db/2, dc = x - r1 - r2;
+    if (dc <= 0 || r1 <= 0 || r2 <= 0 || h <= 0) fail('Dimensions are inconsistent');
+    const sn = (r1-r2)/dc; if (Math.abs(sn) > 1) fail('Diameters are too different for this center distance');
+    const a = Math.asin(sn)/RAD, l = dc*Math.cos(a*RAD), c1 = (180+2*a)*RAD*r1, c2 = (180-2*a)*RAD*r2;
+    return flexModel(c, {x:h, latch, start:[r2, t], wallStartOp:3,
+      ops:[['f', l], ['c', 180+2*a, r1], ['latch', latch], ['f', l-latch], ['c', 180-2*a, r2]],
+      segs:[['F', l-latch], ['X', c2], ['F', l], ['X', c1], ['L', latch]]});
+  },
+
+  FlexBox5Plus(c) {
+    const {t, num, F} = c;
+    let x = num('x'), h = num('h'), dt = num('top_diameter'), db = num('bottom_diameter');
+    if (V.outside) { x -= 2*t; h -= 2*t; dt -= 2*t; db -= 2*t; }
+    const latch = num('latchsize')*t;
+    x = Math.max(x, latch + 2*t + (dt+db)/2);
+    const r1 = dt/2, r2 = db/2, dc = x - r1 - r2;
+    if (dc <= 0 || r1 <= 0 || r2 <= 0 || h <= 0) fail('Dimensions are inconsistent');
+    const sn = (r1-r2)/dc; if (Math.abs(sn) > 1) fail('Diameters are too different for this center distance');
+    const a = Math.asin(sn)/RAD, l = dc*Math.cos(a*RAD), c1 = (180+2*a)*RAD*r1, c2 = (180-2*a)*RAD*r2, Hw = h + 2*t;
+    const n = Math.max(0, Math.floor(num('reinforcements')) || 0), w = num('reinforcement_width');
+    const ro = num('reinforcement_open'), rf = num('reinforcement_fillet'), fAdj = num('flex_unfold_adjust'), jh = num('flex_jig_height');
+    const lw = num('latch_width'), lh = num('latch_height'), ld = num('latch_hole'), lm = num('latch_margin');
+    if (![w, lw, lh, ld, lm, ro, rf, fAdj, jh].every(isFinite)) fail('Invalid value');
+    // cuts aligned on a finger, on the latch side (see flexbox5plus.py: _cuts)
+    const xb = fingerLayout(l, true, F).map(q => l - (q[0] + q[1])), xt = fingerLayout(l - latch, true, F).map(q => latch + q[0]);
+    const pick = xs => { const ok = xs.filter(x => x >= ro - 1e-9); return ok.length ? Math.min(...ok) : (xs.length ? Math.max(...xs) : ro); };
+    const xbc = pick(xb), tdc = pick(xt), eb = l - xbc, fr = Math.min(rf, w);
+    if (n && ro >= 0 && (tdc - latch > l - latch || eb < 0 || fr > Math.min(eb, l - tdc))) fail('reinforcement_open is too large');
+    if (n && w >= Math.min(r1, r2)) fail('reinforcement_width must be smaller than the smallest radius');
+    if (V.turn_latch && lw + 2*lm > Hw) fail('latch_width is too large for the height of the box');
+    const total = 2*l + c1 + c2, rowsZ = [], holes = [];
+    for (let i = 0; i < n; i++) rowsZ.push(t + (i+1)*(Hw - 2*t)/(n+1));
+    const upiv = total - (lh/2 + lm), zpiv = Hw/2;     // pivot close to the right end, vertically centred
+    if (V.turn_latch) {
+      holes.push({c:[upiv, zpiv, ld/2]});                                                        // pivot (languette de fermeture)
+    }
+    const spec = {x:h, latch, start:[r2, t], wallStartOp:3,
+      ops:[['f', l], ['c', 180+2*a, r1], ['latch', latch], ['f', l-latch], ['c', 180-2*a, r2]],
+      segs:[['F', l-latch], ['X', c2], ['F', l], ['X', c1], ['L', latch]], rowsZ, holes,
+      keepFinger: (which, o, f) => ro < 0 || (which === 0 ? latch + o >= tdc - 1e-9 : l - (o + f) >= xbc - 1e-9)};
+    const m = flexModel(c, spec);
+    // reinforcements: side plate without the latch tab, hollowed out (same circle centres, radii reduced by w)
+    if (n) {
+      const ring = flexModel(c, {x:h, latch, start:[r2, t], wallStartOp:3,
+        ops:[['f', l], ['c', 180+2*a, r1], ['e', latch], ['f', l-latch], ['c', 180-2*a, r2]], segs:[['F', l]]});
+      const hole = flexModel(c, {x:h, latch, start:[r2, t+w], wallStartOp:0,
+        ops:[['e', l], ['c', 180+2*a, r1-w], ['e', l], ['c', 180-2*a, r2-w]], segs:[['F', l]]});
+      const ux = V3(1,0,0), uy = V3(0,1,0);
+      let outline = {pts:ring.outline, holes:[hole.outline.slice().reverse()]};
+      if (ro >= 0) {   // ring open on the latch side: C-shaped outline (same path as flexbox5plus.py)
+        const fp = (T, len, keep, start, end) => { const hh = t + F.extra; let pos = start;
+          for (const [o, f] of fingerLayout(len, true, F)) { if (!keep(o, f)) continue;
+            T.edge(o - pos); T.corner(-90); T.edge(hh); T.corner(90); T.edge(f); T.corner(90); T.edge(hh); T.corner(-90); pos = o + f; }
+          T.edge(end - pos); };
+        const Tp = turtle(r2, t); Tp.edge(l); Tp.corner(180+2*a, r1);          // start of the top edge
+        const T = turtle(Tp.x + tdc*Math.cos(Tp.hd), Tp.y + tdc*Math.sin(Tp.hd)), L2 = l - latch; T.hd = Tp.hd;
+        fp(T, L2, (o, f) => o >= tdc - latch - 1e-9, tdc - latch, L2); T.corner(180-2*a, r2);
+        fp(T, l, (o, f) => o + f <= eb + 1e-9, 0, eb);
+        T.corner(90); T.edge(w - fr); T.corner(90, fr); T.edge(eb - fr); T.corner(-(180-2*a), r2 - w);
+        T.edge(l - tdc - fr); T.corner(90, fr); T.edge(w - fr); T.corner(90);
+        T.pts.pop();
+        outline = {pts:T.pts, holes:[]};
+      }
+      rowsZ.forEach(zc => m.extras.push(panel(outline, t, V3(0, 0, zc - t/2), ux, uy, V3(0, 0, (zc - Hw/2)/(Hw/2 || 1)))));
+    }
+    // turning latch: 2 butterfly pieces on both sides of the closing tab, pivoting on the round hole; k=0 locked (vertical), k=1 free (90°)
+    if (V.turn_latch) {
+      const q = m.wallAt(upiv), hd = q.hd, nx = Math.sin(hd), ny = -Math.cos(hd), tx = Math.cos(hd), ty = Math.sin(hd);
+      const rc = lh/4, s2 = 0.15*lh, L2 = lw - 2*rc, half = 2*Math.atan2(2*s2, L2)/RAD, R = L2/(2*Math.sin(half*RAD));
+      const T = turtle(rc, 0);
+      for (let i = 0; i < 2; i++) { T.corner(half); T.corner(-2*half, R); T.corner(half); T.corner(90, rc); T.edge(lh-2*rc); T.corner(90, rc); }
+      T.pts.pop();
+      const bar = T.pts.map(p => [p[1] - lh/2, p[0] - lw/2]);        // long axis along z (locked)
+      const U = V3(tx, ty, 0), Vz = V3(0, 0, 1), N = V3(nx, ny, 0), P0 = V3(q.x, q.y, zpiv);
+      const outer = panel(bar, t, P0.clone().add(N.clone().multiplyScalar(t)), U, Vz, N.clone());
+      const inner = panel(bar, t, P0.clone().sub(N.clone().multiplyScalar(t)), U, Vz, N.clone().negate());
+      m.extras.push(outer, inner);
+      m.openers = [{parts:[outer, inner], point:P0.clone().add(N.clone().multiplyScalar(t/2)), axis:N, angle:90}];
+      m.latchParts = [outer, inner]; m.pivotU = upiv; m.latchShare = 0.4;   // opening: latch first, then the door unfolds
+    }
+    // unfolding of the flexible part: estimated stretch t/r (+ adjustment) and comb jig (see flexbox5plus.py: _flexElong, jigComb)
+    const e1 = Math.max(-.5, (V.flex_unfold_auto ? t/r1 : 0) + fAdj/100), e2 = Math.max(-.5, (V.flex_unfold_auto ? t/r2 : 0) + fAdj/100);
+    warn('Unfolded flexible zone stretch: top arc {0} %, bottom arc {1} %.', (e1*100).toFixed(1), (e2*100).toFixed(1));
+    if (V.flex_jig) {   // combs: wall notches (x2) + one comb per reinforcement (teeth at the reinforcement holes)
+      const L2 = l - latch, u2 = L2 + c2*(1 + e2), W = u2 + l, hh = t + F.extra;
+      const comb = (fingers, row) => {
+        const Tj = turtle(0, 0); Tj.edge(W); Tj.corner(90); Tj.edge(jh); Tj.corner(90);
+        let pos = W;
+        for (const [x, f] of fingers.slice().sort((p, q) => q[0] - p[0])) { Tj.edge(pos - (x + f)); Tj.corner(-90); Tj.edge(hh); Tj.corner(90); Tj.edge(f); Tj.corner(90); Tj.edge(hh); Tj.corner(-90); pos = x; }
+        Tj.edge(pos); Tj.corner(90); Tj.edge(jh); Tj.corner(90); Tj.pts.pop();
+        m.extras.push(panel(Tj.pts, t, V3(m.bb.minX, m.bb.maxY + 30 + row*(jh + hh + 8), 0), V3(1,0,0), V3(0,1,0), V3(0,1,0)));
+      };
+      const all = fingerLayout(L2, true, F).concat(fingerLayout(l, true, F).map(q => [u2 + q[0], q[1]]));
+      comb(all, 0); comb(all, 1);
+      const ringF = fingerLayout(L2, true, F).filter(q => spec.keepFinger(0, q[0], q[1])).concat(fingerLayout(l, true, F).filter(q => spec.keepFinger(1, q[0], q[1])).map(q => [u2 + q[0], q[1]]));
+      for (let i = 0; i < n; i++) comb(ringF, 2 + i);
+    }
+    return m;
+  },
+  FlexBox(c) {
+    const {t, num} = c;
+    const tok = String(V.sx).trim().split(/\s+/)[0].split('*')[0];
+    let x = parseFloat(tok), y = num('y'), h = num('h');
+    if (V.outside) { x -= 2*t; y -= 2*t; h -= 2*t; }
+    const latch = num('latchsize')*t;
+    let r = num('radius') || Math.min(y, h-latch)/2;
+    r = Math.min(r, y/2); r = Math.min(r, Math.max(0, (h-latch)/2));
+    if (!(x > 0 && y > 0) || h-2*r-latch <= 0) fail('Dimensions are inconsistent');
+    const c4 = Math.PI*r/2, mid = y-2*r < t;
+    return flexModel(c, {x, latch, start:[t+r, t], wallStartOp:7,
+      ops:[['f', y-2*r], ['c', 90, r], ['f', h-2*r], ['c', 90, r], ['e', y-2*r], ['c', 90, r], ['latch', latch], ['f', h-2*r-latch], ['c', 90, r]],
+      segs:[['F', h-2*r-latch], ...(mid ? [['X', 2*c4+y-2*r]] : [['X', c4], ['F', y-2*r], ['X', c4]]),
+            ['F', h-2*r], ...(mid ? [['X', 2*c4+y-2*r]] : [['X', c4], ['e', y-2*r], ['X', c4]]), ['L', latch]]});
+  },
+
+  ABox(c) { return boxEdges(c, {b:V.bottom_edge, top:'e', side:'F'}); },
+  UniversalBox(c) { return boxEdges(c, {b:V.bottom_edge, top:V.top_edge, side:V.vertical_edges === 'finger holes' ? 'h' : 'F', universal:true}); },
+  BasedBox(c) {
+    const {t, num, F} = c, top = supported(V.top_edge), X = c.adj(num('x')), Y = c.adj(num('y')), H = c.sub(num('h'), c.spc(top) + t);
+    if (!(X > 0 && Y > 0 && H > 0)) fail('Dimensions are inconsistent');
+    const ux = V3(1,0,0), uy = V3(0,1,0), uz = V3(0,0,1), P = [];
+    const add = (w, h, e, O, U, Vv, dir) => P.push(panel(rectOutline(w, h, e, F), t, O, U, Vv, dir));
+    add(Y, H, 'ff'+top+'f', V3(-t,0,0), uy, uz, V3(-1,0,0));  add(Y, H, 'ff'+top+'f', V3(X,0,0), uy, uz, V3(1,0,0));
+    add(X, H, 'fF'+top+'F', V3(0,0,0), ux, uz, V3(0,-1,0));   add(X, H, 'fF'+top+'F', V3(0,Y+t,0), ux, uz, V3(0,1,0));
+    add(X, Y, 'hhhh', V3(0,0,-t), ux, uy, V3(0,0,-1));
+    addLid(P, c, top, X, Y, H);
+    return {kind:'box', panels:P};
+  },
+  UnevenHeightBox(c) {
+    const {t, num, F} = c, b = V.bottom_edge === 'F' || V.bottom_edge === 'h' || V.bottom_edge === 'e' ? V.bottom_edge : (V.bottom_edge === 's' ? (warn("Edge 's' drawn as 'F'."), 'F') : 'F');
+    const X = c.adj(num('x')), Y = c.adj(num('y')), hs = [0,1,2,3].map(i => c.sub(num('height'+i), c.spc(b) + (V.add_lid ? t : 0)));
+    if (!(X > 0 && Y > 0) || hs.some(h => !(h > 0))) fail('Dimensions are inconsistent');
+    if (V.add_lid) warn('Lid not drawn.');
+    const ux = V3(1,0,0), uy = V3(0,1,0), uz = V3(0,0,1), P = [];
+    const add = (w, h0, h1, e, O, U, dir) => P.push(panel(trapOutline(w, h0, h1, e, F), t, O, U, uz, dir));
+    add(X, hs[0], hs[1], b+'Fe'+'F', V3(0,0,0), ux, V3(0,-1,0));                         // front
+    add(Y, hs[1], hs[2], b+'fe'+'f', V3(X,0,0), uy, V3(1,0,0));                          // right
+    add(X, hs[2], hs[3], b+'Fe'+'F', V3(X,Y,0), V3(-1,0,0), V3(0,1,0));                  // back
+    add(Y, hs[3], hs[0], b+'fe'+'f', V3(0,Y,0), V3(0,-1,0), V3(-1,0,0));                 // left
+    if (b !== 'e') P.push(panel(rectOutline(X, Y, 'ffff', F), t, V3(0,0,-t), ux, uy, V3(0,0,-1)));
+    return {kind:'box', panels:P};
+  },
+  FlexBox2(c) { return flexBox24(c, false); },
+  FlexBox4(c) { return flexBox24(c, true); },
+  ClosedBox(c) {
+    const {t, num, F} = c, X = c.adj(num('x')), Y = c.adj(num('y')), H = c.adj(num('h'));
+    if (!(X > 0 && Y > 0 && H > 0)) fail('Dimensions are inconsistent');
+    const ux = V3(1,0,0), uy = V3(0,1,0), uz = V3(0,0,1), P = [];
+    const add = (w, h, e, O, U, Vv, dir) => P.push(panel(rectOutline(w, h, e, F), t, O, U, Vv, dir));
+    add(X, H, 'FFFF', V3(0,0,0), ux, uz, V3(0,-1,0));          // front (y in [-t,0])
+    add(X, H, 'FFFF', V3(0,Y+t,0), ux, uz, V3(0,1,0));         // back
+    add(Y, H, 'FfFf', V3(-t,0,0), uy, uz, V3(-1,0,0));         // left
+    add(Y, H, 'FfFf', V3(X,0,0), uy, uz, V3(1,0,0));           // right
+    add(X, Y, 'ffff', V3(0,0,-t), ux, uy, V3(0,0,-1));         // dessous
+    add(X, Y, 'ffff', V3(0,0,H), ux, uy, V3(0,0,1));           // dessus
+    return {kind:'box', panels:P};
+  },
+  OpenBox(c) {
+    const {t, num, F} = c, X = c.adj(num('x')), Y = c.adj(num('y'), 1), H = c.adj(num('h'), 1);
+    if (!(X > 0 && Y > 0 && H > 0)) fail('Dimensions are inconsistent');
+    const e = V.edgetype, ux = V3(1,0,0), uz = V3(0,0,1), P = [];
+    const add = (w, h, ed, O, U, Vv, dir) => P.push(panel(rectOutline(w, h, ed, F), t, O, U, Vv, dir));
+    add(X, H, e+e+'e'+e, V3(0,Y+t,0), ux, uz, V3(0,1,0));                     // back
+    add(Y, H, e+'eef', V3(0,Y,0), V3(0,-1,0), uz, V3(-1,0,0));              // left (f on the back side)
+    add(Y, H, e+'eef', V3(X+t,Y,0), V3(0,-1,0), uz, V3(1,0,0));             // right
+    add(X, Y, 'efff', V3(0,0,-t), ux, V3(0,1,0), V3(0,0,-1));               // dessous
+    return {kind:'box', panels:P};
+  },
+};
+
+
+// supported top edges: e, f, F, h; the others are drawn open (e)
+function supported(ch) { if ('efFh'.includes(ch)) return ch; warn("Top edge '{0}' is not modelled (shown open).", ch); return 'e'; }
+// flat lid closing an f / F / h top edge
+function addLid(P, c, top, X, Y, H) {
+  const lid = top === 'f' ? 'FFFF' : 'ffff';
+  if (top !== 'e') P.push(panel(rectOutline(X, Y, lid, c.F), c.t, V3(0,0,H), V3(1,0,0), V3(0,1,0), V3(0,0,1)));
+}
+// ABox / UniversalBox: 4 walls [bottom, side, top, side] + 'ffff' floor + optional flat lid
+function boxEdges(c, o) {
+  const {t, num, F} = c, top = supported(o.top), S = o.side;
+  const b = o.b === 's' ? (warn("Edge 's' drawn as 'F'."), 'F') : o.b;
+  const X = c.sub(num('x'), 2*c.spc(S)), Y = c.adj(num('y')), H = c.sub(num('h'), c.spc(b) + c.spc(top));
+  if (!(X > 0 && Y > 0 && H > 0)) fail('Dimensions are inconsistent');
+  if (o.universal && (top === 'f' || top === 'F')) warn("'Top hole' panel not drawn.");
+  const ux = V3(1,0,0), uy = V3(0,1,0), uz = V3(0,0,1), P = [];
+  const add = (w, h, e, O, U, Vv, dir) => P.push(panel(rectOutline(w, h, e, F), t, O, U, Vv, dir));
+  add(X, H, b+S+top+S, V3(0,0,0), ux, uz, V3(0,-1,0));        add(X, H, b+S+top+S, V3(0,Y+t,0), ux, uz, V3(0,1,0));
+  add(Y, H, b+'f'+top+'f', V3(-t,0,0), uy, uz, V3(-1,0,0));   add(Y, H, b+'f'+top+'f', V3(X,0,0), uy, uz, V3(1,0,0));
+  if (b !== 'e') P.push(panel(rectOutline(X, Y, 'ffff', F), t, V3(0,0,-t), ux, uy, V3(0,0,-1)));
+  addLid(P, c, top, X, Y, H);
+  return {kind:'box', panels:P};
+}
+
+// FlexBox2 (rounded top corners) and FlexBox4 (rounded left corners)
+function flexBox24(c, four) {
+  const {t, num, F} = c;
+  let x = num('x'), y = num('y'), h = num('h');
+  if (V.outside) { x -= 2*t; y -= 2*t; h -= 2*t; }
+  const latch = num('latchsize')*t;
+  let r = num('radius') || Math.min(y/2, h-latch);
+  r = Math.min(r, y/2); r = Math.min(r, Math.max(0, h-latch));
+  if (!(x > 0 && y > 0) || h-r-latch <= 0) fail('Dimensions are inconsistent');
+  const c4 = Math.PI*r/2, mid = y-2*r < t;
+  const ops = [['f', y], ['c', 90, 0], ['f', h-r], ['c', 90, r], ['e', y-2*r], ['c', 90, r]]
+    .concat(four ? [['e', h-r-latch], ['latch', latch], ['c', 90, 0]] : [['latch', latch], ['f', h-r-latch], ['c', 90, 0]]);
+  const segs = [['F', h-r], ...(mid ? [['X', 2*c4+y-2*r]] : [['X', c4], ['e', y-2*r], ['X', c4]])]
+    .concat(four ? [['e', h-r-latch]] : []).concat([['L', latch]]);
+  const m = flexModel(c, {x, latch, start:[t, t], wallStartOp:2, ops, segs});
+  const ux = V3(1,0,0), uy = V3(0,1,0), uz = V3(0,0,1);
+  const unfold = d => V3(0, 0, 0);
+  // bottom plate (y×x) in the plane v∈[0,t]; FlexBox4: open edge on the latch side (low x) -> U axis reversed
+  m.extras.push(four
+    ? panel(rectOutline(y, x, 'FeFF', F), t, V3(t+y, 0, t), V3(-1,0,0), uz, V3(0,-1,0))
+    : panel(rectOutline(y, x, 'FFFF', F), t, V3(t, t, t), ux, uz, V3(0,-1,0)));
+  // rigid front panel (FlexBox2): x×(h-r-latch) on the left edge
+  if (!four) m.extras.push(panel(rectOutline(x, h-r-latch, 'fFeF', F), t, V3(t, t, t), uz, uy, V3(-1,0,0)));
+  return m;
+}
+
+// Display order in the list (types without a loaded module are ignored)
+const TYPE_ORDER = ['ClosedBox','OpenBox','ABox','BasedBox','UniversalBox','UnevenHeightBox','HalfBox','AngledBox','RegularBox','RegularStarBox','DiceBox','BayonetBox','CardBox','Crate','DisplayCase','ElectronicsBox','EngravingFrame','NotesHolder','StevensonScreenBox','BrickSorter','TwoPiece','Console','Console2','Keypad','HingeBox','IntegratedHingeBox','SideHingeBox','PirateChest','SlidingDrawer','SlidingLidBox','SideDoorHousing','ShutterBox','FlexBox5Plus','FlexBox','FlexBox2','FlexBox4','FlexBox5'];
+
+/*MODULES*/
+
+// ---- Rendu ----
+let M = null, parts = [], wallMeshes = [], wallMat = null;
+function applyExplode() {
+  const e = +V._explode || 0, d = +V._unfold || 0, k = +V._open || 0;
+  // flexible-wall boxes: the latch turns first (40 % of the travel, if the box has one), then the flexible part at the front unfolds
+  let kl = k, kd = 0;
+  if (M && M.kind === 'flex') { const sh = M.latchShare || 0; kl = sh ? Math.min(1, k/sh) : 0; kd = sh ? Math.max(0, (k - sh)/(1 - sh)) : k; }
+  if (M && M.kind === 'flex' && M.doorOp >= 0 && kd !== M._doorBuilt) { M._doorBuilt = kd; buildWall(true); return; }
+  for (const p of parts) { p.g.quaternion.identity(); p.g.position.copy(p.dir).multiplyScalar(e);
+    if (p.unfold) p.g.position.add(p.unfold(d)); }
+  // ouverture : m.openers = [{parts:[panel...], point:V3, axis:V3, angle:deg} (rotation about an axis)
+  //                          | {parts:[panel...], slide:V3} (translation of length |slide| at k=1)]
+  for (const o of (M && M.openers) || []) {
+    if (o.slide) { const sh = o.slide.clone().multiplyScalar(kl); o.parts.forEach(p => p.g.position.add(sh)); }
+    else { const q = new THREE.Quaternion().setFromAxisAngle(o.axis.clone().normalize(), kl*o.angle*RAD);
+      const off = o.point.clone().sub(o.point.clone().applyQuaternion(q));
+      o.parts.forEach(p => { p.g.quaternion.premultiply(q); p.g.position.add(off); }); }   // rotation about the axis, then explode in world coordinates
+  }
+  // the latch follows the end of the wall when the door unfolds
+  if (M && M.latchParts && kd > 0 && !d) {
+    const a0 = M.wallAt(M.pivotU), a1 = M.wallAtD(M.pivotU, kd, M.doorOp), qz = new THREE.Quaternion().setFromAxisAngle(V3(0,0,1), a1.hd - a0.hd);
+    const pc = V3(a0.x, a0.y, 0), pu = V3(a1.x, a1.y, 0);
+    M.latchParts.forEach(p => { p.g.quaternion.premultiply(qz); p.g.position.sub(pc).applyQuaternion(qz).add(pu); });
+  }
+}
+
+function buildWall(skipCenter) {
+  if (!M || M.kind !== 'flex') return;
+  const d = +V._unfold || 0, kd = M._doorBuilt || 0, t = M.t, H = M.Hw, total = M.wallLen;
+  const L = d > 0 ? M.wallLine(d) : (kd > 0 && M.doorOp >= 0 ? M.wallLine(kd, M.doorOp) : M.wallLine(0));
+  wallMeshes.forEach(m => { group.remove(m); m.geometry.dispose(); }); wallMeshes = [];
+  const P = (q, w, z) => [q.x + w*Math.sin(q.hd), q.y - w*Math.cos(q.hd), z];
+  const ribbon = (pa, pb, v0 = 0, v1 = 1) => {
+    const pos = [], uv = [], idx = [];
+    L.forEach((q, i) => { pos.push(...pa(q), ...pb(q)); uv.push(q.u/total, v0, q.u/total, v1);
+      if (i) { const a = 2*(i-1); idx.push(a, a+2, a+1, a+1, a+2, a+3); } });
+    const bg = new THREE.BufferGeometry();
+    bg.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); bg.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    bg.setIndex(idx); bg.computeVertexNormals();
+    const m = new THREE.Mesh(bg, wallMat); group.add(m); wallMeshes.push(m); };
+  for (const w of [0, t]) ribbon(q => P(q, w, 0), q => P(q, w, H));
+  ribbon(q => P(q, 0, 0), q => P(q, t, 0), .003, .003); ribbon(q => P(q, 0, H), q => P(q, t, H), .997, .997);
+  // wall outline: top and bottom edges of both faces and the ends
+  const lp = []; const seg = (a, b) => lp.push(...a, ...b);
+  for (const w of [0, t]) for (const z of [0, H]) for (let i = 1; i < L.length; i++) seg(P(L[i-1], w, z), P(L[i], w, z));
+  for (const q of [L[0], L[L.length-1]]) for (const w of [0, t]) seg(P(q, w, 0), P(q, w, H));
+  for (const z of [0, H]) for (const q of [L[0], L[L.length-1]]) seg(P(q, 0, z), P(q, t, z));
+  const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3));
+  const wl = new THREE.LineSegments(lg, lineMat); group.add(wl); wallMeshes.push(wl);
+  applyExplode(); if (!skipCenter) recenter();
+}
+
+function recenter() {
+  group.rotation.set(0, 0, 0); group.position.set(0, 0, 0); group.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(group), c = box.getCenter(new THREE.Vector3()), sz = box.getSize(new THREE.Vector3());
+  group.rotation.x = -Math.PI/2;
+  group.position.set(-c.x, -c.z, c.y);   // plate Z -> up; (x,y,z) -> (x, z, -y)
+  if (!fitted) { const dd = Math.max(sz.x, sz.y, sz.z)*2.2; camera.position.set(dd*.8, dd*.6, dd); fitted = true; }
+}
+
+function build() {
+  const msg = document.getElementById('msg');
+  let m; WARN = ''; WARNS = [];
+  try { m = BUILD[TYPE](common()); msg.textContent = warnText(); } catch (e) { msg.textContent = errText(e); return; }
+  if (m.flexCount > 20000) { msg.textContent = tr('Too many cuts (distance too small)'); return; }
+  M = m; group.clear(); parts = []; wallMeshes = [];
+  if (m.kind === 'flex') {
+    const {t, Hw, bb} = m, pts = m.outline, uz = V3(0,0,1), ux = V3(1,0,0), uy = V3(0,1,0);
+    [0, 1].forEach(i => {
+      const w = bb.maxX - bb.minX, sg = i ? 1 : -1;
+      parts.push(panel(pts, t, V3(0, 0, i ? Hw-t : 0), ux, uy, V3(0,0,i ? 1 : -1),
+        d => V3(d*(m.wallLen/2 + sg*(w/2 + 10) - (bb.minX + bb.maxX)/2), d*(-20 - bb.maxY), 0))); });
+    m.extras.forEach(p => { p.unfold = d => p.dir.clone().multiplyScalar(d*80); parts.push(p); });
+    wallMat = new THREE.MeshStandardMaterial({map:m.texture(), alphaTest:.5, side:THREE.DoubleSide, roughness:.8});
+    parts.forEach(p => group.add(p.g)); buildWall();
+  } else { m.panels.forEach(p => { parts.push(p); group.add(p.g); }); applyExplode(); recenter(); }
+  document.getElementById('unfoldRow').style.display = m.kind === 'flex' ? '' : 'none';
+  document.getElementById('openRow').style.display = (m.openers && m.openers.length) || m.kind === 'flex' ? '' : 'none';
+}
+
+// ---- Interface ----
+const ui = document.getElementById('ui');
+
+// ---- Views: 3D, 2D plan (SVG of the real generator), or both side by side ----
+let MODE = '3d', PT = {s:1, x:0, y:0, user:false}, planTimer = 0;
+const views = document.createElement('div'); views.id = 'views';
+for (const m of ['3d', 'split', '2d']) {
+  const b = document.createElement('button'); b.dataset.m = m; b.onclick = () => setMode(m); views.append(b);
+}
+const labelViews = () => { for (const b of views.children) b.textContent = {'3d':'3D', split:'3D | 2D', '2d':tr('2D plan (SVG)')}[b.dataset.m]; };
+labelViews();
+document.body.append(views);
+const plan = document.createElement('div'); plan.id = 'plan'; plan.style.display = 'none';
+plan.innerHTML = '<img id="planimg" alt=""><div id="planmsg"></div>'; document.body.append(plan);
+const pimg = plan.querySelector('img'), pmsg = plan.querySelector('#planmsg');
+const applyPT = () => { pimg.style.transform = 'translate(' + PT.x + 'px,' + PT.y + 'px) scale(' + PT.s + ')'; };
+const fitPlan = () => { if (!pimg.naturalWidth) return; const s = Math.min(plan.clientWidth/pimg.naturalWidth, plan.clientHeight/pimg.naturalHeight)*0.96;
+  PT = {s, x:(plan.clientWidth - pimg.naturalWidth*s)/2, y:(plan.clientHeight - pimg.naturalHeight*s)/2, user:false}; applyPT(); };
+pimg.onload = () => { pmsg.textContent = ''; if (!PT.user) fitPlan(); };
+pimg.onerror = () => { pmsg.textContent = SCHEMAS[TYPE].custom ? tr('Plan unavailable: local server stopped? (start_server.bat)') : tr('Plan unavailable: offline or invalid parameters.'); };
+plan.addEventListener('wheel', e => { e.preventDefault(); const r = plan.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, f = e.deltaY < 0 ? 1.15 : 1/1.15;
+  PT.x = mx - (mx - PT.x)*f; PT.y = my - (my - PT.y)*f; PT.s *= f; PT.user = true; applyPT(); }, {passive:false});
+let drag = null;
+plan.onpointerdown = e => { drag = {x:e.clientX - PT.x, y:e.clientY - PT.y}; plan.setPointerCapture(e.pointerId); plan.style.cursor = 'grabbing'; };
+plan.onpointermove = e => { if (drag) { PT.x = e.clientX - drag.x; PT.y = e.clientY - drag.y; PT.user = true; applyPT(); } };
+plan.onpointerup = () => { drag = null; plan.style.cursor = 'grab'; };
+plan.ondblclick = () => { PT.user = false; fitPlan(); };
+function planURL() {
+  const q = new URLSearchParams();
+  for (const g of SCHEMAS[TYPE].groups) for (const i of g.items) q.set(i.name, typeof V[i.name] === 'boolean' ? +V[i.name] : V[i.name]);
+  q.set('language', LANG); q.set('render', '1'); q.set('format', 'svg');
+  return SCHEMAS[TYPE].custom ? LOCAL_SERVER + '/' + SCHEMAS[TYPE].custom + '?' + q : 'https://boxes.hackerspace-bamberg.de/' + TYPE + '?' + q;
+}
+function refreshPlan(now) {
+  clearTimeout(planTimer);
+  planTimer = setTimeout(() => { pmsg.textContent = tr('Loading the plan…'); pimg.src = planURL(); }, now ? 0 : 400);
+}
+function layout() {   // 3D to the right of the panel; in '3D | 2D' mode half of the width, in 2D mode the plan only
+  const left = ui.style.display === 'none' ? 0 : 340, W = innerWidth - left, H = innerHeight;
+  const w3 = MODE === '3d' ? W : MODE === 'split' ? Math.floor(W/2) : 0, cv = renderer.domElement;
+  cv.style.cssText = 'position:fixed;top:0;left:' + left + 'px;' + (w3 ? '' : 'display:none');
+  if (w3) { renderer.setSize(w3, H); camera.aspect = w3/H; camera.updateProjectionMatrix(); }
+  plan.style.display = MODE === '3d' ? 'none' : ''; plan.style.left = (left + w3) + 'px'; plan.style.width = (W - w3) + 'px';
+  views.style.left = (left + 10) + 'px';
+  for (const b of views.children) b.classList.toggle('on', b.dataset.m === MODE);
+  if (MODE !== '3d' && !PT.user) fitPlan();
+}
+function setMode(m) { MODE = m; layout(); if (m !== '3d') refreshPlan(true); }
+function updateLink() {
+  const q = new URLSearchParams();
+  for (const g of SCHEMAS[TYPE].groups) for (const i of g.items) q.set(i.name, typeof V[i.name] === 'boolean' ? +V[i.name] : V[i.name]);
+  q.set('language', LANG); q.set('render', '1');
+  const gen = document.getElementById('gen');
+  gen.onclick = null;
+  if (SCHEMAS[TYPE].custom) {   // local variant: run by boxes_local_server.py (Boxes.py on this machine)
+    const url = LOCAL_SERVER + '/' + SCHEMAS[TYPE].custom + '?' + q;
+    gen.href = url; gen.target = '_blank'; gen.textContent = tr('Generate (local Boxes.py server)');
+    gen.onclick = e => { e.preventDefault(); window.open(url, '_blank');
+      fetch(LOCAL_SERVER + '/ping', {mode:'no-cors'}).then(() => { document.getElementById('msg').textContent = ''; })
+        .catch(() => { document.getElementById('msg').textContent = tr('Local server stopped: start start_server.bat then click Generate again.'); }); }; }
+  else { gen.href = 'https://boxes.hackerspace-bamberg.de/' + TYPE + '?' + q; gen.target = '_blank'; gen.textContent = tr('Generate (real cut file)'); }
+  if (MODE !== '3d') refreshPlan();
+}
+function drawForm() {
+  ui.innerHTML = '';
+  const S = LS(TYPE);
+  const hb = document.createElement('button'); hb.className = 'btnhome'; hb.textContent = tr('← Home (all types)'); hb.onclick = showHome; ui.append(hb);
+  ui.append(langSelect());
+  const sel = document.createElement('select'); sel.id = 'type';
+  for (const k of TYPE_ORDER.filter(k => BUILD[k] && SCHEMAS[k])) sel.add(new Option(LS(k).title + ' (' + k + ')', k, false, k === TYPE));
+  sel.onchange = () => { TYPE = sel.value; fitted = false; resetValues(); drawForm(); updateLink(); build(); assemble(); };
+  ui.append(sel);
+  const info = document.createElement('div'); info.innerHTML = '<small></small><div id="msg"></div>'; info.firstChild.textContent = S.desc; ui.append(info);
+  const link = document.createElement('a'); link.className = 'btn'; link.id = 'gen'; link.target = '_blank';
+  link.textContent = tr('Generate (real cut file)'); ui.append(link);
+  const small = document.createElement('small');
+  small.textContent = [tr('Greyed = no effect on the 3D view.'), NOTES[TYPE] ? tr(NOTES[TYPE]) : '', tr('Finger styles other than rectangular are drawn as rectangular.')].filter(Boolean).join(' '); ui.append(small);
+  const used = new Set([...USED_COMMON, ...USED[TYPE]]);
+  for (const [gi, g] of S.groups.entries()) {
+    const h3 = document.createElement('h3'), box = document.createElement('div');
+    const collapsed = /^Settings for (Finger Joints|Flex)$/.test(SCHEMAS[TYPE].groups[gi].title);   // collapsed by default
+    box.hidden = collapsed; h3.textContent = (collapsed ? '▸ ' : '▾ ') + g.title; h3.style.cursor = 'pointer';
+    h3.onclick = () => { box.hidden = !box.hidden; h3.textContent = (box.hidden ? '▸ ' : '▾ ') + g.title; };
+    ui.append(h3, box);
+    for (const it of g.items) {
+      const l = document.createElement('label'); l.title = it.desc; if (!used.has(it.name)) l.className = 'off';
+      let el;
+      if (it.type === 'select') { el = document.createElement('select');
+        for (const [v, tx] of it.options) el.add(new Option(tx, v, false, v === V[it.name]));
+        el.onchange = () => { V[it.name] = el.value; updateLink(); build(); };
+      } else if (it.type === 'bool') { el = document.createElement('input'); el.type = 'checkbox'; el.checked = V[it.name];
+        el.onchange = () => { V[it.name] = el.checked; updateLink(); build(); };
+      } else { el = document.createElement('input'); el.type = 'text'; el.value = V[it.name];
+        el.oninput = () => { V[it.name] = el.value; el.classList.toggle('bad', !isFinite(parseFloat(el.value))); updateLink(); build(); }; }
+      l.append(it.label, el); box.append(l);
+    }
+  }
+  const row = (id, txt, max, step, fn) => { const l = document.createElement('label'); l.id = id;
+    l.innerHTML = '<span>' + txt + '</span><input type="range" min="0" max="' + max + '" step="' + step + '" value="' + (V[fn.key] || 0) + '" style="width:120px">';
+    l.lastChild.oninput = e => { V[fn.key] = e.target.value; fn(); }; ui.append(l); };
+  const tog = document.createElement('label'); tog.className = 'rotlabel'; tog.innerHTML = '<span></span><input type="checkbox" ' + (controls.autoRotate ? 'checked' : '') + '>'; tog.firstChild.textContent = tr('Auto-rotate');
+  tog.lastChild.onchange = e => controls.autoRotate = e.target.checked; ui.append(tog);
+  const ex = () => applyExplode(); ex.key = '_explode'; row('explodeRow', tr('Explode (panels)'), 80, 1, ex);
+  const un = () => { buildWall(); }; un.key = '_unfold'; row('unfoldRow', tr('Unfold (flexible wall)'), 1, 0.01, un);
+  const op = () => applyExplode(); op.key = '_open'; row('openRow', tr('Opening'), 1, 0.01, op);
+  document.getElementById('openRow').style.display = M && M.openers && M.openers.length ? '' : 'none';
+}
+function resetValues() {
+  V = {};
+  for (const g of SCHEMAS[TYPE].groups) for (const i of g.items) V[i.name] = i.default;
+  V._explode = 0; V._unfold = 0; V._open = 0;
+}
+
+// arrival animation: from exploded (80) down to 0
+let anim = 0;
+function assemble() {
+  cancelAnimationFrame(anim);
+  const t0 = performance.now(), from = 80, dur = 1100;
+  const step = now => {
+    const k = Math.min(1, (now - t0)/dur), e = from*Math.pow(1 - k, 3);   // cubic ease-out
+    V._explode = e; V._unfold = 0; V._open = 0; applyExplode();
+    const sl = document.querySelector('#explodeRow input'); if (sl) sl.value = e;
+    const un = document.querySelector('#unfoldRow input'); if (un) un.value = 0;
+    const opn = document.querySelector('#openRow input'); if (opn) opn.value = 0;
+    if (k < 1) anim = requestAnimationFrame(step); else { V._explode = 0; applyExplode(); if (sl) sl.value = 0; }
+  };
+  anim = requestAnimationFrame(step);
+}
+// switch language: re-render every texts of the page
+function setLang(l) {
+  if (!(l in LANGS)) return;
+  LANG = l; try { localStorage.setItem('boxes3d_lang', l); } catch (e) {}
+  document.documentElement.lang = l.replace('_', '-'); labelViews();
+  const homeOpen = !home.hidden; home.textContent = '';
+  drawForm(); updateLink(); build();
+  if (homeOpen) showHome();
+}
+// ---- Home page: one 3D thumbnail per type, rendered on first display then cached ----
+const THUMB_VER = 'v4';
+const FLEXCAT = k => k.startsWith('FlexBox') || k === 'ShutterBox';   // 'flexible hinge' section
+const home = document.createElement('div'); home.id = 'home'; home.hidden = true; document.body.append(home);
+let thumbsDone = false;
+function openType(k) {
+  TYPE = k; fitted = false; resetValues(); drawForm(); updateLink(); build(); assemble(); home.hidden = true;
+}
+function showHome() {
+  cancelAnimationFrame(anim); home.hidden = false;
+  if (home.firstChild) return;
+  const types = TYPE_ORDER.filter(k => BUILD[k] && SCHEMAS[k]);
+  home.innerHTML = '<h1></h1><small></small><br><input id="q" type="text">';
+  home.querySelector('h1').textContent = tr('Boxes.py — 3D visualizer'); home.querySelector('small').textContent = tr('{0} box types. Pick one to see it assembled, exploded and fully configurable (same settings as the generator).', types.length);
+  home.querySelector('#q').placeholder = tr('Search…'); home.prepend(langSelect()); home.firstChild.classList.add('homelang');
+  const imgs = {}, cards = [];
+  const section = (title, list) => {
+    const h2 = document.createElement('h2'); h2.textContent = title + ' (' + list.length + ')'; home.append(h2);
+    const g = document.createElement('div'); g.className = 'grid'; home.append(g);
+    for (const k of list) {
+      const c = document.createElement('div'); c.className = 'card'; c.onclick = () => openType(k);
+      c.innerHTML = '<div class="im"><img alt=""></div><div class="tx"><b></b><small></small></div>';
+      const lk = LS(k); c.querySelector('b').textContent = lk.title; c.querySelector('small').textContent = k + ' — ' + lk.desc;
+      imgs[k] = c.querySelector('img'); c.dataset.s = (lk.title + ' ' + k + ' ' + lk.desc).toLowerCase(); g.append(c); cards.push(c);
+    }
+  };
+  section(tr('Boxes'), types.filter(k => !FLEXCAT(k)));
+  section(tr('Boxes with a flexible hinge'), types.filter(FLEXCAT));
+  home.querySelector('#q').oninput = e => { const q = e.target.value.toLowerCase(); cards.forEach(c => c.style.display = c.dataset.s.includes(q) ? '' : 'none'); };
+  // thumbnails: localStorage cache, otherwise rendered off-screen (240×180), one type per task
+  const cache = (() => { try { return JSON.parse(localStorage.getItem('boxes3d_thumbs_' + THUMB_VER)) || {}; } catch (e) { return {}; } })();
+  const todo = types.filter(k => cache[k] ? (imgs[k].src = cache[k], false) : true);
+  const save = () => { try { localStorage.setItem('boxes3d_thumbs_' + THUMB_VER, JSON.stringify(cache)); } catch (e) {} };
+  const step = () => {
+    const k = todo.shift();
+    if (!k) { save(); layout(); return; }
+    try {
+      TYPE = k; fitted = false; resetValues(); build(); fitted = false; recenter();   // recentre + frame the camera on the box
+      renderer.setSize(240, 180); camera.aspect = 240/180; camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+      if (!step.warm) { step.warm = 1; todo.unshift(k); } else   // 1st render = warm-up (camera not framed yet), done again
+      cache[k] = imgs[k].src = renderer.domElement.toDataURL('image/jpeg', 0.8);
+    } catch (e) {}
+    setTimeout(step, 0);
+  };
+  step();
+}
+// Deep links: #Type&lang=xx&mode=3d|split|2d&explode=40&unfold=1&open=0.5&ui=0&rotate=0&view=iso|top|front|side&p_<parameter>=value
+const HASH = location.hash.slice(1).split('&'), HOPT = Object.fromEntries(HASH.slice(1).map(q => q.split('=')));
+if (HOPT.lang in LANGS) { LANG = HOPT.lang; labelViews(); }
+if (BUILD[HASH[0]]) {
+  TYPE = HASH[0]; fitted = false; resetValues();
+  for (const [k, v] of Object.entries(HOPT)) if (k.startsWith('p_')) { const n = k.slice(2); V[n] = typeof V[n] === 'boolean' ? (v === '1' || v === 'true') : decodeURIComponent(v); }
+  const still = 'explode' in HOPT || 'unfold' in HOPT || 'open' in HOPT;
+  if ('explode' in HOPT) V._explode = +HOPT.explode; if ('unfold' in HOPT) V._unfold = +HOPT.unfold; if ('open' in HOPT) V._open = +HOPT.open;
+  drawForm(); updateLink(); build(); if (!still) assemble(); else applyExplode();
+  if (HOPT.rotate === '0') { controls.autoRotate = false; const rl = ui.querySelector('.rotlabel input'); if (rl) rl.checked = false; }
+  if (HOPT.ui === '0') ui.style.display = 'none';
+  if (HOPT.mode) { MODE = HOPT.mode; refreshPlan(true); }
+  if (HOPT.view) { const d = {iso:[.8,.6,1], top:[0,1,.001], front:[0,.2,1], side:[1,.2,0]}[HOPT.view]; if (d) { const n = Math.hypot(...d), r = camera.position.length(); camera.position.set(d[0]/n*r, d[1]/n*r, d[2]/n*r); controls.update(); } }
+}   // #TypeName: opens a type directly
+else { resetValues(); drawForm(); updateLink(); build(); showHome(); }
+addEventListener('resize', layout);
+layout();
+(function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+</script></body></html>

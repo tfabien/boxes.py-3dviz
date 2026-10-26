@@ -1,0 +1,7 @@
+{
+ "Invalid value": "Valeur invalide",
+ "columns_definition: format not understood": "columns_definition : format incompris",
+ "Invalid columns_definition": "columns_definition invalide",
+ "Screw holes of the triangles and the notch of the \"simple\" support are not drawn.": "Trous de vis des triangles et encoche du support « simple » non dessinés. ",
+ "Stacked plates (thicknesses t / top1 / top2); recessed bottom plate resting on the triangles, inferred from the code. ": "Plateaux empilés (épaisseurs t / top1 / top2) ; plateau du fond encastré posé sur les triangles, déduit du code. "
+}

@@ -1,0 +1,8 @@
+{
+ "Mounting edge (Mounting) not modelled; in Sturdy mode the clamping slots do not cut the notches. ": "Bord de montage (Mounting) non modélisé ; en mode Sturdy les fentes de serrage ne coupent pas les créneaux. ",
+ "Invalid sy": "sy invalide",
+ "Inconsistent dimensions": "Dimensions incohérentes",
+ "Mounting edge (Mounting) drawn as a straight edge.": "Bord de montage (Mounting) affiché comme bord droit.",
+ "Clamping slots (Sturdy): only the inner part is cut.": "Fentes de serrage (Sturdy) : seule la partie intérieure est percée.",
+ "Clamping hole outside the part, ignored.": "Trou de serrage hors de la pièce, ignoré."
+}

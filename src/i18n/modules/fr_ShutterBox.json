@@ -1,0 +1,6 @@
+{
+ "Dimensions are inconsistent (y too short for the radius)": "Dimensions incohérentes (y trop court pour le rayon)",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Radius too small (must exceed 2.5 x thickness)": "Rayon trop petit (doit dépasser 2,5 × épaisseur)",
+ "Door closed along the upper rails (the flexible door bends: no Opening slider, a rigid motion would be wrong). Door position in the groove (centred), handle on the outer face, rails and corner pieces glued against the inside of the sides: deduced, the generator does not place them. Mitre fingers a/A/b/B drawn as straight plates (gaps/overlaps possible at the joints). ": "Porte fermée le long des rails du haut (la porte flexible se courbe : pas de curseur Ouverture, un mouvement rigide serait faux). Position de la porte dans la rainure (centrée), poignée sur la face extérieure, rails et pièces de coin collés contre l'intérieur des côtés : déduits, le générateur ne les place pas. Doigts d'onglet a/A/b/B dessinés en plaques droites (jeux/recouvrements possibles aux jonctions). "
+}

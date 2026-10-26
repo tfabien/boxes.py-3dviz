@@ -1,0 +1,9 @@
+{
+ "Invalid value": "Valeur invalide",
+ "ChestHinge: pin_height must be >= 1.2": "ChestHinge: pin_height doit être >= 1.2",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Lid is too low for the hinge": "Couvercle trop bas pour la charnière",
+ "Box is too low for the hinge": "Boîte trop basse pour la charnière",
+ "Hinge: outlines/holes are ported literally; hinge discs/pins are not drawn; lid shown closed.": "Charnière : contours/trous portés littéralement ; les disques/axes de charnière ne sont pas dessinés ; couvercle posé fermé.",
+ "Chest hinge outlines are faithful; hinge discs and pins are not drawn. ": "Contours des charnières de coffre fidèles ; disques d'articulation et axes non dessinés. "
+}

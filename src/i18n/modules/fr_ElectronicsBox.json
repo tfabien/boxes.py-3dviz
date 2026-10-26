@@ -1,0 +1,8 @@
+{
+ "Grooved: width must be in [0, 1]": "Grooved: largeur doit être dans [0, 1]",
+ "Grooved: margin must be in [0, 0.5]": "Grooved: marge doit être dans [0, 0.5]",
+ "Grooved: gap must be in [0, 1]": "Grooved: espace doit être dans [0, 1]",
+ "Stackable: edge too short for the feet": "Stackable: arête trop courte pour les pieds",
+ "Dimensions are inconsistent": "Dimensions incohérentes",
+ "Lid shown inside the cavity (flush with the top of the walls), on the 4 triangles. ": "Couvercle affiché dans la cavité (affleurant le haut des parois), sur les 4 triangles. "
+}
