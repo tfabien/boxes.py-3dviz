@@ -48,6 +48,7 @@ def main():
                           ('/*MSG*/{}', json.dumps(messages(), ensure_ascii=False, separators=(',', ':')))):
         assert marker in page, marker
         page = page.replace(marker, value)
+    os.makedirs(os.path.dirname(os.path.abspath(a.output)), exist_ok=True)
     with open(a.output, 'w', encoding='utf-8', newline='\n') as f:
         f.write(page)
     print('built %s (%d modules, %d KiB)' % (a.output, len(modules), len(page.encode('utf-8')) // 1024))
